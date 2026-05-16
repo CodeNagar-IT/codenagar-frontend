@@ -7,6 +7,34 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-gray-950 text-white;
+    @apply bg-gray-950 text-white overflow-x-hidden;
   }
+}
+
+@layer utilities {
+  .bg-grid-white {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #a855f7, #ec4899);
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
