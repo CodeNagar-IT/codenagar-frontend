@@ -1,7 +1,8 @@
 // 5. src/components/Courses.jsx
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Monitor, Smartphone, FileText, Code, Database, Figma, Award, Clock, Users } from "lucide-react";
+import { Monitor, Smartphone, FileText, Code, Database, Award, Clock, Users } from "lucide-react";
+import { SiFigma } from '@icons-pack/react-simple-icons';
 
 const courses = [
   { icon: FileText, title: "MS Office Mastery", duration: "2 Months", level: "Beginner", students: 150, price: "$99", color: "from-blue-500 to-cyan-500" },
@@ -9,7 +10,7 @@ const courses = [
   { icon: Smartphone, title: "App Development", duration: "6 Months", level: "Advanced", students: 195, price: "$549", color: "from-green-500 to-emerald-500" },
   { icon: Code, title: "Python Programming", duration: "4 Months", level: "Intermediate", students: 210, price: "$299", color: "from-yellow-500 to-orange-500" },
   { icon: Database, title: "Data Science & ML", duration: "8 Months", level: "Advanced", students: 120, price: "$799", color: "from-red-500 to-rose-500" },
-  { icon: Figma, title: "UI/UX Design", duration: "3 Months", level: "Beginner", students: 175, price: "$249", color: "from-indigo-500 to-purple-500" },
+  { icon: SiFigma, title: "UI/UX Design", duration: "3 Months", level: "Beginner", students: 175, price: "$249", color: "from-indigo-500 to-purple-500" },
 ];
 
 const Courses = () => {

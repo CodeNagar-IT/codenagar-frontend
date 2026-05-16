@@ -1,6 +1,6 @@
-// 9. src/components/Footer.jsx
-import { motion } from "framer-motion";
-import { Facebook, Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
+
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 
 const Footer = () => {
@@ -15,18 +15,13 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               Transforming ideas into digital reality with cutting-edge software solutions.
             </p>
-            <div className="flex gap-4 mt-4">
-              {[Facebook, Twitter, Linkedin, Github].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  whileHover={{ y: -3 }}
-                  href="#"
-                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition"
-                >
-                  <Icon className="w-4 h-4" />
-                </motion.a>
-              ))}
-            </div>
+           <div className="flex gap-4 mt-4">
+  {[FaFacebook, FaTwitter, FaLinkedin, FaGithub].map((Icon, i) => (
+    <a key={i} href="#" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
+      <Icon className="w-4 h-4" />
+    </a>
+  ))}
+</div>
           </div>
 
           <div>
