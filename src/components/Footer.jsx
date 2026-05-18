@@ -76,7 +76,7 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-400 text-sm">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                <span>+92 300 1234567</span>
+                <span>+92 307 5762192</span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
@@ -84,7 +84,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                <span>123 Tech Plaza, Shahrah-e-Faisal, Karachi, Pakistan</span>
+                <span>Sajjad Complex, Upper Adda, Muzaffarabad, Azad Kashmir</span>
               </li>
             </ul>
           </div>
@@ -92,7 +92,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {currentYear} CodeNagar. All rights reserved. | Designed with ❤️ for innovation</p>
+          <p>&copy; {currentYear} CodeNagar. All rights reserved.</p>
           <div className="flex justify-center gap-4 mt-2 text-xs">
             <Link to="/privacy-policy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link>
             <Link to="/terms-of-service" className="hover:text-purple-400 transition-colors">Terms of Service</Link>

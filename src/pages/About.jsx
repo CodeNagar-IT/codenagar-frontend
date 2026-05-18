@@ -173,19 +173,18 @@ const About = () => {
             <Mail className="w-10 h-10 mx-auto mb-3 text-purple-400" />
             <h3 className="font-bold mb-1">Email Us</h3>
             <p className="text-gray-400 text-sm">info@codenagar.com</p>
-            <p className="text-gray-400 text-sm">support@codenagar.com</p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition-all">
             <Phone className="w-10 h-10 mx-auto mb-3 text-purple-400" />
             <h3 className="font-bold mb-1">Call Us</h3>
-            <p className="text-gray-400 text-sm">+92 300 1234567</p>
-            <p className="text-gray-400 text-sm">+92 21 12345678</p>
+            <p className="text-gray-400 text-sm">+92 307 5762192</p>
+            <p className="text-gray-400 text-sm">+92 333 0508929</p>
           </div>
           <div className="bg-gray-800/30 rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition-all">
             <MapPin className="w-10 h-10 mx-auto mb-3 text-purple-400" />
             <h3 className="font-bold mb-1">Visit Us</h3>
-            <p className="text-gray-400 text-sm">Karachi, Pakistan</p>
-            <p className="text-gray-400 text-sm">123 Tech Plaza, Shahrah-e-Faisal</p>
+            <p className="text-gray-400 text-sm">Muzaffarabad, Azad Kashmir</p>
+            <p className="text-gray-400 text-sm">Sajjad Complex, Upper Adda, Muzaffarabad</p>
           </div>
         </motion.div>
 

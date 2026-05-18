@@ -74,7 +74,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Visit Us</p>
-                    <p className="text-gray-400 text-sm">123 Tech Plaza, Shahrah-e-Faisal, Karachi, Pakistan</p>
+                    <p className="text-gray-400 text-sm">Sajjad Complex, Upper Adda, Muzaffarabad, Azad Kashmir</p>
                   </div>
                 </motion.div>
                 
@@ -87,8 +87,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Call Us</p>
-                    <p className="text-gray-400 text-sm">+92 300 1234567</p>
-                    <p className="text-gray-400 text-sm">+92 21 12345678</p>
+                    <p className="text-gray-400 text-sm">+92 307 5762192</p>
+                    <p className="text-gray-400 text-sm">+92 333 0508929</p>
                   </div>
                 </motion.div>
                 
@@ -102,7 +102,6 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold">Email Us</p>
                     <p className="text-gray-400 text-sm">info@codenagar.com</p>
-                    <p className="text-gray-400 text-sm">support@codenagar.com</p>
                   </div>
                 </motion.div>
                 
@@ -129,7 +128,7 @@ const Contact = () => {
                 <h3 className="font-bold text-lg">24/7 Emergency Support</h3>
               </div>
               <p className="text-gray-300 text-sm mb-3">For urgent technical issues, call our dedicated support line:</p>
-              <p className="text-purple-400 font-bold text-2xl">+92 300 7654321</p>
+              <p className="text-purple-400 font-bold text-2xl">+92 307 5762192</p>
               <p className="text-xs text-gray-500 mt-2">Available 24/7 for critical issues</p>
             </div>
 
@@ -286,7 +285,7 @@ const Contact = () => {
         >
           <div className="bg-gray-800/30 rounded-2xl overflow-hidden border border-gray-700">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28959.65578360873!2d67.0011!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e0666b7b2f3%3A0x8b4e8f8c8e8f8c8e!2sKarachi!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
               width="100%"
               height="400"
               style={{ border: 0 }}
