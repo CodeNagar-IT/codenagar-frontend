@@ -57,7 +57,7 @@ const Home = () => {
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-4 flex items-center justify-center gap-2">
               <Sparkles className="w-6 h-6 text-yellow-400" />
-              Where Ideas Become Reality
+              Where Code Meets Vision
               <Rocket className="w-6 h-6 text-purple-400" />
             </p>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -67,10 +67,10 @@ const Home = () => {
               <Link to="/services" className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2 group">
                 Explore Services <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/courses" className="px-8 py-3 border border-gray-600 rounded-lg font-semibold hover:bg-white/10 transition-all">
+              <Link to="/courses" className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2 group">
                 Browse Courses
               </Link>
-              <Link to="/store" className="px-8 py-3 bg-gradient-to-r from-pink-600 to-rose-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all">
+              <Link to="/store" className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2 group">
                 Shop Now
               </Link>
             </div>
