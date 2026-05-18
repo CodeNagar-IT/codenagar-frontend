@@ -138,7 +138,7 @@ const About = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Ahmed Butt", role: "CEO & Founder", image: "https://i.ibb.co/21bNTJLD/20260501-0530-image.jpg", bio: "10+ years in software development" },
+              { name: "Ahmed Butt", role: "CEO & Founder", image: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png", bio: "10+ years in software development" },
 
             ].map((member, idx) => (
               <motion.div 
