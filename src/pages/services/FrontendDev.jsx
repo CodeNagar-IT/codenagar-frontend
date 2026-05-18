@@ -1,8 +1,8 @@
 // frontend/src/pages/services/FrontendDev.jsx
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CheckCircle, Code, Layout, Smartphone, Globe, Zap, Shield, Eye, Sparkles, ArrowRight, Clock, Award, Users, TrendingUp, DollarSign, Heart, Monitor, Palette, Figma, } from "lucide-react";
-
+import { CheckCircle, Code, Layout, Smartphone, Globe, Zap, Shield, Eye, Sparkles, ArrowRight, Clock, Award, Users, TrendingUp, DollarSign, Heart, Monitor, Palette, } from "lucide-react";
+import { SiFigma } from "react-icons/si"
 const FrontendDev = () => {
   return (
     <div className="pt-24 pb-16 px-4">
@@ -93,7 +93,7 @@ const FrontendDev = () => {
                 { icon: Smartphone, name: "Vue.js", color: "from-green-500 to-emerald-500" },
                 { icon: Zap, name: "Tailwind CSS", color: "from-cyan-500 to-blue-500" },
                 { icon: Palette, name: "SCSS/SASS", color: "from-pink-500 to-rose-500" },
-                { icon: Figma, name: "Figma to Code", color: "from-purple-500 to-pink-500" },
+                { icon: SiFigma, name: "Figma to Code", color: "from-purple-500 to-pink-500" },
                 { icon: Globe, name: "TypeScript", color: "from-blue-600 to-indigo-600" },
                 { icon: Eye, name: "Redux/Context", color: "from-purple-500 to-indigo-500" },
               ].map((tech, idx) => (

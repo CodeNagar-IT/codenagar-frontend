@@ -1,8 +1,8 @@
 // frontend/src/pages/services/UIDesign.jsx
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CheckCircle, Palette, PenTool, Figma, Smartphone, Layout, Monitor, Sparkles, ArrowRight, Clock, Award, Users, DollarSign, Eye, Heart, Layers, Grid } from "lucide-react";
-
+import { CheckCircle, Palette, PenTool, Smartphone, Layout, Monitor, Sparkles, ArrowRight, Clock, Award, Users, DollarSign, Eye, Heart, Layers, Grid } from "lucide-react";
+import { SiFigma } from "react-icons/si"
 const UIDesign = () => {
   return (
     <div className="pt-24 pb-16 px-4">
@@ -88,7 +88,7 @@ const UIDesign = () => {
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: Figma, name: "Figma", color: "from-purple-500 to-pink-500" },
+                { icon: SiFigma, name: "Figma", color: "from-purple-500 to-pink-500" },
                 { icon: PenTool, name: "Adobe XD", color: "from-pink-500 to-rose-500" },
                 { icon: Layout, name: "Sketch", color: "from-orange-500 to-red-500" },
                 { icon: Palette, name: "Illustrator", color: "from-yellow-500 to-orange-500" },

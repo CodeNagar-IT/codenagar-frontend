@@ -1,7 +1,8 @@
 // frontend/src/pages/services/Ecommerce.jsx
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CheckCircle, ShoppingCart, CreditCard, Truck, Shield, Code, Layout, Eye, Smartphone, Globe, BarChart3, Sparkles, ArrowRight, Clock, Award, Users, TrendingUp, Rocket, DollarSign, Layers, Package, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import { CheckCircle, ShoppingCart, CreditCard, Truck, Shield, Code, Layout, Eye, Smartphone, Globe, BarChart3, Sparkles, ArrowRight, Clock, Award, Users, TrendingUp, Rocket, DollarSign, Layers, Package, Mail } from "lucide-react";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Ecommerce = () => {
   return (
@@ -248,11 +249,11 @@ const Ecommerce = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-                  <Instagram className="w-6 h-6 mx-auto mb-2 text-purple-400" />
+                  <FaInstagram className="w-6 h-6 mx-auto mb-2 text-purple-400" />
                   <p className="text-xs text-gray-400">Instagram Shopping</p>
                 </div>
                 <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-                  <Facebook className="w-6 h-6 mx-auto mb-2 text-purple-400" />
+                  <FaFacebook className="w-6 h-6 mx-auto mb-2 text-purple-400" />
                   <p className="text-xs text-gray-400">Facebook Store</p>
                 </div>
                 <div className="bg-gray-800/50 rounded-xl p-4 text-center">
@@ -260,7 +261,7 @@ const Ecommerce = () => {
                   <p className="text-xs text-gray-400">Email Campaigns</p>
                 </div>
                 <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-                  <Twitter className="w-6 h-6 mx-auto mb-2 text-purple-400" />
+                  <FaTwitter className="w-6 h-6 mx-auto mb-2 text-purple-400" />
                   <p className="text-xs text-gray-400">Social Selling</p>
                 </div>
               </div>
