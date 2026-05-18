@@ -281,8 +281,8 @@ const FrontendDev = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic", price: "$1,999", priceLabel: "project", features: ["Up to 5 Pages", "Responsive Design", "Basic Animations", "Contact Form", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$4,999", priceLabel: "project", features: ["Up to 15 Pages", "Advanced Animations", "SEO Optimization", "Performance Tuning", "API Integration", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Basic", price: "$99", priceLabel: "project", features: ["Up to 5 Pages", "Responsive Design", "Basic Animations", "Contact Form", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$169", priceLabel: "project", features: ["Up to 15 Pages", "Advanced Animations", "SEO Optimization", "Performance Tuning", "API Integration", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Unlimited Pages", "PWA Development", "Custom Components", "Dedicated Developer", "24/7 Support", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

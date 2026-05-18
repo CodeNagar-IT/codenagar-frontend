@@ -167,8 +167,8 @@ const WebDev = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic", price: "$499", priceLabel: "one-time", features: ["5 Pages", "Responsive Design", "Contact Form", "Basic SEO"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$1,499", priceLabel: "one-time", features: ["15 Pages", "CMS Integration", "E-commerce Ready", "Advanced SEO", "Speed Optimization"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Basic", price: "$149", priceLabel: "one-time", features: ["5 Pages", "Responsive Design", "Contact Form", "Basic SEO"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$349", priceLabel: "one-time", features: ["15 Pages", "CMS Integration", "E-commerce Ready", "Advanced SEO", "Speed Optimization"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote based", features: ["Unlimited Pages", "Custom Features", "API Integration", "Dedicated Support", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

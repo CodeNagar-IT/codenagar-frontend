@@ -324,8 +324,8 @@ const BackendDev = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Starter", price: "$3,999", priceLabel: "project", features: ["Basic API Development", "Single Database", "Authentication", "Basic Security", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$8,999", priceLabel: "project", features: ["Advanced API Development", "Multiple Databases", "Caching & Optimization", "API Documentation", "Security Audits", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Starter", price: "$129", priceLabel: "project", features: ["Basic API Development", "Single Database", "Authentication", "Basic Security", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$299", priceLabel: "project", features: ["Advanced API Development", "Multiple Databases", "Caching & Optimization", "API Documentation", "Security Audits", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Microservices Architecture", "Real-time Features", "High Availability", "Dedicated Team", "SLA Agreement", "24/7 Support"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

@@ -205,8 +205,8 @@ const UIDesign = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic", price: "$999", priceLabel: "project", features: ["5 Screens", "Wireframes", "Basic Prototype", "Style Guide"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$2,499", priceLabel: "project", features: ["15 Screens", "High-fidelity Design", "Interactive Prototype", "Design System", "User Testing"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Basic", price: "$89", priceLabel: "project", features: ["5 Screens", "Wireframes", "Basic Prototype", "Style Guide"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$159", priceLabel: "project", features: ["15 Screens", "High-fidelity Design", "Interactive Prototype", "Design System", "User Testing"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Unlimited Screens", "Full Design System", "User Research", "Usability Testing", "Dedicated Designer"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

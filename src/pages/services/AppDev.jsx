@@ -284,8 +284,8 @@ const AppDev = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic App", price: "$8,999", priceLabel: "one-time", features: ["Single Platform (iOS/Android)", "Up to 10 Screens", "Basic UI/UX Design", "Authentication", "Push Notifications", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$15,999", priceLabel: "one-time", features: ["Both Platforms (iOS & Android)", "Up to 25 Screens", "Custom UI/UX Design", "Social Login", "In-App Purchases", "Analytics", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Basic App", price: "$349", priceLabel: "one-time", features: ["Single Platform (iOS/Android)", "Up to 10 Screens", "Basic UI/UX Design", "Authentication", "Push Notifications", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$699", priceLabel: "one-time", features: ["Both Platforms (iOS & Android)", "Up to 25 Screens", "Custom UI/UX Design", "Social Login", "In-App Purchases", "Analytics", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Both Platforms + Backend", "Unlimited Screens", "Custom Features", "Real-time Sync", "Admin Dashboard", "Dedicated Team", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

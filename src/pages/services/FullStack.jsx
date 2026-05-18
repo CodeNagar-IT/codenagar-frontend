@@ -248,8 +248,8 @@ const FullStack = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Startup", price: "$5,999", priceLabel: "project", features: ["Up to 10 Pages", "Basic Authentication", "Database Integration", "Responsive Design", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Business", price: "$12,999", priceLabel: "project", features: ["Up to 30 Pages", "Advanced Features", "Payment Integration", "Admin Dashboard", "API Development", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Startup", price: "$249", priceLabel: "project", features: ["Up to 10 Pages", "Basic Authentication", "Database Integration", "Responsive Design", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Business", price: "$499", priceLabel: "project", features: ["Up to 30 Pages", "Advanced Features", "Payment Integration", "Admin Dashboard", "API Development", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Unlimited Pages", "Custom Architecture", "Microservices", "Cloud Deployment", "Dedicated Team", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

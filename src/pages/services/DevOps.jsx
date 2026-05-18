@@ -281,8 +281,8 @@ const DevOps = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Starter", price: "$2,499", priceLabel: "month", features: ["CI/CD Setup", "Basic Monitoring", "Infrastructure as Code", "1 Cloud Provider", "Email Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$4,999", priceLabel: "month", features: ["Full CI/CD Pipeline", "Advanced Monitoring", "Kubernetes Setup", "Multi-cloud", "24/7 Support", "Security Scanning"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Starter", price: "$149", priceLabel: "month", features: ["CI/CD Setup", "Basic Monitoring", "Infrastructure as Code", "1 Cloud Provider", "Email Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$299", priceLabel: "month", features: ["Full CI/CD Pipeline", "Advanced Monitoring", "Kubernetes Setup", "Multi-cloud", "24/7 Support", "Security Scanning"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Custom Infrastructure", "Dedicated DevOps Team", "Disaster Recovery", "Compliance & Audits", "SLA Agreement", "24/7 Dedicated Support"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

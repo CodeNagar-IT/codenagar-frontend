@@ -321,8 +321,8 @@ const AISolutions = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Starter AI", price: "$5,999", priceLabel: "project", features: ["Single AI Model", "Basic NLP/CV", "API Integration", "30 Days Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional AI", price: "$12,999", priceLabel: "project", features: ["Multiple AI Models", "Advanced NLP/CV", "Custom Training", "Dashboard & Analytics", "6 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Starter AI", price: "$349", priceLabel: "project", features: ["Single AI Model", "Basic NLP/CV", "API Integration", "30 Days Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional AI", price: "$699", priceLabel: "project", features: ["Multiple AI Models", "Advanced NLP/CV", "Custom Training", "Dashboard & Analytics", "6 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise AI", price: "Custom", priceLabel: "quote", features: ["End-to-end AI Pipeline", "Custom LLM Fine-tuning", "Dedicated AI Team", "24/7 Monitoring", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

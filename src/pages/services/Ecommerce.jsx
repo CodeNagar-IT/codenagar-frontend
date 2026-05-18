@@ -287,8 +287,8 @@ const Ecommerce = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Starter Store", price: "$2,999", priceLabel: "one-time", features: ["Up to 100 Products", "Payment Gateway", "Basic SEO", "Mobile Responsive", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$6,999", priceLabel: "one-time", features: ["Up to 1000 Products", "Advanced SEO", "Email Marketing", "Abandoned Cart", "Inventory Management", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Starter Store", price: "$199", priceLabel: "one-time", features: ["Up to 100 Products", "Payment Gateway", "Basic SEO", "Mobile Responsive", "1 Month Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$399", priceLabel: "one-time", features: ["Up to 1000 Products", "Advanced SEO", "Email Marketing", "Abandoned Cart", "Inventory Management", "3 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Unlimited Products", "Custom Features", "Multi-vendor Support", "Dedicated Support", "SLA Agreement", "24/7 Monitoring"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

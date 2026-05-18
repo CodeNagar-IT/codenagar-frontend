@@ -243,8 +243,8 @@ const MLIntegration = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic", price: "$4,999", priceLabel: "project", features: ["Single ML Model", "Basic Data Processing", "API Integration", "30 Days Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$9,999", priceLabel: "project", features: ["Multiple ML Models", "Advanced Analytics", "Real-time Predictions", "Dashboard & Reports", "6 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Basic", price: "$149", priceLabel: "project", features: ["Single ML Model", "Basic Data Processing", "API Integration", "30 Days Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$349", priceLabel: "project", features: ["Multiple ML Models", "Advanced Analytics", "Real-time Predictions", "Dashboard & Reports", "6 Months Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["End-to-end ML Pipeline", "Custom Model Development", "24/7 Monitoring", "Dedicated ML Team", "SLA Agreement"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 

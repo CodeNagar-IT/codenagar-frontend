@@ -307,8 +307,8 @@ const CloudSolutions = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Starter", price: "$1,999", priceLabel: "month", features: ["Up to 10 Servers", "Basic Monitoring", "24/7 Support", "Backup & Recovery", "Email Support"], popular: false, color: "from-blue-500 to-cyan-500" },
-              { name: "Professional", price: "$3,999", priceLabel: "month", features: ["Up to 50 Servers", "Advanced Monitoring", "Auto-scaling", "Load Balancing", "Security Audits", "24/7 Priority Support"], popular: true, color: "from-purple-500 to-pink-500" },
+              { name: "Starter", price: "$99", priceLabel: "month", features: ["Up to 10 Servers", "Basic Monitoring", "24/7 Support", "Backup & Recovery", "Email Support"], popular: false, color: "from-blue-500 to-cyan-500" },
+              { name: "Professional", price: "$199", priceLabel: "month", features: ["Up to 50 Servers", "Advanced Monitoring", "Auto-scaling", "Load Balancing", "Security Audits", "24/7 Priority Support"], popular: true, color: "from-purple-500 to-pink-500" },
               { name: "Enterprise", price: "Custom", priceLabel: "quote", features: ["Unlimited Servers", "Custom Architecture", "Dedicated Cloud Engineer", "Compliance Management", "SLA Agreement", "24/7 Dedicated Support"], popular: false, color: "from-orange-500 to-red-500" },
             ].map((plan, idx) => (
               <motion.div 
