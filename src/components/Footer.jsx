@@ -1,6 +1,7 @@
 // frontend/src/components/Footer.jsx
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,11 +20,11 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 mt-4">
               {[
-                { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Github, href: "https://github.com", label: "GitHub" },
-                { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+                { icon: FaFacebook, href: "https://facebook.com", label: "Facebook", color: "hover:bg-blue-600" },
+                { icon: FaTwitter, href: "https://twitter.com", label: "Twitter", color: "hover:bg-sky-500" },
+                { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn", color: "hover:bg-blue-700" },
+                { icon: FaGithub, href: "https://github.com", label: "GitHub", color: "hover:bg-gray-600" },
+                { icon: FaInstagram, href: "https://instagram.com", label: "Instagram", color: "hover:bg-pink-600" },
               ].map((social, i) => (
                 <a
                   key={i}
@@ -31,9 +32,9 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 hover:scale-110"
+                  className={`w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${social.color}`}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-4 h-4 text-white" />
                 </a>
               ))}
             </div>
@@ -86,21 +87,6 @@ const Footer = () => {
                 <span>123 Tech Plaza, Shahrah-e-Faisal, Karachi, Pakistan</span>
               </li>
             </ul>
-            
-            {/* Newsletter Signup */}
-            <div className="mt-6">
-              <h4 className="font-bold mb-3 text-white text-sm">Subscribe to Newsletter</h4>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-3 py-2 bg-gray-800 rounded-l-lg text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
-                />
-                <button className="px-3 py-2 bg-purple-600 rounded-r-lg text-sm hover:bg-purple-700 transition">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 
