@@ -1,42 +1,125 @@
+// frontend/src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Courses from "./components/Courses";
-import Hardware from "./components/Hardware";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Admin from "./components/Admin";
 import ScrollToTop from "./components/ScrollToTop";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
+
+// Public Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Events from "./pages/Events";
+import Careers from "./pages/Careers";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+// Service Pages
+import Services from "./pages/services/Services";
+import WebDev from "./pages/services/WebDev";
+import AppDev from "./pages/services/AppDev";
+import MLIntegration from "./pages/services/MLIntegration";
+import AISolutions from "./pages/services/AISolutions";
+import FrontendDev from "./pages/services/FrontendDev";
+import BackendDev from "./pages/services/BackendDev";
+import FullStack from "./pages/services/FullStack";
+import CloudSolutions from "./pages/services/CloudSolutions";
+import DevOps from "./pages/services/DevOps";
+import UIDesign from "./pages/services/UIDesign";
+import Ecommerce from "./pages/services/Ecommerce";
+
+// Course Pages
+import Courses from "./pages/courses/Courses";
+import CourseDetails from "./pages/courses/CourseDetails";
+import CourseApply from "./pages/courses/CourseApply";
+
+// Store Pages
+import Store from "./pages/store/Store";
+import ProductDetails from "./pages/store/ProductDetails";
+import Cart from "./pages/store/Cart";
+import Checkout from "./pages/store/Checkout";
+
+// User Pages
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Orders from "./pages/Orders";
+
+// Admin Pages
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminApplications from "./pages/admin/AdminApplications";
+import AdminMessages from "./pages/admin/AdminMessages";
+import AdminCareers from "./pages/admin/AdminCareers";
+import AdminEvents from "./pages/admin/AdminEvents";
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 min-h-screen">
-        <Navbar />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Hero />
-                <Services />
-                <Courses />
-                <Hardware />
-                <Contact />
-              </motion.div>
-            } />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </AnimatePresence>
-        <Footer />
-      </div>
-    </Router>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
+            <Navbar />
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              
+              {/* Service Routes */}
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/web-development" element={<WebDev />} />
+              <Route path="/services/app-development" element={<AppDev />} />
+              <Route path="/services/ml-integration" element={<MLIntegration />} />
+              <Route path="/services/ai-solutions" element={<AISolutions />} />
+              <Route path="/services/frontend-development" element={<FrontendDev />} />
+              <Route path="/services/backend-development" element={<BackendDev />} />
+              <Route path="/services/full-stack-development" element={<FullStack />} />
+              <Route path="/services/cloud-solutions" element={<CloudSolutions />} />
+              <Route path="/services/devops" element={<DevOps />} />
+              <Route path="/services/ui-ux-design" element={<UIDesign />} />
+              <Route path="/services/ecommerce-development" element={<Ecommerce />} />
+              
+              {/* Course Routes */}
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:slug" element={<CourseDetails />} />
+              <Route path="/courses/:slug/apply" element={<CourseApply />} />
+              
+              {/* Store Routes */}
+              <Route path="/store" element={<Store />} />
+              <Route path="/store/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+              
+              {/* User Routes */}
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+              <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+              <Route path="/admin/orders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
+              <Route path="/admin/applications" element={<AdminRoute><AdminApplications /></AdminRoute>} />
+              <Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
+              <Route path="/admin/careers" element={<AdminRoute><AdminCareers /></AdminRoute>} />
+              <Route path="/admin/events" element={<AdminRoute><AdminEvents /></AdminRoute>} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

@@ -1,12 +1,16 @@
-
-import { useState, useEffect } from "react";
+// frontend/src/components/Navbar.jsx
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Laptop } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, Laptop, User, ShoppingBag, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,23 +18,40 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Courses", href: "/#courses" },
-    { name: "Hardware", href: "/#hardware" },
-    { name: "Contact", href: "/#contact" },
+  // Close mobile menu on route change
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsOpen(false);
+    }
+  }, [location, isOpen]);
+
+  const serviceLinks = [
+    { name: "Web Development", path: "/services/web-development" },
+    { name: "App Development", path: "/services/app-development" },
+    { name: "ML Integration", path: "/services/ml-integration" },
+    { name: "AI Solutions", path: "/services/ai-solutions" },
+    { name: "Frontend Development", path: "/services/frontend-development" },
+    { name: "Backend Development", path: "/services/backend-development" },
+    { name: "Full Stack Development", path: "/services/full-stack-development" },
+    { name: "Cloud Solutions", path: "/services/cloud-solutions" },
+    { name: "DevOps", path: "/services/devops" },
+    { name: "UI/UX Design", path: "/services/ui-ux-design" },
+    { name: "E-commerce", path: "/services/ecommerce-development" },
   ];
 
-  const handleClick = (href) => {
-    setIsOpen(false);
-    if (href === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (href.includes("#")) {
-      const element = document.getElementById(href.split("#")[1]);
-      if (element) element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const courseLinks = [
+    { name: "MS Office", path: "/courses/ms-office" },
+    { name: "Web Development", path: "/courses/web-development" },
+    { name: "App Development", path: "/courses/app-development" },
+    { name: "Python Programming", path: "/courses/python" },
+    { name: "Data Science & ML", path: "/courses/data-science" },
+    { name: "UI/UX Design", path: "/courses/ui-ux" },
+  ];
 
   return (
     <motion.nav
@@ -49,65 +70,146 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex space-x-1">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(item.href);
-                }}
-                className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition relative group"
-              >
-                {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
-            <Link
-              to="/admin"
-              className="px-4 py-2 bg-purple-600 rounded-lg text-white hover:bg-purple-700 transition ml-4"
-            >
-              Admin
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center space-x-1">
+            <Link to="/" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition">
+              Home
             </Link>
+            
+            {/* Services Dropdown */}
+            <div className="relative group">
+              <button className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition flex items-center gap-1">
+                Services <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full left-0 w-72 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-2 max-h-96 overflow-y-auto">
+                  {serviceLinks.map((link) => (
+                    <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Courses Dropdown */}
+            <div className="relative group">
+              <button className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition flex items-center gap-1">
+                Courses <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full left-0 w-64 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-2">
+                  {courseLinks.map((link) => (
+                    <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">
+                      {link.name}
+                    </Link>
+                  ))}
+                  <div className="border-t border-gray-800 my-2"></div>
+                  <Link to="/courses" className="block px-4 py-2 text-purple-400 hover:bg-purple-600 hover:text-white transition">
+                    View All Courses →
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/store" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition flex items-center gap-1">
+              <ShoppingBag className="w-4 h-4" /> Store
+            </Link>
+            <Link to="/events" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition">
+              Events
+            </Link>
+            <Link to="/careers" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition">
+              Careers
+            </Link>
+            <Link to="/about" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition">
+              About
+            </Link>
+            <Link to="/contact" className="px-4 py-2 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition">
+              Contact
+            </Link>
+
+            {user ? (
+              <div className="relative group ml-4">
+                <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition">
+                  <User className="w-4 h-4" /> {user.name?.split(' ')[0] || 'User'}
+                </button>
+                <div className="absolute top-full right-0 w-48 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                  <div className="py-2">
+                    <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">Dashboard</Link>
+                    <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">My Orders</Link>
+                    <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">Profile</Link>
+                    <div className="border-t border-gray-800 my-2"></div>
+                    <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-red-600 hover:text-white transition">Logout</button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex gap-2 ml-4">
+                <Link to="/login" className="px-4 py-2 border border-purple-600 rounded-lg hover:bg-purple-600 transition">Login</Link>
+                <Link to="/signup" className="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition">Sign Up</Link>
+              </div>
+            )}
           </div>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+          {/* Mobile Menu Button */}
+          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-gray-900/95 backdrop-blur-xl border-b border-gray-800"
+            className="lg:hidden bg-gray-900/95 backdrop-blur-xl border-b border-gray-800 max-h-[80vh] overflow-y-auto"
           >
             <div className="px-4 py-4 space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleClick(item.href);
-                    setIsOpen(false);
-                  }}
-                  className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition"
-                >
-                  {item.name}
-                </a>
-              ))}
-              <Link
-                to="/admin"
-                onClick={() => setIsOpen(false)}
-                className="block py-3 bg-purple-600 rounded-lg text-center text-white hover:bg-purple-700 transition mt-4"
-              >
-                Admin Panel
-              </Link>
+              <Link to="/" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Home</Link>
+              
+              <div className="py-2">
+                <div className="text-gray-400 px-4 py-2 text-sm font-semibold">SERVICES</div>
+                {serviceLinks.map((link) => (
+                  <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="block py-2 pl-8 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition">
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="py-2">
+                <div className="text-gray-400 px-4 py-2 text-sm font-semibold">COURSES</div>
+                {courseLinks.map((link) => (
+                  <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)} className="block py-2 pl-8 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition">
+                    {link.name}
+                  </Link>
+                ))}
+                <Link to="/courses" onClick={() => setIsOpen(false)} className="block py-2 pl-8 text-purple-400 hover:text-white hover:bg-purple-600 rounded-lg transition">
+                  View All Courses →
+                </Link>
+              </div>
+
+              <Link to="/store" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Store</Link>
+              <Link to="/events" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Events</Link>
+              <Link to="/careers" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Careers</Link>
+              <Link to="/about" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">About</Link>
+              <Link to="/contact" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Contact</Link>
+
+              {user ? (
+                <>
+                  <Link to="/dashboard" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Dashboard</Link>
+                  <Link to="/orders" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">My Orders</Link>
+                  <Link to="/profile" onClick={() => setIsOpen(false)} className="block py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg px-4 transition">Profile</Link>
+                  <button onClick={() => { logout(); setIsOpen(false); }} className="block w-full text-left py-3 text-red-400 hover:bg-red-600 hover:text-white rounded-lg px-4 transition">Logout</button>
+                </>
+              ) : (
+                <div className="pt-4 space-y-2">
+                  <Link to="/login" onClick={() => setIsOpen(false)} className="block py-3 text-center border border-purple-600 rounded-lg hover:bg-purple-600 transition">Login</Link>
+                  <Link to="/signup" onClick={() => setIsOpen(false)} className="block py-3 text-center bg-purple-600 rounded-lg hover:bg-purple-700 transition">Sign Up</Link>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
