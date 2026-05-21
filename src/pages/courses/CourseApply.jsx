@@ -71,7 +71,7 @@ const CourseApply = () => {
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <div className="mb-6">
-          <Link to={`/courses/${slug}`} className="text-gray-400 hover:text-purple-400 text-sm flex items-center gap-1">
+          <Link to={`/courses/${slug}`} className="text-gray-400 hover:text-blue-400 text-sm flex items-center gap-1">
             <ArrowLeft className="w-4 h-4" /> Back to Course Details
           </Link>
         </div>
@@ -82,12 +82,12 @@ const CourseApply = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">Start Your Journey</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">Start Your Journey</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Apply for <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{courseName}</span>
+            Apply for <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{courseName}</span>
           </h1>
           <p className="text-gray-400 text-lg">Fill out the form below to secure your seat. Our team will contact you shortly.</p>
         </motion.div>
@@ -97,21 +97,21 @@ const CourseApply = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-2xl p-4 mb-6 border border-purple-500/20"
+          className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 rounded-2xl p-4 mb-6 border border-blue-500/20"
         >
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <Clock className="w-5 h-5 mx-auto mb-1 text-purple-400" />
+              <Clock className="w-5 h-5 mx-auto mb-1 text-blue-400" />
               <p className="text-xs text-gray-400">Duration</p>
               <p className="font-semibold text-sm">{course.duration}</p>
             </div>
             <div>
-              <Award className="w-5 h-5 mx-auto mb-1 text-purple-400" />
+              <Award className="w-5 h-5 mx-auto mb-1 text-blue-400" />
               <p className="text-xs text-gray-400">Certificate</p>
               <p className="font-semibold text-sm">Included</p>
             </div>
             <div>
-              <Users className="w-5 h-5 mx-auto mb-1 text-purple-400" />
+              <Users className="w-5 h-5 mx-auto mb-1 text-blue-400" />
               <p className="text-xs text-gray-400">Students</p>
               <p className="font-semibold text-sm">{course.students}+</p>
             </div>
@@ -147,13 +147,13 @@ const CourseApply = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Full Name *</label>
               <div className="relative group">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type="text" 
                   required 
                   value={formData.fullName} 
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   placeholder="John Doe"
                 />
               </div>
@@ -163,13 +163,13 @@ const CourseApply = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Email Address *</label>
               <div className="relative group">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type="email" 
                   required 
                   value={formData.email} 
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   placeholder="you@example.com"
                 />
               </div>
@@ -179,13 +179,13 @@ const CourseApply = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Phone Number *</label>
               <div className="relative group">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type="tel" 
                   required 
                   value={formData.phone} 
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   placeholder="+92 300 1234567"
                 />
               </div>
@@ -195,12 +195,12 @@ const CourseApply = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Highest Education *</label>
               <div className="relative group">
-                <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <select 
                   required 
                   value={formData.education} 
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all appearance-none"
                 >
                   <option value="">Select Education Level</option>
                   <option>High School / Intermediate</option>
@@ -216,12 +216,12 @@ const CourseApply = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Experience (if any)</label>
               <div className="relative group">
-                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type="text" 
                   value={formData.experience} 
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   placeholder="e.g., 1 year of coding experience / Fresher"
                 />
               </div>
@@ -234,7 +234,7 @@ const CourseApply = () => {
                 rows="4" 
                 value={formData.message} 
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })} 
-                className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all resize-none"
+                className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all resize-none"
                 placeholder="Tell us about your goals, what you hope to achieve, and why you're interested in this course..."
               />
             </div>
@@ -243,7 +243,7 @@ const CourseApply = () => {
             <button 
               type="submit" 
               disabled={submitting} 
-              className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
+              className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
             >
               {submitting ? (
                 <>

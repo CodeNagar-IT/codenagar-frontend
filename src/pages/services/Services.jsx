@@ -30,7 +30,7 @@ const Services = () => {
       title: "ML Integration", 
       desc: "AI-powered solutions & intelligent systems",
       path: "/services/ml-integration",
-      color: "from-purple-500 to-pink-500",
+      color: "from-blue-500 to-indigo-500",
       features: ["Predictive Analytics", "NLP", "Computer Vision", "Recommendation Systems"]
     },
     { 
@@ -62,7 +62,7 @@ const Services = () => {
       title: "Full Stack Development", 
       desc: "End-to-end application development",
       path: "/services/full-stack-development",
-      color: "from-indigo-500 to-purple-500",
+      color: "from-indigo-500 to-blue-500",
       features: ["MERN/PERN Stack", "API Integration", "Cloud Deployment", "DevOps"]
     },
     { 
@@ -86,7 +86,7 @@ const Services = () => {
       title: "UI/UX Design", 
       desc: "User-centered design for digital products",
       path: "/services/ui-ux-design",
-      color: "from-pink-500 to-rose-500",
+      color: "from-indigo-500 to-rose-500",
       features: ["User Research", "Wireframing", "Prototyping", "Usability Testing"]
     },
     { 
@@ -108,12 +108,12 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">What We Offer</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">What We Offer</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Our <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Services</span>
+            Our <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Services</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Comprehensive technology solutions to help your business grow and succeed in the digital age.
@@ -124,7 +124,7 @@ const Services = () => {
         <div className="grid md:grid-cols-4 gap-6 mb-16">
           {[
             { icon: Award, value: "50+", label: "Projects Delivered", color: "from-blue-500 to-cyan-500" },
-            { icon: Users, value: "100+", label: "Happy Clients", color: "from-purple-500 to-pink-500" },
+            { icon: Users, value: "100+", label: "Happy Clients", color: "from-blue-500 to-indigo-500" },
             { icon: TrendingUp, value: "98%", label: "Client Retention", color: "from-green-500 to-emerald-500" },
             { icon: Zap, value: "24/7", label: "Support Available", color: "from-orange-500 to-red-500" },
           ].map((stat, idx) => (
@@ -151,20 +151,20 @@ const Services = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -8 }}
-              className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300"
+              className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300"
             >
               <div className="p-6">
                 <div className={`w-14 h-14 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">{service.title}</h3>
                 <p className="text-gray-400 mb-4 text-sm">{service.desc}</p>
                 
                 {/* Features List */}
                 <div className="space-y-2 mb-4">
                   {service.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 text-purple-400" />
+                      <CheckCircle className="w-4 h-4 text-blue-400" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -172,7 +172,7 @@ const Services = () => {
                 
                 <Link 
                   to={service.path} 
-                  className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold group-hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold group-hover:gap-3 transition-all"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -186,7 +186,7 @@ const Services = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl p-12 border border-purple-500/20"
+          className="mt-20 text-center bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-12 border border-blue-500/20"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Need a Custom Solution?</h2>
           <p className="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
@@ -194,7 +194,7 @@ const Services = () => {
           </p>
           <Link 
             to="/contact" 
-            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all group"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all group"
           >
             Get Free Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
           </Link>

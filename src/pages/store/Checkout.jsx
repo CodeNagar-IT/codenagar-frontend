@@ -86,7 +86,7 @@ const Checkout = () => {
           <h2 className="text-2xl font-bold mb-2">Order Placed Successfully!</h2>
           <p className="text-gray-400 mb-6">Thank you for your purchase. You will receive a confirmation email shortly.</p>
           <div className="flex gap-4 justify-center">
-            <Link to="/orders" className="px-6 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition">View Orders</Link>
+            <Link to="/orders" className="px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">View Orders</Link>
             <Link to="/store" className="px-6 py-2 border border-gray-600 rounded-lg hover:bg-white/10 transition">Continue Shopping</Link>
           </div>
         </div>
@@ -99,7 +99,7 @@ const Checkout = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <Link to="/cart" className="text-gray-400 hover:text-purple-400 text-sm flex items-center gap-1 mb-4">
+          <Link to="/cart" className="text-gray-400 hover:text-blue-400 text-sm flex items-center gap-1 mb-4">
             <ArrowLeft className="w-4 h-4" /> Back to Cart
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Checkout</h1>
@@ -127,11 +127,11 @@ const Checkout = () => {
                 {["Cart", "Checkout", "Payment"].map((step, idx) => (
                   <div key={step} className="flex items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
-                      idx === 1 ? "bg-purple-600 text-white" : idx < 1 ? "bg-green-500 text-white" : "bg-gray-700 text-gray-400"
+                      idx === 1 ? "bg-blue-600 text-white" : idx < 1 ? "bg-green-500 text-white" : "bg-gray-700 text-gray-400"
                     }`}>
                       {idx < 1 ? <CheckCircle className="w-4 h-4" /> : idx + 1}
                     </div>
-                    <span className={`ml-2 text-sm ${idx === 1 ? "text-purple-400" : "text-gray-400"}`}>{step}</span>
+                    <span className={`ml-2 text-sm ${idx === 1 ? "text-blue-400" : "text-gray-400"}`}>{step}</span>
                     {idx < 2 && <div className="w-16 h-px bg-gray-700 mx-4"></div>}
                   </div>
                 ))}
@@ -140,7 +140,7 @@ const Checkout = () => {
               {/* Shipping Information */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
                 <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Truck className="w-5 h-5 text-purple-400" /> 
+                  <Truck className="w-5 h-5 text-blue-400" /> 
                   Shipping Information
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -153,7 +153,7 @@ const Checkout = () => {
                         required 
                         value={formData.fullName} 
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} 
-                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         placeholder="John Doe"
                       />
                     </div>
@@ -167,7 +167,7 @@ const Checkout = () => {
                         required 
                         value={formData.email} 
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         placeholder="you@example.com"
                       />
                     </div>
@@ -181,7 +181,7 @@ const Checkout = () => {
                         required 
                         value={formData.phone} 
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         placeholder="+92 300 1234567"
                       />
                     </div>
@@ -195,7 +195,7 @@ const Checkout = () => {
                         required 
                         value={formData.address} 
                         onChange={(e) => setFormData({ ...formData, address: e.target.value })} 
-                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         placeholder="Street, building, apartment"
                       />
                     </div>
@@ -207,7 +207,7 @@ const Checkout = () => {
                       required 
                       value={formData.city} 
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })} 
-                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       placeholder="Karachi"
                     />
                   </div>
@@ -218,7 +218,7 @@ const Checkout = () => {
                       required 
                       value={formData.zipCode} 
                       onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })} 
-                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       placeholder="12345"
                     />
                   </div>
@@ -233,7 +233,7 @@ const Checkout = () => {
                 className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
               >
                 <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-purple-400" /> 
+                  <CreditCard className="w-5 h-5 text-blue-400" /> 
                   Payment Information
                 </h2>
                 <div className="space-y-4">
@@ -247,7 +247,7 @@ const Checkout = () => {
                         placeholder="1234 5678 9012 3456" 
                         value={formData.cardNumber} 
                         onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })} 
-                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       />
                     </div>
                   </div>
@@ -260,7 +260,7 @@ const Checkout = () => {
                         placeholder="MM/YY" 
                         value={formData.expiryDate} 
                         onChange={(e) => setFormData({ ...formData, expiryDate: e.target.value })} 
-                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       />
                     </div>
                     <div>
@@ -273,7 +273,7 @@ const Checkout = () => {
                           placeholder="123" 
                           value={formData.cvv} 
                           onChange={(e) => setFormData({ ...formData, cvv: e.target.value })} 
-                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         />
                       </div>
                     </div>
@@ -291,7 +291,7 @@ const Checkout = () => {
               <button 
                 type="submit" 
                 disabled={submitting} 
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
               >
                 {submitting ? (
                   <>
@@ -316,7 +316,7 @@ const Checkout = () => {
               className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 sticky top-24"
             >
               <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-purple-400" />
+                <ShoppingBag className="w-5 h-5 text-blue-400" />
                 Order Summary
               </h2>
               
@@ -348,7 +348,7 @@ const Checkout = () => {
                 <div className="border-t border-gray-700 pt-3 mt-2">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
-                    <span className="text-purple-400">${total.toFixed(2)}</span>
+                    <span className="text-blue-400">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>

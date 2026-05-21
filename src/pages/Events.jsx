@@ -50,12 +50,12 @@ const Events = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">Join Our Community</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">Join Our Community</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Upcoming <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Events</span>
+            Upcoming <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Events</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Join our workshops, hackathons, and networking events to grow your skills and connect with industry experts.
@@ -65,7 +65,7 @@ const Events = () => {
         {/* Loading State */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading exciting events...</p>
           </div>
         ) : events.length === 0 ? (
@@ -87,49 +87,49 @@ const Events = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300"
+                className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300"
               >
                 {/* Event Image or Gradient Placeholder */}
                 <div className="relative h-48 overflow-hidden">
                   {event.image ? (
                     <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-purple-600/30 to-pink-600/30 flex items-center justify-center">
-                      <Award className="w-16 h-16 text-purple-400/50" />
+                    <div className="w-full h-full bg-gradient-to-br from-blue-600/30 to-indigo-600/30 flex items-center justify-center">
+                      <Award className="w-16 h-16 text-blue-400/50" />
                     </div>
                   )}
                   {/* Date Badge */}
-                  <div className="absolute top-4 right-4 bg-purple-600/90 backdrop-blur-sm rounded-lg px-3 py-1 text-center">
+                  <div className="absolute top-4 right-4 bg-blue-600/90 backdrop-blur-sm rounded-lg px-3 py-1 text-center">
                     <div className="text-2xl font-bold leading-tight">{new Date(event.date).getDate()}</div>
                     <div className="text-xs uppercase">{new Date(event.date).toLocaleString('default', { month: 'short' })}</div>
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{event.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">{event.title}</h3>
                   <p className="text-gray-400 mb-4 line-clamp-2 text-sm">{event.description}</p>
                   
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <Calendar className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                      <Calendar className="w-4 h-4 text-blue-400 flex-shrink-0" />
                       <span>{new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <Clock className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                      <Clock className="w-4 h-4 text-blue-400 flex-shrink-0" />
                       <span>{new Date(event.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <MapPin className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                      <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0" />
                       <span className="truncate">{event.location}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-300">
-                      <Users className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                      <Users className="w-4 h-4 text-blue-400 flex-shrink-0" />
                       <span>{event.seats - (event.registrations?.length || 0)} seats left</span>
                     </div>
                     {event.price > 0 && (
                       <div className="flex items-center gap-2 text-sm">
-                        <Ticket className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                        <span className="font-bold text-purple-400">${event.price}</span>
+                        <Ticket className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                        <span className="font-bold text-blue-400">${event.price}</span>
                       </div>
                     )}
                     {event.price === 0 && (
@@ -142,7 +142,7 @@ const Events = () => {
                   
                   <button
                     onClick={() => setSelectedEvent(event)}
-                    className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                    className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
                   >
                     Register Now
                   </button>
@@ -169,13 +169,13 @@ const Events = () => {
                 initial={{ scale: 0.9, y: 50, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 50, opacity: 0 }}
-                className="bg-gray-800 rounded-2xl max-w-md w-full border border-purple-500 shadow-2xl"
+                className="bg-gray-800 rounded-2xl max-w-md w-full border border-blue-500 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
                 <div className="p-6 border-b border-gray-700">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                       Register for {selectedEvent.title}
                     </h3>
                     <button 
@@ -223,7 +223,7 @@ const Events = () => {
                         type="text" 
                         name="name" 
                         placeholder="Enter your full name" 
-                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                         required 
                       />
                     </div>
@@ -233,7 +233,7 @@ const Events = () => {
                         type="email" 
                         name="email" 
                         placeholder="you@example.com" 
-                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                         required 
                       />
                     </div>
@@ -243,7 +243,7 @@ const Events = () => {
                         type="tel" 
                         name="phone" 
                         placeholder="+92 300 1234567" 
-                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                         required 
                       />
                     </div>
@@ -252,7 +252,7 @@ const Events = () => {
                       <button 
                         type="submit" 
                         disabled={submitting}
-                        className="flex-1 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
+                        className="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
                       >
                         {submitting ? "Processing..." : "Complete Registration"}
                       </button>

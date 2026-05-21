@@ -65,11 +65,11 @@ const AdminDashboard = () => {
 
   const statCards = [
     { title: "Total Users", value: stats.users || 0, icon: Users, color: "from-blue-500 to-cyan-500", link: "/admin/users", change: "+12%" },
-    { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-purple-500 to-pink-500", link: "/admin/products", change: "+5%" },
+    { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-blue-500 to-indigo-500", link: "/admin/products", change: "+5%" },
     { title: "Messages", value: stats.messages || 0, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/admin/messages", change: stats.unread ? `${stats.unread} unread` : "0 unread" },
     { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
     { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
-    { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-purple-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
+    { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
   ];
 
   const getStatusColor = (status) => {
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
     return (
       <div className="pt-32 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading dashboard...</p>
         </div>
       </div>
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-2">
-              Admin <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Dashboard</span>
+              Admin <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Dashboard</span>
             </h1>
             <p className="text-gray-400">Welcome back! Here's what's happening with your business today.</p>
           </div>
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-purple-400" />
+              <TrendingUp className="w-5 h-5 text-blue-400" />
               Revenue Overview
             </h2>
             <div className="h-64 bg-gray-900/50 rounded-xl flex items-center justify-center border border-gray-700">
@@ -162,14 +162,14 @@ const AdminDashboard = () => {
 
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-              <Activity className="w-5 h-5 text-purple-400" />
+              <Activity className="w-5 h-5 text-blue-400" />
               Recent Activity
             </h2>
             <div className="space-y-3">
               {recentOrders.slice(0, 3).map((order) => (
                 <div key={order._id} className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg">
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
-                    <ShoppingCart className="w-4 h-4 text-purple-400" />
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                    <ShoppingCart className="w-4 h-4 text-blue-400" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold">New Order #{order._id.slice(-6)}</p>
@@ -188,10 +188,10 @@ const AdminDashboard = () => {
         <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 mb-8">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5 text-purple-400" />
+              <ShoppingCart className="w-5 h-5 text-blue-400" />
               Recent Orders
             </h2>
-            <Link to="/admin/orders" className="text-purple-400 text-sm hover:text-purple-300 flex items-center gap-1">
+            <Link to="/admin/orders" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
               View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -221,7 +221,7 @@ const AdminDashboard = () => {
                       </span>
                     </td>
                     <td className="py-3">
-                      <Link to={`/admin/orders/${order._id}`} className="text-purple-400 hover:text-purple-300 text-sm">View</Link>
+                      <Link to={`/admin/orders/${order._id}`} className="text-blue-400 hover:text-blue-300 text-sm">View</Link>
                     </td>
                   </tr>
                 ))}
@@ -235,10 +235,10 @@ const AdminDashboard = () => {
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-purple-400" />
+                <MessageSquare className="w-5 h-5 text-blue-400" />
                 Recent Messages
               </h2>
-              <Link to="/admin/messages" className="text-purple-400 text-sm hover:text-purple-300 flex items-center gap-1">
+              <Link to="/admin/messages" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
                 View All <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -255,7 +255,7 @@ const AdminDashboard = () => {
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-xs text-gray-500">{new Date(msg.createdAt).toLocaleDateString()}</p>
-                    <Link to={`/admin/messages/${msg._id}`} className="text-purple-400 text-xs hover:underline">Read</Link>
+                    <Link to={`/admin/messages/${msg._id}`} className="text-blue-400 text-xs hover:underline">Read</Link>
                   </div>
                 </div>
               ))}
@@ -268,10 +268,10 @@ const AdminDashboard = () => {
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <GraduationCap className="w-5 h-5 text-purple-400" />
+                <GraduationCap className="w-5 h-5 text-blue-400" />
                 Recent Applications
               </h2>
-              <Link to="/admin/applications" className="text-purple-400 text-sm hover:text-purple-300 flex items-center gap-1">
+              <Link to="/admin/applications" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
                 View All <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -293,7 +293,7 @@ const AdminDashboard = () => {
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-xs text-gray-500">{new Date(app.appliedAt).toLocaleDateString()}</p>
-                    <Link to={`/admin/applications/${app._id}`} className="text-purple-400 text-xs hover:underline">Review</Link>
+                    <Link to={`/admin/applications/${app._id}`} className="text-blue-400 text-xs hover:underline">Review</Link>
                   </div>
                 </div>
               ))}
@@ -307,7 +307,7 @@ const AdminDashboard = () => {
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { title: "Add Product", icon: Package, link: "/admin/products/add", color: "bg-purple-600" },
+            { title: "Add Product", icon: Package, link: "/admin/products/add", color: "bg-blue-600" },
             { title: "View Orders", icon: ShoppingCart, link: "/admin/orders", color: "bg-blue-600" },
             { title: "Manage Courses", icon: GraduationCap, link: "/admin/courses", color: "bg-green-600" },
             { title: "Export Data", icon: Download, link: "/admin/export", color: "bg-orange-600" },

@@ -126,7 +126,7 @@ const AdminProducts = () => {
               });
               setShowModal(true);
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
           >
             <Plus className="w-5 h-5" /> Add Product
           </button>
@@ -141,11 +141,11 @@ const AdminProducts = () => {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex gap-2">
-            <select className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <select className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">All Categories</option>
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -160,7 +160,7 @@ const AdminProducts = () => {
         {/* Products Table */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading products...</p>
           </div>
         ) : (
@@ -193,10 +193,10 @@ const AdminProducts = () => {
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="px-2 py-1 bg-purple-500/20 rounded-full text-xs">{product.category}</span>
+                        <span className="px-2 py-1 bg-blue-500/20 rounded-full text-xs">{product.category}</span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="font-bold text-purple-400">${product.price}</span>
+                        <span className="font-bold text-blue-400">${product.price}</span>
                         {product.originalPrice && (
                           <span className="text-xs text-gray-500 line-through ml-1">${product.originalPrice}</span>
                         )}
@@ -217,7 +217,7 @@ const AdminProducts = () => {
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleEdit(product)}
-                            className="p-1 hover:text-purple-400 transition"
+                            className="p-1 hover:text-blue-400 transition"
                           >
                             <Edit className="w-5 h-5" />
                           </button>
@@ -249,13 +249,13 @@ const AdminProducts = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-purple-500"
+              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500"
             >
               <div className="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 className="text-2xl font-bold">
                   {editingProduct ? "Edit Product" : "Add New Product"}
                 </h2>
-                <button onClick={() => setShowModal(false)} className="hover:text-purple-400">
+                <button onClick={() => setShowModal(false)} className="hover:text-blue-400">
                   <X className="w-6 h-6" />
                 </button>
               </div>
@@ -267,7 +267,7 @@ const AdminProducts = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -277,7 +277,7 @@ const AdminProducts = () => {
                       required
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">Select Category</option>
                       <option>Computers</option>
@@ -294,7 +294,7 @@ const AdminProducts = () => {
                       type="number"
                       value={formData.stock}
                       onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -307,7 +307,7 @@ const AdminProducts = () => {
                       required
                       value={formData.price}
                       onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
@@ -317,7 +317,7 @@ const AdminProducts = () => {
                       step="0.01"
                       value={formData.originalPrice}
                       onChange={(e) => setFormData({ ...formData, originalPrice: parseFloat(e.target.value) })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -327,7 +327,7 @@ const AdminProducts = () => {
                     rows="3"
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Product description..."
                   />
                 </div>
@@ -337,7 +337,7 @@ const AdminProducts = () => {
                     rows="2"
                     value={formData.specs}
                     onChange={(e) => setFormData({ ...formData, specs: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Product specifications..."
                   />
                 </div>
@@ -347,14 +347,14 @@ const AdminProducts = () => {
                     id="featured"
                     checked={formData.featured}
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                    className="w-4 h-4 rounded focus:ring-purple-500"
+                    className="w-4 h-4 rounded focus:ring-blue-500"
                   />
                   <label htmlFor="featured" className="text-sm">Feature this product</label>
                 </div>
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"
-                    className="flex-1 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+                    className="flex-1 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
                   >
                     {editingProduct ? "Update Product" : "Add Product"}
                   </button>

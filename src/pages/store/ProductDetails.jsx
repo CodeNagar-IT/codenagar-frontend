@@ -38,7 +38,7 @@ const ProductDetails = () => {
     return (
       <div className="pt-32 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading product details...</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ const ProductDetails = () => {
           <AlertCircle className="w-16 h-16 mx-auto text-gray-600 mb-4" />
           <h2 className="text-2xl font-bold mb-2">Product Not Found</h2>
           <p className="text-gray-400 mb-6">The product you're looking for doesn't exist or has been removed.</p>
-          <Link to="/store" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition">
+          <Link to="/store" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
             <ChevronLeft className="w-5 h-5" /> Back to Store
           </Link>
         </div>
@@ -72,7 +72,7 @@ const ProductDetails = () => {
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
         <div className="mb-6">
-          <Link to="/store" className="text-gray-400 hover:text-purple-400 text-sm flex items-center gap-1">
+          <Link to="/store" className="text-gray-400 hover:text-blue-400 text-sm flex items-center gap-1">
             <ChevronLeft className="w-4 h-4" /> Back to Store
           </Link>
         </div>
@@ -98,8 +98,8 @@ const ProductDetails = () => {
                   onClick={() => setActiveImage(idx)}
                   className={`w-20 h-20 bg-gray-800/50 rounded-xl border-2 flex items-center justify-center text-3xl transition-all ${
                     activeImage === idx 
-                      ? "border-purple-500 shadow-lg shadow-purple-500/25" 
-                      : "border-gray-700 hover:border-purple-500/50"
+                      ? "border-blue-500 shadow-lg shadow-blue-500/25" 
+                      : "border-gray-700 hover:border-blue-500/50"
                   }`}
                 >
                   {img.icon}
@@ -141,7 +141,7 @@ const ProductDetails = () => {
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="text-4xl md:text-5xl font-bold text-purple-400">${product.price}</span>
+              <span className="text-4xl md:text-5xl font-bold text-blue-400">${product.price}</span>
               {product.originalPrice && (
                 <>
                   <span className="text-xl text-gray-500 line-through">${product.originalPrice}</span>
@@ -173,14 +173,14 @@ const ProductDetails = () => {
                 <div className="flex items-center gap-3 bg-gray-800 rounded-xl px-4 py-2 border border-gray-700">
                   <button 
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="hover:text-purple-400 transition p-1"
+                    className="hover:text-blue-400 transition p-1"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
                   <span className="w-12 text-center font-semibold text-lg">{quantity}</span>
                   <button 
                     onClick={() => setQuantity(quantity + 1)}
-                    className="hover:text-purple-400 transition p-1"
+                    className="hover:text-blue-400 transition p-1"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -196,7 +196,7 @@ const ProductDetails = () => {
               <button 
                 onClick={handleAddToCart} 
                 disabled={product.stock === 0}
-                className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition" /> 
                 {product.stock === 0 ? "Out of Stock" : `Add to Cart - $${(product.price * quantity).toFixed(2)}`}
@@ -209,7 +209,7 @@ const ProductDetails = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-400 text-sm text-center flex items-center justify-center gap-2"
                 >
-                  <Check className="w-4 h-4" /> Added to cart! <Link to="/cart" className="text-purple-400 underline">View Cart</Link>
+                  <Check className="w-4 h-4" /> Added to cart! <Link to="/cart" className="text-blue-400 underline">View Cart</Link>
                 </motion.div>
               )}
 
@@ -223,15 +223,15 @@ const ProductDetails = () => {
               <h3 className="font-semibold mb-3">Why Buy From Us?</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Truck className="w-5 h-5 text-purple-400" />
+                  <Truck className="w-5 h-5 text-blue-400" />
                   <span>Free shipping over $100</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Shield className="w-5 h-5 text-purple-400" />
+                  <Shield className="w-5 h-5 text-blue-400" />
                   <span>2-year warranty</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <RotateCcw className="w-5 h-5 text-purple-400" />
+                  <RotateCcw className="w-5 h-5 text-blue-400" />
                   <span>30-day easy returns</span>
                 </div>
               </div>
@@ -247,15 +247,15 @@ const ProductDetails = () => {
           className="mt-20"
         >
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Star className="w-5 h-5 text-purple-400" />
+            <Star className="w-5 h-5 text-blue-400" />
             You May Also Like
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((_, idx) => (
-              <Link key={idx} to="/store" className="bg-gray-800/50 rounded-xl p-4 border border-gray-700 hover:border-purple-500 transition-all text-center group">
+              <Link key={idx} to="/store" className="bg-gray-800/50 rounded-xl p-4 border border-gray-700 hover:border-blue-500 transition-all text-center group">
                 <div className="text-5xl mb-2 group-hover:scale-110 transition-transform">🖥️</div>
-                <p className="text-sm font-semibold group-hover:text-purple-400 transition">Related Product</p>
-                <p className="text-purple-400 font-bold text-sm">$99</p>
+                <p className="text-sm font-semibold group-hover:text-blue-400 transition">Related Product</p>
+                <p className="text-blue-400 font-bold text-sm">$99</p>
               </Link>
             ))}
           </div>

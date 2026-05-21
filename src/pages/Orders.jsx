@@ -54,7 +54,7 @@ const Orders = () => {
     return (
       <div className="pt-32 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading your orders...</p>
         </div>
       </div>
@@ -71,7 +71,7 @@ const Orders = () => {
           className="mb-8"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            My <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Orders</span>
+            My <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Orders</span>
           </h1>
           <p className="text-gray-400">Track and manage all your purchases</p>
         </motion.div>
@@ -87,7 +87,7 @@ const Orders = () => {
             <p className="text-gray-400 mb-6">Looks like you haven't placed any orders</p>
             <Link 
               to="/store" 
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
             >
               <ShoppingBag className="w-5 h-5" /> Start Shopping
             </Link>
@@ -100,7 +100,7 @@ const Orders = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden hover:border-purple-500/50 transition-all duration-300"
+                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden hover:border-blue-500/50 transition-all duration-300"
               >
                 {/* Order Header - Clickable */}
                 <div 
@@ -110,7 +110,7 @@ const Orders = () => {
                   <div className="flex flex-wrap justify-between items-center gap-4">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <Package className="w-4 h-4 text-purple-400" />
+                        <Package className="w-4 h-4 text-blue-400" />
                         <p className="text-sm font-mono text-gray-300">#{order._id.slice(-8).toUpperCase()}</p>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -136,7 +136,7 @@ const Orders = () => {
                       
                       {/* Total & Items */}
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-purple-400">${order.total?.toFixed(2)}</p>
+                        <p className="text-2xl font-bold text-blue-400">${order.total?.toFixed(2)}</p>
                         <p className="text-xs text-gray-400">{order.items?.length || 0} item(s)</p>
                       </div>
                       
@@ -160,7 +160,7 @@ const Orders = () => {
                       {/* Items List */}
                       <div>
                         <h3 className="font-bold mb-4 flex items-center gap-2">
-                          <ShoppingBag className="w-4 h-4 text-purple-400" />
+                          <ShoppingBag className="w-4 h-4 text-blue-400" />
                           Order Items
                         </h3>
                         <div className="space-y-3">
@@ -192,7 +192,7 @@ const Orders = () => {
                             </div>
                             <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-700">
                               <span>Total</span>
-                              <span className="text-purple-400">${order.total?.toFixed(2)}</span>
+                              <span className="text-blue-400">${order.total?.toFixed(2)}</span>
                             </div>
                           </div>
                         </div>
@@ -201,11 +201,11 @@ const Orders = () => {
                       {/* Shipping Information */}
                       <div>
                         <h3 className="font-bold mb-4 flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-purple-400" />
+                          <MapPin className="w-4 h-4 text-blue-400" />
                           Shipping Information
                         </h3>
                         <div className="bg-gray-800/50 rounded-xl p-4 border border-gray-700">
-                          <p className="font-semibold text-purple-400 mb-2">Delivery Address</p>
+                          <p className="font-semibold text-blue-400 mb-2">Delivery Address</p>
                           <p className="text-gray-300">{order.shippingAddress?.street}</p>
                           <p className="text-gray-300">{order.shippingAddress?.city}, {order.shippingAddress?.zipCode}</p>
                           <p className="text-gray-300">{order.shippingAddress?.country}</p>
@@ -214,7 +214,7 @@ const Orders = () => {
                         {/* Order Timeline */}
                         <div className="mt-6">
                           <h3 className="font-bold mb-4 flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-purple-400" />
+                            <Clock className="w-4 h-4 text-blue-400" />
                             Order Timeline
                           </h3>
                           <div className="relative pl-6 space-y-4">
@@ -240,7 +240,7 @@ const Orders = () => {
                             
                             {order.status === "shipped" && (
                               <div className="relative">
-                                <div className="absolute left-0 top-1 w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                                <div className="absolute left-0 top-1 w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
                                 <div>
                                   <p className="font-semibold text-sm">Out for Delivery</p>
                                   <p className="text-xs text-gray-400">Estimated 2-3 days</p>
@@ -262,7 +262,7 @@ const Orders = () => {
 
                         {/* Action Buttons */}
                         <div className="mt-6 flex gap-3">
-                          <button className="flex-1 px-4 py-2 bg-purple-600 rounded-lg text-sm font-semibold hover:bg-purple-700 transition-all">
+                          <button className="flex-1 px-4 py-2 bg-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all">
                             Track Order
                           </button>
                           {order.status === "delivered" && (

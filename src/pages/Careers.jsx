@@ -132,12 +132,12 @@ const Careers = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">Join Our Growing Team</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">Join Our Growing Team</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Join Our <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Team</span>
+            Join Our <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Team</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Build your career with CodeNagar. We're always looking for talented, passionate people to join our growing team.
@@ -149,7 +149,7 @@ const Careers = () => {
           {[
             { icon: Briefcase, title: "Competitive Salary", desc: "Market-leading compensation", color: "from-blue-500 to-cyan-500" },
             { icon: Clock, title: "Flexible Hours", desc: "Work-life balance", color: "from-green-500 to-emerald-500" },
-            { icon: MapPin, title: "Remote Options", desc: "Work from anywhere", color: "from-purple-500 to-pink-500" },
+            { icon: MapPin, title: "Remote Options", desc: "Work from anywhere", color: "from-blue-500 to-indigo-500" },
             { icon: Award, title: "Growth Opportunities", desc: "Learn and advance", color: "from-orange-500 to-red-500" },
           ].map((benefit, idx) => (
             <motion.div 
@@ -174,7 +174,7 @@ const Careers = () => {
           className="mb-16 bg-gray-800/30 rounded-2xl p-8 border border-gray-700"
         >
           <h2 className="text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2">
-            <Heart className="w-6 h-6 text-purple-400" />
+            <Heart className="w-6 h-6 text-blue-400" />
             Why Work With Us?
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -184,7 +184,7 @@ const Careers = () => {
               { icon: Award, title: "Recognition", desc: "Performance bonuses and employee recognition" },
             ].map((item, idx) => (
               <div key={idx} className="text-center">
-                <item.icon className="w-10 h-10 mx-auto mb-3 text-purple-400" />
+                <item.icon className="w-10 h-10 mx-auto mb-3 text-blue-400" />
                 <h3 className="font-semibold mb-1">{item.title}</h3>
                 <p className="text-gray-400 text-sm">{item.desc}</p>
               </div>
@@ -194,7 +194,7 @@ const Careers = () => {
 
         {/* Open Positions */}
         <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
-          <Briefcase className="w-8 h-8 text-purple-400" />
+          <Briefcase className="w-8 h-8 text-blue-400" />
           Open Positions ({positions.length})
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -205,25 +205,25 @@ const Careers = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -5 }}
-              className="group bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300"
+              className="group bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300"
             >
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{position.icon}</span>
-                  <h3 className="text-xl font-bold group-hover:text-purple-400 transition-colors">{position.title}</h3>
+                  <h3 className="text-xl font-bold group-hover:text-blue-400 transition-colors">{position.title}</h3>
                 </div>
-                <span className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full">
+                <span className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full">
                   {position.type}
                 </span>
               </div>
               <div className="flex flex-wrap gap-4 mb-4 text-sm">
-                <span className="flex items-center gap-1 text-gray-300"><MapPin className="w-4 h-4 text-purple-400" /> {position.location}</span>
-                <span className="flex items-center gap-1 text-gray-300"><DollarSign className="w-4 h-4 text-purple-400" /> {position.salary}</span>
-                <span className="flex items-center gap-1 text-gray-300"><Clock className="w-4 h-4 text-purple-400" /> {position.experience}</span>
+                <span className="flex items-center gap-1 text-gray-300"><MapPin className="w-4 h-4 text-blue-400" /> {position.location}</span>
+                <span className="flex items-center gap-1 text-gray-300"><DollarSign className="w-4 h-4 text-blue-400" /> {position.salary}</span>
+                <span className="flex items-center gap-1 text-gray-300"><Clock className="w-4 h-4 text-blue-400" /> {position.experience}</span>
               </div>
               <p className="text-gray-400 mb-4 text-sm">{position.description}</p>
               <div className="mb-4">
-                <p className="text-xs text-purple-400 mb-2">Requirements:</p>
+                <p className="text-xs text-blue-400 mb-2">Requirements:</p>
                 <div className="flex flex-wrap gap-2">
                   {position.requirements.map((req, i) => (
                     <span key={i} className="text-xs px-2 py-1 bg-gray-700 rounded-full text-gray-300">{req}</span>
@@ -232,7 +232,7 @@ const Careers = () => {
               </div>
               <button 
                 onClick={() => setSelectedPosition(position)} 
-                className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
               >
                 Apply Now
               </button>
@@ -257,7 +257,7 @@ const Careers = () => {
                 initial={{ scale: 0.9, y: 50, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 50, opacity: 0 }}
-                className="bg-gray-800 rounded-2xl max-w-2xl w-full border border-purple-500 shadow-2xl"
+                className="bg-gray-800 rounded-2xl max-w-2xl w-full border border-blue-500 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
@@ -266,7 +266,7 @@ const Careers = () => {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-2xl">{selectedPosition.icon}</span>
-                        <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                           Apply for {selectedPosition.title}
                         </h3>
                       </div>
@@ -313,7 +313,7 @@ const Careers = () => {
                           required
                           value={formData.fullName}
                           onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                           placeholder="John Doe"
                         />
                       </div>
@@ -328,7 +328,7 @@ const Careers = () => {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                           placeholder="you@example.com"
                         />
                       </div>
@@ -343,7 +343,7 @@ const Careers = () => {
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition"
                           placeholder="+92 300 1234567"
                         />
                       </div>
@@ -357,7 +357,7 @@ const Careers = () => {
                           required
                           value={formData.experience}
                           onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition appearance-none"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition appearance-none"
                         >
                           <option value="">Select experience</option>
                           <option>Fresh Graduate</option>
@@ -379,8 +379,8 @@ const Careers = () => {
                             onChange={handleFileChange}
                             className="hidden"
                           />
-                          <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-900 rounded-lg border border-gray-700 hover:border-purple-500 transition cursor-pointer">
-                            <FileText className="w-5 h-5 text-purple-400" />
+                          <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-900 rounded-lg border border-gray-700 hover:border-blue-500 transition cursor-pointer">
+                            <FileText className="w-5 h-5 text-blue-400" />
                             <span className="text-sm text-gray-300">{resumeName || "Choose file..."}</span>
                           </div>
                         </label>
@@ -395,7 +395,7 @@ const Careers = () => {
                         rows="4"
                         value={formData.coverLetter}
                         onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition resize-none"
+                        className="w-full px-4 py-2.5 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition resize-none"
                         placeholder="Tell us why you're a great fit for this position..."
                       ></textarea>
                     </div>
@@ -404,7 +404,7 @@ const Careers = () => {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="flex-1 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                        className="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                       >
                         {submitting ? "Submitting..." : <><Send className="w-5 h-5" /> Submit Application</>}
                       </button>

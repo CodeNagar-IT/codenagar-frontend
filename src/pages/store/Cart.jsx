@@ -27,7 +27,7 @@ const Cart = () => {
           <p className="text-gray-400 mb-6">Looks like you haven't added any items yet</p>
           <Link 
             to="/store" 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all group"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition" /> 
             Start Shopping
@@ -43,7 +43,7 @@ const Cart = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-2 flex items-center gap-3">
-            <ShoppingBag className="w-10 h-10 text-purple-400" />
+            <ShoppingBag className="w-10 h-10 text-blue-400" />
             Shopping Cart
           </h1>
           <p className="text-gray-400">Review and manage your items before checkout</p>
@@ -61,7 +61,7 @@ const Cart = () => {
                   exit={{ opacity: 0, x: 30, transition: { duration: 0.2 } }}
                   transition={{ delay: idx * 0.05 }}
                   layout
-                  className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700 hover:border-purple-500/50 transition-all duration-300"
+                  className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700 hover:border-blue-500/50 transition-all duration-300"
                 >
                   <div className="flex gap-4">
                     {/* Product Image */}
@@ -73,11 +73,11 @@ const Cart = () => {
                     <div className="flex-1">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-bold text-lg group-hover:text-purple-400 transition-colors">
+                          <h3 className="font-bold text-lg group-hover:text-blue-400 transition-colors">
                             {item.name}
                           </h3>
                           <p className="text-sm text-gray-400">by CodeNagar</p>
-                          <p className="text-purple-400 font-bold text-xl mt-1">
+                          <p className="text-blue-400 font-bold text-xl mt-1">
                             ${item.price}
                           </p>
                         </div>
@@ -94,7 +94,7 @@ const Cart = () => {
                         <div className="flex items-center gap-2 bg-gray-900 rounded-lg px-3 py-1.5 border border-gray-700">
                           <button 
                             onClick={() => updateQuantity(item._id, item.quantity - 1)}
-                            className="p-1 hover:text-purple-400 transition-colors"
+                            className="p-1 hover:text-blue-400 transition-colors"
                             disabled={item.quantity <= 1}
                           >
                             <Minus className="w-4 h-4" />
@@ -102,7 +102,7 @@ const Cart = () => {
                           <span className="w-8 text-center font-semibold">{item.quantity}</span>
                           <button 
                             onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                            className="p-1 hover:text-purple-400 transition-colors"
+                            className="p-1 hover:text-blue-400 transition-colors"
                           >
                             <Plus className="w-4 h-4" />
                           </button>
@@ -126,7 +126,7 @@ const Cart = () => {
               className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 sticky top-24"
             >
               <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-400" />
+                <Sparkles className="w-5 h-5 text-blue-400" />
                 Order Summary
               </h2>
               
@@ -163,12 +163,12 @@ const Cart = () => {
                 {/* Free Shipping Progress */}
                 {subtotal < 100 && subtotal > 0 && (
                   <div className="mt-3 pt-3 border-t border-gray-700">
-                    <p className="text-xs text-purple-400 mb-2">
+                    <p className="text-xs text-blue-400 mb-2">
                       Add ${(100 - subtotal).toFixed(2)} more for free shipping!
                     </p>
                     <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                       <div 
-                        className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500"
+                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-500"
                         style={{ width: `${(subtotal / 100) * 100}%` }}
                       ></div>
                     </div>
@@ -178,7 +178,7 @@ const Cart = () => {
                 <div className="border-t border-gray-700 pt-3 mt-2">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
-                    <span className="text-purple-400">${total.toFixed(2)}</span>
+                    <span className="text-blue-400">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ const Cart = () => {
               <div className="mt-6 space-y-3">
                 <Link 
                   to="/checkout" 
-                  className="block text-center py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all group"
+                  className="block text-center py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all group"
                 >
                   <span className="flex items-center justify-center gap-2">
                     <CreditCard className="w-5 h-5 group-hover:scale-110 transition" />

@@ -36,9 +36,9 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-4 relative overflow-hidden">
       {/* Background Decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-600/10 to-blue-600/20 pointer-events-none"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-indigo-600/10 to-blue-600/20 pointer-events-none"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
       
       <motion.div 
         initial={{ opacity: 0, y: 30 }} 
@@ -47,11 +47,11 @@ const AdminLogin = () => {
       >
         {/* Logo/Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl mb-4 shadow-lg">
             <Shield className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-4xl font-bold mb-2">
-            Admin <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Login</span>
+            Admin <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Login</span>
           </h1>
           <p className="text-gray-400">Secure access for administrators only</p>
         </div>
@@ -74,13 +74,13 @@ const AdminLogin = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Email Address</label>
               <div className="relative group">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type="email" 
                   placeholder="admin@codenagar.com" 
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   required 
                   autoComplete="off"
                 />
@@ -91,19 +91,19 @@ const AdminLogin = () => {
             <div>
               <label className="block text-sm font-medium mb-2">Password</label>
               <div className="relative group">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                 <input 
                   type={showPassword ? "text" : "password"} 
                   placeholder="Enter your password" 
                   value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
-                  className="w-full pl-10 pr-12 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                  className="w-full pl-10 pr-12 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                   required 
                 />
                 <button 
                   type="button" 
                   onClick={() => setShowPassword(!showPassword)} 
-                  className="absolute right-3 top-1/2 -translate-y-1/2 hover:text-purple-400 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 hover:text-blue-400 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5 text-gray-400" /> : <Eye className="w-5 h-5 text-gray-400" />}
                 </button>
@@ -114,7 +114,7 @@ const AdminLogin = () => {
             <button 
               type="submit" 
               disabled={loading} 
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
+              className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all disabled:opacity-50 flex items-center justify-center gap-2 group"
             >
               {loading ? (
                 <>
@@ -131,7 +131,7 @@ const AdminLogin = () => {
 
             {/* Back to Site Link */}
             <div className="text-center pt-4">
-              <a href="/" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+              <a href="/" className="text-sm text-gray-500 hover:text-blue-400 transition-colors">
                 ← Back to Website
               </a>
             </div>

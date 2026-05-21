@@ -110,10 +110,10 @@ const Profile = () => {
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 sticky top-24">
               <div className="text-center mb-6">
                 <div className="relative inline-block group">
-                  <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-3xl font-bold mx-auto shadow-lg">
+                  <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-3xl font-bold mx-auto shadow-lg">
                     {user?.name?.charAt(0) || "U"}
                   </div>
-                  <button className="absolute bottom-0 right-0 bg-purple-600 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="absolute bottom-0 right-0 bg-blue-600 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Camera className="w-4 h-4" />
                   </button>
                 </div>
@@ -121,7 +121,7 @@ const Profile = () => {
                 <p className="text-sm text-gray-400">{user?.email}</p>
                 <span className={`inline-block mt-2 px-3 py-1 text-xs rounded-full ${
                   user?.role === "admin" 
-                    ? "bg-purple-500/20 text-purple-400" 
+                    ? "bg-blue-500/20 text-blue-400" 
                     : "bg-blue-500/20 text-blue-400"
                 }`}>
                   {user?.role === "admin" ? "Administrator" : "Member"}
@@ -135,7 +135,7 @@ const Profile = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                       activeTab === tab.id 
-                        ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg" 
+                        ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg" 
                         : "hover:bg-gray-700 text-gray-300"
                     }`}
                   >
@@ -159,7 +159,7 @@ const Profile = () => {
             {/* Profile Tab */}
             {activeTab === "profile" && (
               <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
-                <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Profile Information</h2>
+                <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Profile Information</h2>
                 <form onSubmit={handleProfileUpdate} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -170,7 +170,7 @@ const Profile = () => {
                           type="text" 
                           value={formData.name} 
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                           required
                         />
                       </div>
@@ -183,7 +183,7 @@ const Profile = () => {
                           type="email" 
                           value={formData.email} 
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                           required
                         />
                       </div>
@@ -196,7 +196,7 @@ const Profile = () => {
                           type="tel" 
                           value={formData.phone} 
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                           placeholder="+92 300 1234567"
                         />
                       </div>
@@ -209,7 +209,7 @@ const Profile = () => {
                           type="text" 
                           value={formData.city} 
                           onChange={(e) => setFormData({ ...formData, city: e.target.value })} 
-                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                           placeholder="Karachi"
                         />
                       </div>
@@ -220,7 +220,7 @@ const Profile = () => {
                         rows="2" 
                         value={formData.address} 
                         onChange={(e) => setFormData({ ...formData, address: e.target.value })} 
-                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                         placeholder="Street, building, apartment number"
                       ></textarea>
                     </div>
@@ -230,7 +230,7 @@ const Profile = () => {
                         rows="3" 
                         value={formData.bio} 
                         onChange={(e) => setFormData({ ...formData, bio: e.target.value })} 
-                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all" 
+                        className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
                         placeholder="Tell us a little about yourself..."
                       ></textarea>
                     </div>
@@ -238,7 +238,7 @@ const Profile = () => {
                   <button 
                     type="submit" 
                     disabled={saving} 
-                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2 disabled:opacity-50"
+                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 disabled:opacity-50"
                   >
                     <Save className="w-5 h-5" /> {saving ? "Saving..." : "Save Changes"}
                   </button>
@@ -250,8 +250,8 @@ const Profile = () => {
             {activeTab === "security" && (
               <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                  <Lock className="w-6 h-6 text-purple-400" /> 
-                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Change Password</span>
+                  <Lock className="w-6 h-6 text-blue-400" /> 
+                  <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Change Password</span>
                 </h2>
                 <form onSubmit={handlePasswordChange} className="space-y-6">
                   <div>
@@ -261,7 +261,7 @@ const Profile = () => {
                       required 
                       value={passwordData.currentPassword} 
                       onChange={(e) => setPasswordData({ ...passwordData, currentPassword: e.target.value })} 
-                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       placeholder="Enter your current password"
                     />
                   </div>
@@ -272,7 +272,7 @@ const Profile = () => {
                       required 
                       value={passwordData.newPassword} 
                       onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })} 
-                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       placeholder="Min. 6 characters"
                     />
                   </div>
@@ -283,14 +283,14 @@ const Profile = () => {
                       required 
                       value={passwordData.confirmPassword} 
                       onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })} 
-                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+                      className="w-full px-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
                       placeholder="Re-enter your new password"
                     />
                   </div>
                   <button 
                     type="submit" 
                     disabled={saving} 
-                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50"
+                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all disabled:opacity-50"
                   >
                     {saving ? "Updating..." : "Update Password"}
                   </button>
@@ -298,13 +298,13 @@ const Profile = () => {
 
                 <div className="mt-8 pt-8 border-t border-gray-700">
                   <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-purple-400" />
+                    <Shield className="w-5 h-5 text-blue-400" />
                     Two-Factor Authentication
                   </h3>
                   <p className="text-gray-400 text-sm mb-4">
                     Add an extra layer of security to your account by enabling two-factor authentication.
                   </p>
-                  <button className="px-6 py-2 border border-purple-600 rounded-lg text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-200">
+                  <button className="px-6 py-2 border border-blue-600 rounded-lg text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-200">
                     Enable 2FA
                   </button>
                 </div>
@@ -314,7 +314,7 @@ const Profile = () => {
             {/* Notifications Tab */}
             {activeTab === "notifications" && (
               <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
-                <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Notification Preferences</h2>
+                <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Notification Preferences</h2>
                 <div className="space-y-4">
                   {[
                     { title: "Order Updates", desc: "Receive notifications about your orders and deliveries", defaultChecked: true },
@@ -329,13 +329,13 @@ const Profile = () => {
                       </div>
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" className="sr-only peer" defaultChecked={item.defaultChecked} />
-                        <div className="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        <div className="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                       </label>
                     </div>
                   ))}
                 </div>
                 <div className="mt-6 pt-6 border-t border-gray-700">
-                  <button className="px-6 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition-all">
+                  <button className="px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all">
                     Save Preferences
                   </button>
                 </div>

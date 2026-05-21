@@ -74,12 +74,12 @@ const Store = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">Premium Quality</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">Premium Quality</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Hardware <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Store</span>
+            Hardware <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Store</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Premium computer and mobile accessories at competitive prices
@@ -95,7 +95,7 @@ const Store = () => {
               placeholder="Search products by name..." 
               value={searchQuery} 
               onChange={(e) => setSearchQuery(e.target.value)} 
-              className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all"
             />
           </div>
           
@@ -134,7 +134,7 @@ const Store = () => {
                     <select 
                       value={selectedCategory} 
                       onChange={(e) => setSelectedCategory(e.target.value)} 
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                     >
                       <option value="all">All Categories</option>
                       {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
@@ -145,7 +145,7 @@ const Store = () => {
                     <select 
                       value={sortBy} 
                       onChange={(e) => setSortBy(e.target.value)} 
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                     >
                       <option value="default">Default</option>
                       <option value="price-low">Price: Low to High</option>
@@ -166,7 +166,7 @@ const Store = () => {
               Showing {filteredProducts.length} of {products.length} products
             </p>
             {hasActiveFilters && (
-              <p className="text-xs text-purple-400">Filters applied</p>
+              <p className="text-xs text-blue-400">Filters applied</p>
             )}
           </div>
         )}
@@ -174,7 +174,7 @@ const Store = () => {
         {/* Products Grid */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading products...</p>
           </div>
         ) : filteredProducts.length === 0 ? (
@@ -184,7 +184,7 @@ const Store = () => {
             <p className="text-gray-400 mb-4">Try adjusting your search or filter criteria</p>
             <button 
               onClick={clearFilters}
-              className="px-6 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+              className="px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
             >
               Clear Filters
             </button>
@@ -198,14 +198,14 @@ const Store = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -8 }}
-                className="group bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300"
+                className="group bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300"
               >
                 <div className="relative">
                   <div className="w-full h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">
                     🖥️
                   </div>
                   {product.featured && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1">
+                    <div className="absolute top-2 left-2 bg-gradient-to-r from-blue-600 to-indigo-600 px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1">
                       <Star className="w-3 h-3" /> Featured
                     </div>
                   )}
@@ -217,7 +217,7 @@ const Store = () => {
                 </div>
                 
                 <div className="p-4">
-                  <h3 className="text-lg font-bold mb-1 group-hover:text-purple-400 transition-colors line-clamp-1">
+                  <h3 className="text-lg font-bold mb-1 group-hover:text-blue-400 transition-colors line-clamp-1">
                     {product.name}
                   </h3>
                   <p className="text-xs text-gray-400 mb-2">{product.category}</p>
@@ -225,7 +225,7 @@ const Store = () => {
                   
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <span className="text-2xl font-bold text-purple-400">${product.price}</span>
+                      <span className="text-2xl font-bold text-blue-400">${product.price}</span>
                       {product.originalPrice && (
                         <span className="text-xs text-gray-500 line-through ml-2">${product.originalPrice}</span>
                       )}
@@ -241,7 +241,7 @@ const Store = () => {
                     <button 
                       onClick={() => addToCart(product)} 
                       disabled={product.stock === 0}
-                      className="flex-1 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ShoppingCart className="w-4 h-4" /> Add
                     </button>

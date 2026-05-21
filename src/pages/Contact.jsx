@@ -40,12 +40,12 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-purple-300 text-sm">We're Here to Help</span>
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 text-sm">We're Here to Help</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Contact <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Us</span>
+            Contact <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Us</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Have a question or want to start a project? We'd love to hear from you.
@@ -59,9 +59,9 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }} 
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-8 border border-purple-500/20 backdrop-blur-sm">
+            <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl p-8 border border-blue-500/20 backdrop-blur-sm">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <Globe className="w-6 h-6 text-purple-400" />
+                <Globe className="w-6 h-6 text-blue-400" />
                 Get in Touch
               </h2>
               <div className="space-y-5">
@@ -69,8 +69,8 @@ const Contact = () => {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4 group cursor-pointer"
                 >
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition-all">
-                    <MapPin className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
+                    <MapPin className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
                     <p className="font-semibold">Visit Us</p>
@@ -82,8 +82,8 @@ const Contact = () => {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4 group cursor-pointer"
                 >
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition-all">
-                    <Phone className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
+                    <Phone className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
                     <p className="font-semibold">Call Us</p>
@@ -96,8 +96,8 @@ const Contact = () => {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4 group cursor-pointer"
                 >
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition-all">
-                    <Mail className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
+                    <Mail className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
                     <p className="font-semibold">Email Us</p>
@@ -109,8 +109,8 @@ const Contact = () => {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4 group cursor-pointer"
                 >
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition-all">
-                    <Clock className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
+                    <Clock className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
                     <p className="font-semibold">Business Hours</p>
@@ -122,13 +122,13 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl p-6 border border-purple-500/20">
+            <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-6 border border-blue-500/20">
               <div className="flex items-center gap-3 mb-3">
-                <Headphones className="w-8 h-8 text-purple-400" />
+                <Headphones className="w-8 h-8 text-blue-400" />
                 <h3 className="font-bold text-lg">24/7 Emergency Support</h3>
               </div>
               <p className="text-gray-300 text-sm mb-3">For urgent technical issues, call our dedicated support line:</p>
-              <p className="text-purple-400 font-bold text-2xl">+92 307 5762192</p>
+              <p className="text-blue-400 font-bold text-2xl">+92 307 5762192</p>
               <p className="text-xs text-gray-500 mt-2">Available 24/7 for critical issues</p>
             </div>
 
@@ -137,7 +137,7 @@ const Contact = () => {
               <p className="text-sm text-gray-400 mb-3">Connect with us on social media</p>
               <div className="flex justify-center gap-4">
                 {["Facebook", "Twitter", "LinkedIn", "Instagram"].map((social, idx) => (
-                  <a key={idx} href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all hover:scale-110">
+                  <a key={idx} href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
                     <span className="text-sm">{social[0]}</span>
                   </a>
                 ))}
@@ -153,7 +153,7 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-xl">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <MessageSquare className="w-6 h-6 text-purple-400" />
+                <MessageSquare className="w-6 h-6 text-blue-400" />
                 Send us a Message
               </h2>
               
@@ -161,13 +161,13 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium mb-2">Your Name *</label>
                   <div className="relative group">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                     <input 
                       type="text" 
                       required 
                       value={formData.name} 
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all" 
+                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
                       placeholder="John Doe" 
                     />
                   </div>
@@ -175,13 +175,13 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium mb-2">Email Address *</label>
                   <div className="relative group">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                     <input 
                       type="email" 
                       required 
                       value={formData.email} 
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all" 
+                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
                       placeholder="you@example.com" 
                     />
                   </div>
@@ -192,12 +192,12 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium mb-2">Phone Number</label>
                   <div className="relative group">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                     <input 
                       type="tel" 
                       value={formData.phone} 
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all" 
+                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
                       placeholder="+92 300 1234567" 
                     />
                   </div>
@@ -205,12 +205,12 @@ const Contact = () => {
                 <div>
                   <label className="block text-sm font-medium mb-2">Subject *</label>
                   <div className="relative group">
-                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                     <select 
                       required 
                       value={formData.subject} 
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all appearance-none"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all appearance-none"
                     >
                       <option value="">Select Subject</option>
                       <option>General Inquiry</option>
@@ -227,13 +227,13 @@ const Contact = () => {
               <div className="mb-6">
                 <label className="block text-sm font-medium mb-2">Message *</label>
                 <div className="relative group">
-                  <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400 group-focus-within:text-purple-400 transition-colors" />
+                  <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
                   <textarea 
                     rows="6" 
                     required 
                     value={formData.message} 
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })} 
-                    className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700 transition-all resize-none" 
+                    className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all resize-none" 
                     placeholder="Tell us about your project or inquiry..."
                   ></textarea>
                 </div>
@@ -257,7 +257,7 @@ const Contact = () => {
               <button 
                 type="submit" 
                 disabled={loading} 
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
               >
                 {loading ? (
                   "Sending..."

@@ -46,7 +46,7 @@ const Signup = () => {
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">Create Account</h1>
-          <p className="text-gray-400">Join <span className="text-purple-400">CodeNagar</span> today</p>
+          <p className="text-gray-400">Join <span className="text-blue-400">CodeNagar</span> today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
@@ -65,7 +65,7 @@ const Signup = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                   placeholder="John Doe"
                   required
                 />
@@ -80,7 +80,7 @@ const Signup = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                   placeholder="you@example.com"
                   required
                 />
@@ -95,7 +95,7 @@ const Signup = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                  className="w-full pl-10 pr-12 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                   placeholder="Min. 6 characters"
                   required
                 />
@@ -113,7 +113,7 @@ const Signup = () => {
                   type={showPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
                   placeholder="Confirm your password"
                   required
                 />
@@ -123,7 +123,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50"
+              className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all disabled:opacity-50"
             >
               {loading ? "Creating Account..." : "Sign Up"}
             </button>
@@ -132,7 +132,7 @@ const Signup = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-400">
               Already have an account?{" "}
-              <Link to="/login" className="text-purple-400 hover:text-purple-300 transition">
+              <Link to="/login" className="text-blue-400 hover:text-blue-300 transition">
                 Sign in
               </Link>
             </p>
@@ -140,9 +140,9 @@ const Signup = () => {
 
           <div className="mt-4 text-center text-xs text-gray-500">
             By signing up, you agree to our{" "}
-            <Link to="/terms" className="text-purple-400 hover:underline">Terms of Service</Link>{" "}
+            <Link to="/terms" className="text-blue-400 hover:underline">Terms of Service</Link>{" "}
             and{" "}
-            <Link to="/privacy" className="text-purple-400 hover:underline">Privacy Policy</Link>
+            <Link to="/privacy" className="text-blue-400 hover:underline">Privacy Policy</Link>
           </div>
         </form>
       </motion.div>

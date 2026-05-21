@@ -67,8 +67,8 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2 group">
-              <Laptop className="w-8 h-8 text-purple-400 group-hover:rotate-12 transition-transform" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+              <Laptop className="w-8 h-8 text-blue-400 group-hover:rotate-12 transition-transform" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 bg-clip-text text-transparent">
                 CodeNagar
               </span>
             </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
                 <div className="absolute top-full left-0 w-72 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="py-2 max-h-96 overflow-y-auto">
                     {serviceLinks.map((link) => (
-                      <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">
+                      <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-blue-600 hover:text-white transition">
                         {link.name}
                       </Link>
                     ))}
@@ -101,12 +101,12 @@ const Navbar = () => {
                 <div className="absolute top-full left-0 w-64 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="py-2">
                     {courseLinks.map((link) => (
-                      <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">
+                      <Link key={link.path} to={link.path} className="block px-4 py-2 text-gray-300 hover:bg-blue-600 hover:text-white transition">
                         {link.name}
                       </Link>
                     ))}
                     <div className="border-t border-gray-800 my-2"></div>
-                    <Link to="/courses" className="block px-4 py-2 text-purple-400 hover:bg-purple-600 hover:text-white transition">
+                    <Link to="/courses" className="block px-4 py-2 text-blue-400 hover:bg-blue-600 hover:text-white transition">
                       View All Courses →
                     </Link>
                   </div>
@@ -123,14 +123,14 @@ const Navbar = () => {
 
               {user ? (
                 <div className="relative group ml-4">
-                  <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
                     <User className="w-4 h-4" /> {user.name?.split(' ')[0] || 'User'}
                   </button>
                   <div className="absolute top-full right-0 w-48 bg-gray-900 rounded-xl shadow-xl border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                     <div className="py-2">
-                      <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">Dashboard</Link>
-                      <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">My Orders</Link>
-                      <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:bg-purple-600 hover:text-white transition">Profile</Link>
+                      <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:bg-blue-600 hover:text-white transition">Dashboard</Link>
+                      <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:bg-blue-600 hover:text-white transition">My Orders</Link>
+                      <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:bg-blue-600 hover:text-white transition">Profile</Link>
                       <div className="border-t border-gray-800 my-2"></div>
                       <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-red-600 hover:text-white transition">Logout</button>
                     </div>
@@ -138,8 +138,8 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className="flex gap-2 ml-4">
-                  <Link to="/login" className="px-4 py-2 border border-purple-600 rounded-lg hover:bg-purple-600 transition">Login</Link>
-                  <Link to="/signup" className="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition">Sign Up</Link>
+                  <Link to="/login" className="px-4 py-2 border border-blue-600 rounded-lg hover:bg-blue-600 transition">Login</Link>
+                  <Link to="/signup" className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">Sign Up</Link>
                 </div>
               )}
             </div>
@@ -177,7 +177,7 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Link to="/courses" onClick={() => setIsOpen(false)} className="block py-2 pl-8 text-purple-400 hover:text-white hover:bg-purple-600 rounded-lg transition">
+              <Link to="/courses" onClick={() => setIsOpen(false)} className="block py-2 pl-8 text-blue-400 hover:text-white hover:bg-blue-600 rounded-lg transition">
                 View All Courses →
               </Link>
             </div>
@@ -197,8 +197,8 @@ const Navbar = () => {
               </>
             ) : (
               <div className="pt-4 space-y-2">
-                <Link to="/login" onClick={() => setIsOpen(false)} className="block py-3 text-center border border-purple-600 rounded-lg hover:bg-purple-600 transition">Login</Link>
-                <Link to="/signup" onClick={() => setIsOpen(false)} className="block py-3 text-center bg-purple-600 rounded-lg hover:bg-purple-700 transition">Sign Up</Link>
+                <Link to="/login" onClick={() => setIsOpen(false)} className="block py-3 text-center border border-blue-600 rounded-lg hover:bg-blue-600 transition">Login</Link>
+                <Link to="/signup" onClick={() => setIsOpen(false)} className="block py-3 text-center bg-blue-600 rounded-lg hover:bg-blue-700 transition">Sign Up</Link>
               </div>
             )}
           </div>

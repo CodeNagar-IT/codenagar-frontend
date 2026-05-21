@@ -37,13 +37,13 @@ const Dashboard = () => {
 
   const statCards = [
     { title: "Total Orders", value: stats.orders, icon: ShoppingBag, color: "from-blue-500 to-cyan-500", link: "/orders", bgColor: "bg-blue-500/10" },
-    { title: "Course Applications", value: stats.applications, icon: BookOpen, color: "from-purple-500 to-pink-500", link: "/courses", bgColor: "bg-purple-500/10" },
+    { title: "Course Applications", value: stats.applications, icon: BookOpen, color: "from-blue-500 to-indigo-500", link: "/courses", bgColor: "bg-blue-500/10" },
     { title: "Support Tickets", value: stats.messages, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/contact", bgColor: "bg-green-500/10" },
   ];
 
   const quickActions = [
     { title: "Browse Store", icon: ShoppingBag, link: "/store", color: "bg-blue-600" },
-    { title: "Explore Courses", icon: BookOpen, link: "/courses", color: "bg-purple-600" },
+    { title: "Explore Courses", icon: BookOpen, link: "/courses", color: "bg-blue-600" },
     { title: "View Orders", icon: Package, link: "/orders", color: "bg-orange-600" },
     { title: "Contact Support", icon: MessageSquare, link: "/contact", color: "bg-green-600" },
   ];
@@ -52,7 +52,7 @@ const Dashboard = () => {
     return (
       <div className="pt-32 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading your dashboard...</p>
         </div>
       </div>
@@ -71,13 +71,13 @@ const Dashboard = () => {
           <div className="flex flex-wrap justify-between items-center gap-4">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Welcome back, <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">{user?.name?.split(' ')[0]}</span>! 👋
+                Welcome back, <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{user?.name?.split(' ')[0]}</span>! 👋
               </h1>
               <p className="text-gray-400">Here's what's happening with your account today.</p>
             </div>
-            <div className="flex items-center gap-2 bg-purple-500/10 px-4 py-2 rounded-full">
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-purple-300">Member since {new Date(user?.createdAt).getFullYear() || 2025}</span>
+            <div className="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full">
+              <Sparkles className="w-4 h-4 text-blue-400" />
+              <span className="text-sm text-blue-300">Member since {new Date(user?.createdAt).getFullYear() || 2025}</span>
             </div>
           </div>
         </motion.div>
@@ -113,14 +113,14 @@ const Dashboard = () => {
             initial={{ opacity: 0, x: -20 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ delay: 0.2 }}
-            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all"
+            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-purple-400" /> 
+                <ShoppingBag className="w-5 h-5 text-blue-400" /> 
                 Recent Orders
               </h2>
-              <Link to="/orders" className="text-purple-400 text-sm hover:text-purple-300 flex items-center gap-1 transition-all hover:gap-2">
+              <Link to="/orders" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1 transition-all hover:gap-2">
                 View All <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
@@ -128,7 +128,7 @@ const Dashboard = () => {
               <div className="text-center py-8">
                 <Package className="w-12 h-12 mx-auto text-gray-600 mb-3" />
                 <p className="text-gray-400">No orders yet</p>
-                <Link to="/store" className="text-purple-400 text-sm mt-2 inline-block hover:underline">
+                <Link to="/store" className="text-blue-400 text-sm mt-2 inline-block hover:underline">
                   Start Shopping →
                 </Link>
               </div>
@@ -152,7 +152,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-purple-400">${order.total?.toFixed(2)}</p>
+                      <p className="font-bold text-blue-400">${order.total?.toFixed(2)}</p>
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         order.status === "delivered" ? "bg-green-500/20 text-green-400" :
                         order.status === "shipped" ? "bg-blue-500/20 text-blue-400" :
@@ -172,14 +172,14 @@ const Dashboard = () => {
             initial={{ opacity: 0, x: 20 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ delay: 0.3 }}
-            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-purple-500/50 transition-all"
+            className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all"
           >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-purple-400" /> 
+                <BookOpen className="w-5 h-5 text-blue-400" /> 
                 Course Applications
               </h2>
-              <Link to="/courses" className="text-purple-400 text-sm hover:text-purple-300 flex items-center gap-1 transition-all hover:gap-2">
+              <Link to="/courses" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1 transition-all hover:gap-2">
                 Browse <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
@@ -187,7 +187,7 @@ const Dashboard = () => {
               <div className="text-center py-8">
                 <BookOpen className="w-12 h-12 mx-auto text-gray-600 mb-3" />
                 <p className="text-gray-400">No applications yet</p>
-                <Link to="/courses" className="text-purple-400 text-sm mt-2 inline-block hover:underline">
+                <Link to="/courses" className="text-blue-400 text-sm mt-2 inline-block hover:underline">
                   Explore Courses →
                 </Link>
               </div>
@@ -226,7 +226,7 @@ const Dashboard = () => {
           transition={{ delay: 0.4 }}
         >
           <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-400" />
+            <Sparkles className="w-5 h-5 text-blue-400" />
             Quick Actions
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -249,11 +249,11 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ delay: 0.5 }}
-          className="mt-8 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-2xl p-6 border border-purple-500/20"
+          className="mt-8 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 rounded-2xl p-6 border border-blue-500/20"
         >
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Award className="w-10 h-10 text-purple-400" />
+              <Award className="w-10 h-10 text-blue-400" />
               <div>
                 <h3 className="font-bold text-lg">Achievement Unlocked</h3>
                 <p className="text-sm text-gray-400">You've joined the CodeNagar community!</p>

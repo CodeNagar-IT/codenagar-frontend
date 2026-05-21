@@ -85,14 +85,14 @@ const AdminMessages = () => {
             placeholder="Search by name, email, or subject..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Messages List */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading messages...</p>
           </div>
         ) : (
@@ -107,9 +107,9 @@ const AdminMessages = () => {
                   whileHover={{ x: 4 }}
                   className={`p-4 bg-gray-800/50 rounded-xl border cursor-pointer transition-all ${
                     selectedMessage?._id === msg._id 
-                      ? "border-purple-500 bg-gray-800" 
-                      : "border-gray-700 hover:border-purple-500/50"
-                  } ${!msg.read ? "border-l-4 border-l-purple-500" : ""}`}
+                      ? "border-blue-500 bg-gray-800" 
+                      : "border-gray-700 hover:border-blue-500/50"
+                  } ${!msg.read ? "border-l-4 border-l-blue-500" : ""}`}
                   onClick={() => {
                     setSelectedMessage(msg);
                     if (!msg.read) markAsRead(msg._id);
@@ -119,10 +119,10 @@ const AdminMessages = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold">{msg.name}</h3>
-                        {!msg.read && <span className="w-2 h-2 bg-purple-400 rounded-full"></span>}
+                        {!msg.read && <span className="w-2 h-2 bg-blue-400 rounded-full"></span>}
                       </div>
                       <p className="text-sm text-gray-400">{msg.email}</p>
-                      <p className="text-sm text-purple-400 mt-1">{msg.subject || "General Inquiry"}</p>
+                      <p className="text-sm text-blue-400 mt-1">{msg.subject || "General Inquiry"}</p>
                       <p className="text-xs text-gray-500 mt-2 line-clamp-2">{msg.message}</p>
                     </div>
                     <div className="text-right text-xs text-gray-500">
@@ -166,7 +166,7 @@ const AdminMessages = () => {
                   <div className="bg-gray-900 rounded-xl p-4">
                     <p className="text-gray-400 text-sm">From</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <User className="w-4 h-4 text-purple-400" />
+                      <User className="w-4 h-4 text-blue-400" />
                       <p className="font-semibold">{selectedMessage.name}</p>
                     </div>
                   </div>
@@ -175,14 +175,14 @@ const AdminMessages = () => {
                     <p className="text-gray-400 text-sm">Contact</p>
                     <div className="space-y-2 mt-1">
                       <div className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-purple-400" />
+                        <Mail className="w-4 h-4 text-blue-400" />
                         <a href={`mailto:${selectedMessage.email}`} className="text-blue-400 hover:underline">
                           {selectedMessage.email}
                         </a>
                       </div>
                       {selectedMessage.phone && (
                         <div className="flex items-center gap-2">
-                          <Phone className="w-4 h-4 text-purple-400" />
+                          <Phone className="w-4 h-4 text-blue-400" />
                           <a href={`tel:${selectedMessage.phone}`}>{selectedMessage.phone}</a>
                         </div>
                       )}
@@ -202,14 +202,14 @@ const AdminMessages = () => {
                   <div className="bg-gray-900 rounded-xl p-4">
                     <p className="text-gray-400 text-sm">Received</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <Calendar className="w-4 h-4 text-purple-400" />
+                      <Calendar className="w-4 h-4 text-blue-400" />
                       <p>{new Date(selectedMessage.createdAt).toLocaleString()}</p>
                     </div>
                   </div>
                   
                   <a
                     href={`mailto:${selectedMessage.email}`}
-                    className="block w-full py-2 bg-purple-600 rounded-lg text-center hover:bg-purple-700 transition"
+                    className="block w-full py-2 bg-blue-600 rounded-lg text-center hover:bg-blue-700 transition"
                   >
                     Reply to Message
                   </a>

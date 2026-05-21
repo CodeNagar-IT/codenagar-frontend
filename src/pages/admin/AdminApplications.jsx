@@ -88,13 +88,13 @@ const AdminApplications = () => {
               placeholder="Search by name, email, or course..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
@@ -106,7 +106,7 @@ const AdminApplications = () => {
         {/* Applications Grid */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading applications...</p>
           </div>
         ) : (
@@ -118,19 +118,19 @@ const AdminApplications = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -4 }}
-                className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 hover:border-purple-500 transition-all cursor-pointer"
+                className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 hover:border-blue-500 transition-all cursor-pointer"
                 onClick={() => setSelectedApp(app)}
               >
                 <div className="flex justify-between items-start mb-3">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
-                    <GraduationCap className="w-6 h-6 text-purple-400" />
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                    <GraduationCap className="w-6 h-6 text-blue-400" />
                   </div>
                   <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(app.status)}`}>
                     {getStatusIcon(app.status)} {app.status || "pending"}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold mb-1">{app.fullName}</h3>
-                <p className="text-purple-400 text-sm mb-3">{app.course}</p>
+                <p className="text-blue-400 text-sm mb-3">{app.course}</p>
                 <div className="space-y-2 text-sm text-gray-400">
                   <div className="flex items-center gap-2"><Mail className="w-4 h-4" /> {app.email}</div>
                   <div className="flex items-center gap-2"><Phone className="w-4 h-4" /> {app.phone}</div>
@@ -154,12 +154,12 @@ const AdminApplications = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-purple-500"
+              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500"
             >
               <div className="p-6 border-b border-gray-700">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold">Application Details</h2>
-                  <button onClick={() => setSelectedApp(null)} className="hover:text-purple-400 text-2xl">&times;</button>
+                  <button onClick={() => setSelectedApp(null)} className="hover:text-blue-400 text-2xl">&times;</button>
                 </div>
               </div>
               
@@ -171,7 +171,7 @@ const AdminApplications = () => {
                   </div>
                   <div className="bg-gray-900 rounded-xl p-4">
                     <p className="text-gray-400 text-sm">Course</p>
-                    <p className="font-semibold text-purple-400">{selectedApp.course}</p>
+                    <p className="font-semibold text-blue-400">{selectedApp.course}</p>
                   </div>
                   <div className="bg-gray-900 rounded-xl p-4">
                     <p className="text-gray-400 text-sm">Email</p>

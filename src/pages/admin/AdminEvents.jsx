@@ -112,11 +112,11 @@ const AdminEvents = () => {
           </div>
           <div className="flex gap-3">
             <div className="bg-gray-800 rounded-lg px-4 py-2 text-center">
-              <p className="text-2xl font-bold text-purple-400">{upcomingEvents}</p>
+              <p className="text-2xl font-bold text-blue-400">{upcomingEvents}</p>
               <p className="text-xs text-gray-400">Upcoming</p>
             </div>
             <div className="bg-gray-800 rounded-lg px-4 py-2 text-center">
-              <p className="text-2xl font-bold text-purple-400">{totalAttendees}</p>
+              <p className="text-2xl font-bold text-blue-400">{totalAttendees}</p>
               <p className="text-xs text-gray-400">Total Attendees</p>
             </div>
             <button
@@ -133,7 +133,7 @@ const AdminEvents = () => {
                 });
                 setShowModal(true);
               }}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
             >
               <Plus className="w-5 h-5" /> Add Event
             </button>
@@ -148,14 +148,14 @@ const AdminEvents = () => {
             placeholder="Search events..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Events Grid */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading events...</p>
           </div>
         ) : (
@@ -167,15 +167,15 @@ const AdminEvents = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ y: -4 }}
-                className="bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all"
+                className="bg-gray-800/50 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all"
               >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
-                    <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
-                      <Calendar className="w-6 h-6 text-purple-400" />
+                    <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                      <Calendar className="w-6 h-6 text-blue-400" />
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={() => handleEdit(event)} className="text-gray-400 hover:text-purple-400">
+                      <button onClick={() => handleEdit(event)} className="text-gray-400 hover:text-blue-400">
                         <Edit className="w-5 h-5" />
                       </button>
                       <button onClick={() => handleDelete(event._id)} className="text-gray-400 hover:text-red-400">
@@ -187,29 +187,29 @@ const AdminEvents = () => {
                   <p className="text-gray-400 text-sm mb-4 line-clamp-2">{event.description}</p>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2 text-gray-300">
-                      <Calendar className="w-4 h-4 text-purple-400" />
+                      <Calendar className="w-4 h-4 text-blue-400" />
                       <span>{new Date(event.date).toLocaleDateString()}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-300">
-                      <Clock className="w-4 h-4 text-purple-400" />
+                      <Clock className="w-4 h-4 text-blue-400" />
                       <span>{new Date(event.date).toLocaleTimeString()}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-300">
-                      <MapPin className="w-4 h-4 text-purple-400" />
+                      <MapPin className="w-4 h-4 text-blue-400" />
                       <span>{event.location}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-300">
-                      <Users className="w-4 h-4 text-purple-400" />
+                      <Users className="w-4 h-4 text-blue-400" />
                       <span>{event.seats - (event.registrations?.length || 0)} seats left</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-300">
-                      <DollarSign className="w-4 h-4 text-purple-400" />
+                      <DollarSign className="w-4 h-4 text-blue-400" />
                       <span>{event.price > 0 ? `$${event.price}` : "Free"}</span>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedEvent(event)}
-                    className="w-full mt-4 py-2 bg-gray-700 rounded-lg hover:bg-purple-600 transition text-sm"
+                    className="w-full mt-4 py-2 bg-gray-700 rounded-lg hover:bg-blue-600 transition text-sm"
                   >
                     View Details
                   </button>
@@ -232,13 +232,13 @@ const AdminEvents = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-purple-500"
+              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500"
             >
               <div className="p-6 border-b border-gray-700 flex justify-between items-center">
                 <h2 className="text-2xl font-bold">
                   {editingEvent ? "Edit Event" : "Create New Event"}
                 </h2>
-                <button onClick={() => setShowModal(false)} className="hover:text-purple-400">
+                <button onClick={() => setShowModal(false)} className="hover:text-blue-400">
                   <X className="w-6 h-6" />
                 </button>
               </div>
@@ -250,7 +250,7 @@ const AdminEvents = () => {
                     required
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div>
@@ -260,7 +260,7 @@ const AdminEvents = () => {
                     required
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -271,7 +271,7 @@ const AdminEvents = () => {
                       required
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
@@ -281,7 +281,7 @@ const AdminEvents = () => {
                       required
                       value={formData.location}
                       onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
@@ -291,7 +291,7 @@ const AdminEvents = () => {
                       step="0.01"
                       value={formData.price}
                       onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                   <div>
@@ -301,7 +301,7 @@ const AdminEvents = () => {
                       required
                       value={formData.seats}
                       onChange={(e) => setFormData({ ...formData, seats: parseInt(e.target.value) })}
-                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -311,14 +311,14 @@ const AdminEvents = () => {
                     type="url"
                     value={formData.image}
                     onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="https://..."
                   />
                 </div>
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"
-                    className="flex-1 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+                    className="flex-1 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
                   >
                     {editingEvent ? "Update Event" : "Create Event"}
                   </button>
@@ -341,12 +341,12 @@ const AdminEvents = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-purple-500"
+              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500"
             >
               <div className="p-6 border-b border-gray-700">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold">Event Details</h2>
-                  <button onClick={() => setSelectedEvent(null)} className="hover:text-purple-400 text-2xl">&times;</button>
+                  <button onClick={() => setSelectedEvent(null)} className="hover:text-blue-400 text-2xl">&times;</button>
                 </div>
               </div>
               

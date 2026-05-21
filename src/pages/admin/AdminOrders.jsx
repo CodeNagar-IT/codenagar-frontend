@@ -94,13 +94,13 @@ const AdminOrders = () => {
               placeholder="Search by order ID or customer name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
@@ -113,7 +113,7 @@ const AdminOrders = () => {
         {/* Orders Table */}
         {loading ? (
           <div className="text-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-400">Loading orders...</p>
           </div>
         ) : (
@@ -152,14 +152,14 @@ const AdminOrders = () => {
                         {new Date(order.createdAt).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 text-sm">{order.items?.length || 0} items</td>
-                      <td className="px-6 py-4 font-bold text-purple-400">${order.total?.toFixed(2)}</td>
+                      <td className="px-6 py-4 font-bold text-blue-400">${order.total?.toFixed(2)}</td>
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)}`}>
                           {getStatusIcon(order.status)} {order.status}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <button className="text-purple-400 hover:text-purple-300">
+                        <button className="text-blue-400 hover:text-blue-300">
                           <Eye className="w-5 h-5" />
                         </button>
                       </td>
@@ -183,12 +183,12 @@ const AdminOrders = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-purple-500"
+              className="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500"
             >
               <div className="p-6 border-b border-gray-700">
                 <div className="flex justify-between items-center">
                   <h2 className="text-2xl font-bold">Order Details</h2>
-                  <button onClick={() => setSelectedOrder(null)} className="hover:text-purple-400 text-2xl">&times;</button>
+                  <button onClick={() => setSelectedOrder(null)} className="hover:text-blue-400 text-2xl">&times;</button>
                 </div>
                 <p className="text-gray-400 font-mono">#{selectedOrder._id}</p>
               </div>
@@ -251,7 +251,7 @@ const AdminOrders = () => {
                     <div className="border-t border-gray-700 pt-2 mt-2">
                       <div className="flex justify-between font-bold text-lg">
                         <span>Total</span>
-                        <span className="text-purple-400">${selectedOrder.total?.toFixed(2)}</span>
+                        <span className="text-blue-400">${selectedOrder.total?.toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ const AdminOrders = () => {
                       <button
                         key={status}
                         onClick={() => updateOrderStatus(selectedOrder._id, status)}
-                        className="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition text-sm"
+                        className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition text-sm"
                       >
                         Mark as {status}
                       </button>

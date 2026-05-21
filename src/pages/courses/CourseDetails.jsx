@@ -132,7 +132,7 @@ const CourseDetails = () => {
           <div className="text-6xl mb-4">🔍</div>
           <h2 className="text-2xl font-bold mb-2">Course Not Found</h2>
           <p className="text-gray-400 mb-6">The course you're looking for doesn't exist.</p>
-          <Link to="/courses" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 transition">
+          <Link to="/courses" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
             <ChevronLeft className="w-5 h-5" /> Back to Courses
           </Link>
         </div>
@@ -145,7 +145,7 @@ const CourseDetails = () => {
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
         <div className="mb-6">
-          <Link to="/courses" className="text-gray-400 hover:text-purple-400 text-sm flex items-center gap-1">
+          <Link to="/courses" className="text-gray-400 hover:text-blue-400 text-sm flex items-center gap-1">
             <ChevronLeft className="w-4 h-4" /> All Courses
           </Link>
         </div>
@@ -158,9 +158,9 @@ const CourseDetails = () => {
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-3 py-1 mb-4">
-                <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-purple-300 text-xs">Best Seller</span>
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-3 py-1 mb-4">
+                <Sparkles className="w-4 h-4 text-blue-400" />
+                <span className="text-blue-300 text-xs">Best Seller</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">{course.title}</h1>
               
@@ -176,9 +176,9 @@ const CourseDetails = () => {
               
               {/* Course Meta */}
               <div className="flex flex-wrap gap-4 mb-6 pb-4 border-b border-gray-700">
-                <span className="flex items-center gap-2 text-gray-300"><Clock className="w-5 h-5 text-purple-400" /> {course.duration}</span>
-                <span className="flex items-center gap-2 text-gray-300"><Award className="w-5 h-5 text-purple-400" /> {course.level}</span>
-                <span className="flex items-center gap-2 text-gray-300"><Calendar className="w-5 h-5 text-purple-400" /> Flexible Schedule</span>
+                <span className="flex items-center gap-2 text-gray-300"><Clock className="w-5 h-5 text-blue-400" /> {course.duration}</span>
+                <span className="flex items-center gap-2 text-gray-300"><Award className="w-5 h-5 text-blue-400" /> {course.level}</span>
+                <span className="flex items-center gap-2 text-gray-300"><Calendar className="w-5 h-5 text-blue-400" /> Flexible Schedule</span>
               </div>
               
               {/* Description */}
@@ -193,7 +193,7 @@ const CourseDetails = () => {
               className="mb-8"
             >
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <BookOpen className="w-6 h-6 text-purple-400" />
+                <BookOpen className="w-6 h-6 text-blue-400" />
                 What You'll Learn
               </h2>
               <div className="grid md:grid-cols-2 gap-3">
@@ -205,7 +205,7 @@ const CourseDetails = () => {
                     transition={{ delay: idx * 0.05 }}
                     className="flex items-center gap-2 p-2 bg-gray-800/30 rounded-lg"
                   >
-                    <CheckCircle className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
                     <span className="text-gray-300 text-sm">{item}</span>
                   </motion.div>
                 ))}
@@ -220,7 +220,7 @@ const CourseDetails = () => {
               className="mb-8"
             >
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <Briefcase className="w-6 h-6 text-purple-400" />
+                <Briefcase className="w-6 h-6 text-blue-400" />
                 Career Outcomes
               </h2>
               <div className="grid md:grid-cols-2 gap-3">
@@ -232,7 +232,7 @@ const CourseDetails = () => {
                     transition={{ delay: idx * 0.05 }}
                     className="flex items-center gap-2 p-2 bg-gray-800/30 rounded-lg"
                   >
-                    <Zap className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <Zap className="w-5 h-5 text-blue-400 flex-shrink-0" />
                     <span className="text-gray-300 text-sm">{outcome}</span>
                   </motion.div>
                 ))}
@@ -247,11 +247,11 @@ const CourseDetails = () => {
               className="bg-gray-800/30 rounded-xl p-6 border border-gray-700"
             >
               <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-                <GraduationCap className="w-5 h-5 text-purple-400" />
+                <GraduationCap className="w-5 h-5 text-blue-400" />
                 Your Instructor
               </h3>
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-2xl font-bold">
                   {course.instructor.charAt(0)}
                 </div>
                 <div>
@@ -276,7 +276,7 @@ const CourseDetails = () => {
               {/* Price */}
               <div className="text-center mb-6">
                 <div className="flex items-center justify-center gap-2">
-                  <span className="text-4xl font-bold text-purple-400">${course.price}</span>
+                  <span className="text-4xl font-bold text-blue-400">${course.price}</span>
                   {course.originalPrice && (
                     <span className="text-lg text-gray-500 line-through">${course.originalPrice}</span>
                   )}
@@ -315,7 +315,7 @@ const CourseDetails = () => {
               {/* Buttons */}
               <Link 
                 to={`/courses/${slug}/apply`} 
-                className="block text-center py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all mb-3 group"
+                className="block text-center py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all mb-3 group"
               >
                 Enroll Now <ArrowRight className="inline w-4 h-4 ml-1 group-hover:translate-x-1 transition" />
               </Link>
@@ -343,7 +343,7 @@ const CourseDetails = () => {
               className="mt-6 bg-gray-800/30 rounded-xl p-6 border border-gray-700"
             >
               <h3 className="font-bold mb-3 flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-purple-400" />
+                <Trophy className="w-5 h-5 text-blue-400" />
                 What's Included
               </h3>
               <div className="space-y-2 text-sm">
