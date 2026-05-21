@@ -10,34 +10,34 @@
   }
   
   body {
-    @apply bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white overflow-x-hidden;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    @apply bg-white text-gray-900 overflow-x-hidden;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Fira Code', monospace, sans-serif;
   }
   
   /* Custom Selection Color */
   ::selection {
-    @apply bg-purple-500 text-white;
+    @apply bg-blue-600 text-white;
   }
 }
 
 /* ========== CUSTOM SCROLLBAR ========== */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+  @apply bg-gray-100;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-purple-500 to-pink-500;
+  @apply bg-blue-500;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply from-purple-600 to-pink-600;
+  @apply bg-blue-600;
 }
 
 /* ========== ANIMATIONS ========== */
@@ -46,7 +46,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 }
 
@@ -59,7 +59,7 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 }
 
@@ -90,67 +90,67 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
 }
 
 /* ========== GLASS MORPHISM ========== */
 .glass {
-  @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  @apply backdrop-blur-xl bg-white/80 border border-gray-200;
 }
 
 .glass-dark {
-  @apply backdrop-blur-xl bg-black/30 border border-gray-800;
+  @apply backdrop-blur-xl bg-gray-900/80 border border-gray-800;
 }
 
 /* ========== GRID PATTERN ========== */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 /* ========== TEXT GRADIENTS ========== */
 .text-gradient-primary {
-  @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
 }
 
 .text-gradient-secondary {
-  @apply bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent;
 }
 
 /* ========== BUTTON STYLES ========== */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold 
-         hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 
-         hover:scale-105 active:scale-95;
+  @apply px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold 
+         hover:bg-blue-700 transition-all duration-300 
+         hover:shadow-lg hover:shadow-blue-500/25 active:scale-95;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 border border-gray-600 rounded-lg font-semibold 
-         hover:bg-white/10 transition-all duration-300;
+  @apply px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold 
+         hover:bg-gray-50 transition-all duration-300;
 }
 
 /* ========== CARD STYLES ========== */
 .card {
-  @apply bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 
-         hover:border-purple-500 transition-all duration-300 hover:shadow-xl;
+  @apply bg-white rounded-xl border border-gray-200 
+         hover:border-blue-300 transition-all duration-300 hover:shadow-md;
 }
 
 .card-hover {
-  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
 }
 
 /* ========== LOADING SPINNER ========== */
 .spinner {
-  @apply w-8 h-8 border-4 border-purple-500/20 border-t-purple-500 rounded-full;
+  @apply w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full;
   animation: spin 1s linear infinite;
 }
 
@@ -165,11 +165,11 @@
 
 /* ========== PROGRESS BAR ========== */
 .progress-bar {
-  @apply h-1 bg-gray-700 rounded-full overflow-hidden;
+  @apply h-1 bg-gray-200 rounded-full overflow-hidden;
 }
 
 .progress-fill {
-  @apply h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full;
+  @apply h-full bg-blue-600 rounded-full;
   animation: progress 2s ease-out;
 }
 
@@ -181,7 +181,7 @@
 
 /* ========== MODAL BACKDROP ========== */
 .modal-backdrop {
-  @apply fixed inset-0 bg-black/80 backdrop-blur-md z-50;
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50;
   animation: fadeIn 0.3s ease-out;
 }
 
@@ -200,7 +200,7 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-  @apply ring-2 ring-purple-500 border-transparent;
+  @apply ring-2 ring-blue-500 border-transparent;
 }
 
 /* Remove number input arrows */
@@ -236,7 +236,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ========== TOAST NOTIFICATIONS ========== */
 .toast-success {
-  @apply fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50;
+  @apply fixed bottom-4 right-4 bg-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg z-50;
   animation: slideInRight 0.3s ease-out;
 }
 
@@ -258,7 +258,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ========== SKELETON LOADER ========== */
 .skeleton {
-  @apply bg-gray-800 rounded-lg;
+  @apply bg-gray-200 rounded-lg;
   animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -267,7 +267,7 @@ input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
@@ -277,7 +277,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .hover-glow:hover {
-  @apply shadow-lg shadow-purple-500/25;
+  @apply shadow-lg shadow-blue-500/25;
 }
 
 .hover-lift {
@@ -285,19 +285,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .hover-lift:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 /* ========== BORDER GRADIENTS ========== */
 .border-gradient {
-  border-image: linear-gradient(to right, #a855f7, #ec4899) 1;
+  border-image: linear-gradient(to right, #2563eb, #4f46e5) 1;
   border-style: solid;
   border-width: 2px;
 }
 
 /* ========== GRADIENT BACKGROUNDS ========== */
 .bg-gradient-brand {
-  @apply bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600;
+  @apply bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600;
 }
 
 /* ========== FLOATING ANIMATION FOR CARDS ========== */
@@ -306,7 +306,7 @@ input[type=number]::-webkit-outer-spin-button {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 }
 
@@ -320,12 +320,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ========== CUSTOM CLASSES FOR NAVBAR ========== */
 .nav-link {
-  @apply relative text-gray-300 hover:text-white transition-colors duration-200;
+  @apply relative text-gray-600 hover:text-blue-600 transition-colors duration-200;
 }
 
 .nav-link::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300;
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300;
 }
 
 .nav-link:hover::after {
@@ -334,7 +334,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ========== ACTIVE NAV LINK ========== */
 .nav-link.active {
-  @apply text-purple-400;
+  @apply text-blue-600;
 }
 
 .nav-link.active::after {
@@ -348,7 +348,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .product-card::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 -translate-x-full transition-transform duration-700;
+  @apply absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 -translate-x-full transition-transform duration-700;
 }
 
 .product-card:hover::before {
@@ -361,7 +361,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .course-card .badge {
-  @apply absolute top-4 right-4 px-2 py-1 bg-purple-600 rounded-lg text-xs font-semibold;
+  @apply absolute top-4 right-4 px-2 py-1 bg-blue-600 rounded-lg text-xs font-semibold text-white;
 }
 
 /* ========== DASHBOARD STATS CARDS ========== */
@@ -371,7 +371,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .stat-card::after {
   content: '';
-  @apply absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full;
+  @apply absolute -right-8 -top-8 w-24 h-24 bg-gray-100 rounded-full;
 }
 
 /* ========== PRINT STYLES ========== */
@@ -384,6 +384,7 @@ input[type=number]::-webkit-outer-spin-button {
     @apply bg-white text-black;
   }
 }
+
 /* ========== RESPONSIVE CONTAINER ========== */
 .container {
   @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
@@ -423,7 +424,7 @@ input[type=number]::-webkit-outer-spin-button {
 /* ========== MOBILE-FRIENDLY TEXT SIZES ========== */
 @media (max-width: 640px) {
   h1 {
-    font-size: 2rem !important;
+    font-size: 1.875rem !important;
     line-height: 1.2 !important;
   }
   
@@ -517,4 +518,13 @@ input[type=number]::-webkit-outer-spin-button {
 /* ========== SAFE BOTTOM FOR MOBILE NAVIGATION ========== */
 .mobile-safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ========== CODE HIGHLIGHT STYLES ========== */
+.code-block {
+  @apply bg-gray-900 text-gray-100 rounded-lg p-4 font-mono text-sm;
+}
+
+.inline-code {
+  @apply bg-gray-100 text-red-600 px-1.5 py-0.5 rounded font-mono text-sm;
 }
