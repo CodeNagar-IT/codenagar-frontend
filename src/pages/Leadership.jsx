@@ -2,11 +2,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  Users, Award, Briefcase, Mail, Linkedin, Twitter, 
+  Users, Award, Briefcase, Mail,
   Sparkles, ArrowRight, Code, Palette, Settings, GraduationCap,
   Heart, Target, Globe, Coffee, Rocket
 } from "lucide-react";
-
+import { FaLinkedin } from "react-icons/fa";
 const Leadership = () => {
   const leadershipTeam = [
     {
@@ -17,7 +17,7 @@ const Leadership = () => {
       education: "MS Computer Science, Stanford University",
       experience: "12+ years",
       expertise: ["Leadership", "AI Strategy", "Cloud Architecture"],
-      social: { linkedin: "#", twitter: "#", email: "ahmed@codenagar.com" }
+      social: { linkedin: "#",  email: "ahmed@codenagar.com" }
     },
     {
       name: "Sara Khan",
@@ -27,7 +27,7 @@ const Leadership = () => {
       education: "PhD AI, MIT",
       experience: "10+ years",
       expertise: ["Machine Learning", "System Design", "Team Leadership"],
-      social: { linkedin: "#", twitter: "#", email: "sara@codenagar.com" }
+      social: { linkedin: "#",  email: "sara@codenagar.com" }
     },
     {
       name: "Usman Ahmed",
@@ -37,7 +37,7 @@ const Leadership = () => {
       education: "MSc Computer Science",
       experience: "8+ years",
       expertise: ["Curriculum Design", "Mentoring", "Technical Writing"],
-      social: { linkedin: "#", twitter: "#", email: "usman@codenagar.com" }
+      social: { linkedin: "#",  email: "usman@codenagar.com" }
     },
     {
       name: "Fatima Hassan",
@@ -47,7 +47,7 @@ const Leadership = () => {
       education: "BE Software Engineering",
       experience: "9+ years",
       expertise: ["Product Development", "Agile Methodology", "Team Building"],
-      social: { linkedin: "#", twitter: "#", email: "fatima@codenagar.com" }
+      social: { linkedin: "#",  email: "fatima@codenagar.com" }
     },
     {
       name: "Ali Raza",
@@ -57,7 +57,7 @@ const Leadership = () => {
       education: "MBA Marketing",
       experience: "10+ years",
       expertise: ["Business Development", "Client Relations", "Brand Strategy"],
-      social: { linkedin: "#", twitter: "#", email: "ali@codenagar.com" }
+      social: { linkedin: "#", email: "ali@codenagar.com" }
     },
     {
       name: "Zainab Malik",
@@ -67,7 +67,7 @@ const Leadership = () => {
       education: "BDes Visual Communication",
       experience: "7+ years",
       expertise: ["UI/UX Design", "Design Systems", "User Research"],
-      social: { linkedin: "#", twitter: "#", email: "zainab@codenagar.com" }
+      social: { linkedin: "#", email: "zainab@codenagar.com" }
     }
   ];
 
@@ -172,10 +172,7 @@ const Leadership = () => {
                   
                   <div className="flex justify-center gap-3 pt-3 border-t border-white/10">
                     <a href={member.social.linkedin} className="text-gray-400 hover:text-cyan-400 transition">
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                    <a href={member.social.twitter} className="text-gray-400 hover:text-cyan-400 transition">
-                      <Twitter className="w-5 h-5" />
+                      <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-cyan-400 transition">
                       <Mail className="w-5 h-5" />
