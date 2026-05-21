@@ -8,7 +8,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  // eslint-disable-next-line no-unused-vars
   const { user, logout } = useAuth();
   const location = useLocation();
   const dropdownTimeout = useRef(null);
@@ -330,15 +329,36 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Right Section */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Link to="/careers" className="btn-outline">
-                Join Team
-              </Link>
-              <Link to="/contact" className="btn-primary">
-                Get Started
-              </Link>
-            </div>
+           {/* Right Section */}
+<div className="hidden lg:flex items-center gap-4">
+  {user ? (
+    <div className="relative group">
+      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
+        <user className="w-4 h-4" />
+        {user.name?.split(' ')[0] || 'User'}
+        <ChevronDown className="w-4 h-4" />
+      </button>
+      <div className="absolute top-full right-0 mt-2 w-48 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+        <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Dashboard</Link>
+        <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">My Orders</Link>
+        <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Profile</Link>
+        <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/5">Logout</button>
+      </div>
+    </div>
+  ) : (
+    <>
+      <Link to="/login" className="text-gray-300 hover:text-white transition">
+        Log in
+      </Link>
+      <Link to="/signup" className="btn-primary">
+        Sign up
+      </Link>
+    </>
+  )}
+  <Link to="/careers" className="btn-outline">
+    Join Team
+  </Link>
+</div>
 
             {/* Mobile Menu Button */}
             <button
