@@ -78,6 +78,16 @@ const Leadership = () => {
       experience: "5+ years",
       expertise: ["Agile Methodology", "Scrum Master", "Jira/Trello", "Risk Management", "Client Communication", "Resource Planning"],
       social: { linkedin: "#", email: "imamminhas4@gmail.com" }
+    },
+    {
+      name: "Raja Abdul Rehman Ansar",
+      role: "Operations Manager",
+      image: "https://i.ibb.co/YTWryYrc/Chat-GPT-Image-May-22-2026-03-19-45-AM.png",
+      bio: "Civil Engineering graduate bringing analytical thinking, project planning, and process optimization skills to tech operations. Expert in resource management, quality assurance, and operational efficiency.",
+      education: "BS Civil Engineering",
+      experience: "5+ years",
+      expertise: ["Process Optimization", "Resource Management", "Quality Assurance", "Project Planning", "Team Coordination", "Client Relations"],
+      social: { linkedin: "#", email: "Sh4nkhan22@gmail.com" }
     }
   ];
 
@@ -124,9 +134,9 @@ const Leadership = () => {
         <div className="grid md:grid-cols-4 gap-6 mb-20">
           {[
             { value: "60+", label: "Team Members", icon: Users },
-            { value: "12+", label: "Years Avg Experience", icon: Award },
-            { value: "10+", label: "Countries", icon: Globe },
-            { value: "500+", label: "Students Trained", icon: GraduationCap },
+            { value: "6+", label: "Years Avg Experience", icon: Award },
+            { value: "5+", label: "Countries", icon: Globe },
+            { value: "100+", label: "Students Trained", icon: GraduationCap },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
