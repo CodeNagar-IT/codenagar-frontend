@@ -72,7 +72,7 @@ const Leadership = () => {
     {
       name: "Muhammad Imam Tariq Minhas",
       role: "Senior Project Manager",
-      image: "https://i.ibb.co/CsKcKbF1/Screenshot-2026-05-22-023730.jpg",
+      image: "https://i.ibb.co/4wrzWRZ7/113d20c2-110d-48b1-9d22-5210123efc7f.jpg",
       bio: "BS Computer Science graduate with expertise in Agile project management. Bridges the gap between technical teams and stakeholders to deliver projects on time and within budget.",
       education: "BS Computer Science",
       experience: "5+ years",
