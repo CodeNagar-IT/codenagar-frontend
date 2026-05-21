@@ -273,7 +273,7 @@ const Navbar = () => {
                               <img 
                                 src={Logo} 
                                 alt="CodeNagar Logo" 
-                                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 border-4 border-blue-500/30 shadow-2xl"
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
                               />
                             </div>
               <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
