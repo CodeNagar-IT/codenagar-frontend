@@ -268,13 +268,14 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-               <img 
-                                 src={Logo} 
-                                 alt="CodeNagar Logo" 
-                                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 border-4 border-blue-500/30 shadow-2xl"
-                               />
-              </div>
+              <div className="relative">
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                              <img 
+                                src={Logo} 
+                                alt="CodeNagar Logo" 
+                                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 border-4 border-blue-500/30 shadow-2xl"
+                              />
+                            </div>
               <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 CodeNagar
               </span>
