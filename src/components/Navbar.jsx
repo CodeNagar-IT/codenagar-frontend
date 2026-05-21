@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud,Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-
+import Logo from "../assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -269,7 +269,11 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
               <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">C</span>
+               <img 
+                                 src={Logo} 
+                                 alt="CodeNagar Logo" 
+                                 className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 border-4 border-blue-500/30 shadow-2xl"
+                               />
               </div>
               <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 CodeNagar
