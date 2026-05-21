@@ -13,61 +13,71 @@ const Leadership = () => {
       name: "Ahmed Butt",
       role: "CEO & Founder",
       image: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png",
-      bio: "10+ years in software development. Previously led engineering teams at top tech companies.",
-      education: "MS Computer Science, Stanford University",
-      experience: "12+ years",
-      expertise: ["Leadership", "AI Strategy", "Cloud Architecture"],
-      social: { linkedin: "#",  email: "ahmed@codenagar.com" }
+      bio: "Visionary tech entrepreneur with 5+ years of full-stack experience across web, mobile, AI, and ML. Previously led engineering teams at top tech companies. Passionate about transforming ideas into scalable digital solutions.",
+      education: "BS Computer Science, COMSATS University Islamabad",
+      experience: "5+ years",
+      expertise: ["Leadership", "Web Development", "Mobile Development", "Machine Learning", "Artificial Intelligence", "Cloud Architecture"],
+      social: { linkedin: "https://www.linkedin.com/in/ahmed-butt-at89/",  email: "ahmedbutt1109@gmail.com" }
     },
     {
-      name: "Sara Khan",
-      role: "Chief Technology Officer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      bio: "Ex-Google, AI specialist with expertise in machine learning and scalable systems.",
-      education: "PhD AI, MIT",
-      experience: "10+ years",
-      expertise: ["Machine Learning", "System Design", "Team Leadership"],
-      social: { linkedin: "#",  email: "sara@codenagar.com" }
+      name: "Raja Faiz Khan",
+      role: "Head of Business Development",
+      image: "https://i.ibb.co/XrsmrnGL/Screenshot-2026-05-22-022804.jpg",
+      bio: "Leveraging communication expertise to bridge the gap between technical complexity and client understanding. Previously led content strategy at leading tech publications, now driving business growth through exceptional storytelling and client relations.",
+      education: "MS English, Islamic International University Islamabad",
+      experience: "5+ years",
+      expertise: ["Client Relations", "Business Strategy", "Technical Communication", "Partnerships"],
+      social: { linkedin: "#",  email: "rajafaizkhan4@gmail.com" }
     },
     {
-      name: "Usman Ahmed",
-      role: "Head of Training",
-      image: "https://randomuser.me/api/portraits/men/3.jpg",
-      bio: "Certified instructor with 500+ students trained in web development and data science.",
-      education: "MSc Computer Science",
-      experience: "8+ years",
-      expertise: ["Curriculum Design", "Mentoring", "Technical Writing"],
-      social: { linkedin: "#",  email: "usman@codenagar.com" }
+      name: "Abdul Basit",
+      role: "Head of Human Resources",
+      image: "https://i.ibb.co/YsN0Tnc/Screenshot-2026-05-22-022936.jpg",
+      bio: "BS International Relations graduate bringing unique diplomatic and negotiation skills to HR. Expert in conflict resolution, employee relations, and fostering a positive workplace culture.",
+      education: "BS International Relations",
+      experience: "5+ years",
+      expertise: ["Employee Relations", "Conflict Resolution", "Talent Acquisition", "HR Strategy", "Workplace Culture"],
+      social: { linkedin: "#",  email: "basitc106@gmail.com" }
     },
     {
-      name: "Fatima Hassan",
-      role: "Director of Engineering",
-      image: "https://randomuser.me/api/portraits/women/4.jpg",
-      bio: "Full-stack expert leading product development and engineering excellence.",
-      education: "BE Software Engineering",
-      experience: "9+ years",
-      expertise: ["Product Development", "Agile Methodology", "Team Building"],
-      social: { linkedin: "#",  email: "fatima@codenagar.com" }
-    },
-    {
-      name: "Ali Raza",
-      role: "Head of Sales & Marketing",
-      image: "https://randomuser.me/api/portraits/men/5.jpg",
-      bio: "Driving business growth with strategic partnerships and client relations.",
-      education: "MBA Marketing",
-      experience: "10+ years",
-      expertise: ["Business Development", "Client Relations", "Brand Strategy"],
-      social: { linkedin: "#", email: "ali@codenagar.com" }
-    },
-    {
-      name: "Zainab Malik",
-      role: "Head of Design",
-      image: "https://randomuser.me/api/portraits/women/6.jpg",
-      bio: "Award-winning designer passionate about creating beautiful user experiences.",
-      education: "BDes Visual Communication",
+      name: "Muhammad Abdullah",
+      role: "Network Administrator",
+      image: "https://i.ibb.co/7NQZ1XKm/Screenshot-2026-05-22-023040.jpg",
+      bio: "BS Computer Science graduate specializing in network infrastructure and security. Expert in designing, implementing, and maintaining robust network systems that ensure 99.9% uptime.",
+      education: "BS Computer Science",
       experience: "7+ years",
-      expertise: ["UI/UX Design", "Design Systems", "User Research"],
-      social: { linkedin: "#", email: "zainab@codenagar.com" }
+      expertise: ["Network Security", "Cloud Infrastructure", "Firewall Management", "System Monitoring", "Disaster Recovery"],
+      social: { linkedin: "#",  email: "abdullah@gmail.com" }
+    },
+    {
+      name: "Mashahid Hussain Syed",
+      role: "Lead Technical Writer & Research Analyst",
+      image: "https://i.ibb.co/CsKcKbF1/Screenshot-2026-05-22-023730.jpg",
+      bio: "BS English graduate with exceptional skills in thesis writing, research documentation, and technical reports. Advanced proficiency in MS Office Suite for creating professional documentation and data-driven reports.",
+      education: "BS English",
+      experience: "6+ years",
+      expertise: ["Thesis Writing", "Research Documentation", "Technical Reports", "MS Office Expert", "Excel Data Analysis", "PowerPoint Presentations", "Proposal Writing", "White Papers", "Case Studies"],
+      social: { linkedin: "#", email: "mashahidhussain08@gmail.com" }
+    },
+    {
+      name: "Khawaja Muzammil Rauf",
+      role: "Lead Mobile Application Developer",
+      image: "https://i.ibb.co/Kjxsc9t9/mzml.jpg",
+      bio: "BS Computer Science graduate specializing in mobile application development. Expert in building high-performance, user-friendly iOS and Android apps using modern frameworks.",
+      education: "BS Computer Science",
+      experience: "5+ years",
+      expertise: ["React Native", "Flutter", "iOS Development", "Android Development", "Firebase", "REST APIs", "App Store Deployment"],
+      social: { linkedin: "#", email: "Kh.muzammil484@gmail.com" }
+    },
+    {
+      name: "Muhammad Imam Tariq Minhas",
+      role: "Senior Project Manager",
+      image: "https://i.ibb.co/CsKcKbF1/Screenshot-2026-05-22-023730.jpg",
+      bio: "BS Computer Science graduate with expertise in Agile project management. Bridges the gap between technical teams and stakeholders to deliver projects on time and within budget.",
+      education: "BS Computer Science",
+      experience: "5+ years",
+      expertise: ["Agile Methodology", "Scrum Master", "Jira/Trello", "Risk Management", "Client Communication", "Resource Planning"],
+      social: { linkedin: "#", email: "imamminhas4@gmail.com" }
     }
   ];
 
