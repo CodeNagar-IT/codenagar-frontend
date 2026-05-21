@@ -38,10 +38,10 @@ const About = () => {
             </div>
             <h2 className="text-3xl font-bold mb-4">Our Story</h2>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Founded in 2020, CodeNagar started as a small team of passionate developers with a vision to provide enterprise-grade software solutions at affordable prices. Over the years, we've grown into a full-service technology company offering software development, IT training, and hardware solutions.
+              Founded in 2025, CodeNagar started as a small team of passionate developers with a vision to provide enterprise-grade software solutions at affordable prices. Over the years, we've grown into a full-service technology company offering software development, IT training, and hardware solutions.
             </p>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Today, we've successfully delivered <span className="text-blue-400 font-semibold">50+ projects</span>, trained <span className="text-blue-400 font-semibold">200+ students</span>, and built lasting relationships with <span className="text-blue-400 font-semibold">100+ satisfied clients</span> across Pakistan and beyond.
+              Today, we've successfully delivered <span className="text-blue-400 font-semibold">50+ projects</span>, trained <span className="text-blue-400 font-semibold">100+ students</span>, and built lasting relationships with <span className="text-blue-400 font-semibold">50+ satisfied clients</span> across Pakistan and beyond.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Our name "CodeNagar" represents our commitment to being a "city of code" — a hub where innovation meets execution, and where technology transforms businesses.
@@ -54,11 +54,11 @@ const About = () => {
                 <div className="text-xs text-gray-400">Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">200+</div>
+                <div className="text-2xl font-bold text-blue-400">100+</div>
                 <div className="text-xs text-gray-400">Students</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">100+</div>
+                <div className="text-2xl font-bold text-blue-400">50+</div>
                 <div className="text-xs text-gray-400">Clients</div>
               </div>
             </div>
@@ -120,47 +120,6 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Team Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-3 py-1 mb-4">
-              <Users className="w-4 h-4 text-blue-400" />
-              <span className="text-blue-300 text-xs">Our People</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Leadership Team</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Meet the visionaries behind CodeNagar's success</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Ahmed Butt", role: "CEO & Founder", image: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png", bio: "10+ years in software development" },
-
-            ].map((member, idx) => (
-              <motion.div 
-                key={idx} 
-                whileHover={{ y: -8 }}
-                className="group text-center bg-gray-800/30 rounded-2xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300"
-              >
-                <div className="relative inline-block">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-blue-500 group-hover:border-blue-400 transition-all" 
-                  />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <h3 className="text-xl font-bold group-hover:text-blue-400 transition-colors">{member.name}</h3>
-                <p className="text-blue-400 text-sm mb-2">{member.role}</p>
-                <p className="text-gray-400 text-xs">{member.bio}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Contact Info Section */}
         <motion.div 

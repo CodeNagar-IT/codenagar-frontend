@@ -16,7 +16,7 @@ import Events from "./pages/Events";
 import Careers from "./pages/Careers";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
+import Leadership from "./pages/Leadership";
 // Service Pages
 import Services from "./pages/services/Services";
 import WebDev from "./pages/services/WebDev";
@@ -74,7 +74,7 @@ function App() {
               <Route path="/careers" element={<Careers />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              
+              <Route path="/leadership" element={<Leadership />} />
               {/* Service Routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDev />} />

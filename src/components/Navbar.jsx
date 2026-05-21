@@ -85,7 +85,7 @@ const Navbar = () => {
 
   const aboutDropdown = [
     { name: "Our Story", path: "/about" },
-    { name: "Leadership", path: "/about#leadership" },
+    { name: "Leadership", path: "/leadership" },
     { name: "Careers", path: "/careers" },
     { name: "Partners", path: "/partners" },
   ];
