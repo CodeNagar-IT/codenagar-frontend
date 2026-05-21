@@ -237,7 +237,7 @@
 
 /* ========== LOADING SPINNER ========== */
 .spinner {
-  @apply w-8 h-8 border-3 border-cyan-500/20 border-t-cyan-500 rounded-full;
+  @apply w-8 h-8 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full;
   animation: spin 1s linear infinite;
 }
 
