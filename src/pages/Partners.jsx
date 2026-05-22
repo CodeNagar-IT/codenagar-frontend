@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  Sparkles, Handshake, Building, Globe, Award, Users, 
-  TrendingUp, Shield, CheckCircle, ArrowRight, Heart,
-  Coffee, Target, Rocket, Zap, Star, Briefcase
+  Sparkles, Handshake,  Globe, Award, Users, 
+  TrendingUp, Shield, ArrowRight, 
+MapPin, Briefcase
 } from "lucide-react";
 
 const Partners = () => {
@@ -72,7 +72,6 @@ const Partners = () => {
     { icon: Shield, title: "Trusted Partnership", desc: "Reliable and transparent" },
   ];
 
-  const categories = ["All", "Technology", "Cloud", "Investment", "Education", "Data", "Security"];
 
   return (
     <div className="pt-24 pb-16 px-4">
