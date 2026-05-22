@@ -165,24 +165,27 @@ CodeNagar`
     }
   };
 
-  const getResumeUrl = (resumePath) => {
-    if (!resumePath) return null;
-    // If it's already a full URL, return as is
-    if (resumePath.startsWith('http')) return resumePath;
-    // Otherwise, prepend the API base URL
-    return `${import.meta.env.VITE_API_URL}/${resumePath.replace(/\\/g, '/')}`;
-  };
+  // Fix the getResumeUrl function
+const getResumeUrl = (resumePath) => {
+  if (!resumePath) return null;
+  // If it's already a full URL, return as is
+  if (resumePath.startsWith('http')) return resumePath;
+  // Remove leading ./ or ../ if present
+  let cleanPath = resumePath.replace(/^\.?\/+/, '');
+  // Return full URL
+  return `${import.meta.env.VITE_API_URL}/${cleanPath}`;
+};
 
-  const downloadResume = (resumePath) => {
-    const url = getResumeUrl(resumePath);
-    if (!url) {
-      alert("No resume available for download");
-      return;
-    }
-    
-    // Open in new tab for PDF preview, or download
-    window.open(url, '_blank');
-  };
+// Fix downloadResume (remove unused parameter)
+const downloadResume = (resumePath) => {
+  const url = getResumeUrl(resumePath);
+  if (!url) {
+    alert("No resume available for download");
+    return;
+  }
+  // Open in new tab
+  window.open(url, '_blank');
+};
 
   const filteredApps = applications.filter(app => {
     const matchesSearch = app.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -385,11 +388,14 @@ CodeNagar`
                   <div className="bg-dark-400 rounded-xl p-4">
                     <p className="text-gray-400 text-sm mb-2 flex items-center gap-1"><FileText className="w-4 h-4" /> Resume/CV</p>
                     <button
-                      onClick={() => downloadResume(selectedApp.resume, selectedApp.fullName)}
+                      onClick={() => downloadResume(selectedApp.resume)}
                       className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition text-sm"
                     >
                       <Download className="w-4 h-4" /> Download Resume
                     </button>
+                    <button onClick={() => window.open(getResumeUrl(selectedApp.resume), '_blank')} className="...">
+    <Eye className="w-4 h-4" /> Preview
+  </button>
                   </div>
                 )}
 
