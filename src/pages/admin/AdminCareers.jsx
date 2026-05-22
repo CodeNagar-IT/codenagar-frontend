@@ -393,7 +393,8 @@ const downloadResume = (resumePath) => {
                     >
                       <Download className="w-4 h-4" /> Download Resume
                     </button>
-                    <button onClick={() => window.open(getResumeUrl(selectedApp.resume), '_blank')} className="...">
+                    <button onClick={() => window.open(getResumeUrl(selectedApp.resume), '_blank')} 
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition text-sm">
     <Eye className="w-4 h-4" /> Preview
   </button>
                   </div>
