@@ -2,66 +2,127 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
-  Sparkles, Handshake,  Globe, Award, Users, 
-  TrendingUp, Shield, ArrowRight, 
-MapPin, Briefcase
+  Sparkles, Handshake, Globe, Award, Users, 
+  TrendingUp, Shield, ArrowRight, MapPin, Briefcase,
+  X, CheckCircle
 } from "lucide-react";
+import { useState } from "react";
+
+// Using placeholder images from placeholder service with company-specific colors
+const partnerLogos = {
+  "NexGen Solutions": "https://placehold.co/400x200/1e3a5f/ffffff?text=NG&font=montserrat",
+  "CloudScale": "https://placehold.co/400x200/0891b2/ffffff?text=CS&font=montserrat",
+  "VentureSpark": "https://placehold.co/400x200/7c3aed/ffffff?text=VS&font=montserrat",
+  "EduFuture": "https://placehold.co/400x200/059669/ffffff?text=EF&font=montserrat",
+  "DataFusion": "https://placehold.co/400x200/ea580c/ffffff?text=DF&font=montserrat",
+  "SecureShield": "https://placehold.co/400x200/dc2626/ffffff?text=SS&font=montserrat",
+};
 
 const Partners = () => {
+  const [selectedPartner, setSelectedPartner] = useState(null);
+
   const partners = [
     {
-      name: "TechSolutions Inc.",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=TechSolutions",
-      description: "Leading provider of enterprise software solutions",
+      id: 1,
+      name: "NexGen Solutions",
+      logo: partnerLogos["NexGen Solutions"],
+      description: "Pioneering digital transformation across South Asia",
       category: "Technology Partner",
       since: "2023",
+      partnershipType: "Strategic Alliance",
+      fullDescription: "NexGen Solutions is a leading digital transformation company with a presence in 5 countries. Together with CodeNagar, we've delivered over 30 successful enterprise projects, combining their industry expertise with our technical excellence.",
+      achievements: [
+        "30+ joint enterprise projects",
+        "Expanded to 3 new markets",
+        "Shared revenue growth of 150%"
+      ],
       website: "#",
-      partnershipType: "Strategic Alliance"
+      logoBg: "from-blue-500 to-cyan-500"
     },
     {
-      name: "CloudMasters",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=CloudMasters",
-      description: "AWS & Azure cloud consulting experts",
+      id: 2,
+      name: "CloudScale",
+      logo: partnerLogos["CloudScale"],
+      description: "Cloud infrastructure and DevOps specialists",
       category: "Cloud Partner",
       since: "2024",
+      partnershipType: "Technology Partner",
+      fullDescription: "CloudScale brings enterprise-grade cloud solutions to mid-market businesses. Our partnership enables clients to leverage AWS, Azure, and GCP with confidence, reducing infrastructure costs by up to 40%.",
+      achievements: [
+        "40% average cost reduction",
+        "99.99% uptime achieved",
+        "50+ successful migrations"
+      ],
       website: "#",
-      partnershipType: "Technology Partner"
+      logoBg: "from-cyan-500 to-blue-500"
     },
     {
-      name: "InnovateHub",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=InnovateHub",
-      description: "Startup accelerator and venture capital",
+      id: 3,
+      name: "VentureSpark",
+      logo: partnerLogos["VentureSpark"],
+      description: "Startup accelerator and growth capital",
       category: "Investment Partner",
       since: "2023",
+      partnershipType: "Strategic Investment",
+      fullDescription: "VentureSpark invests in early-stage tech startups with high growth potential. Through our partnership, CodeNagar portfolio companies receive preferential terms and dedicated mentorship from industry veterans.",
+      achievements: [
+        "$5M+ in joint investments",
+        "15 portfolio companies",
+        "3 successful exits"
+      ],
       website: "#",
-      partnershipType: "Strategic Investment"
+      logoBg: "from-purple-500 to-pink-500"
     },
     {
-      name: "GlobalEd",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=GlobalEd",
-      description: "International education and training network",
+      id: 4,
+      name: "EduFuture",
+      logo: partnerLogos["EduFuture"],
+      description: "Global education and professional training",
       category: "Education Partner",
       since: "2024",
+      partnershipType: "Training Alliance",
+      fullDescription: "EduFuture connects learners with industry-relevant skills. Together with CodeNagar, we've developed certification programs that have trained over 500 professionals in cutting-edge technologies.",
+      achievements: [
+        "500+ professionals trained",
+        "85% job placement rate",
+        "12 certification programs"
+      ],
       website: "#",
-      partnershipType: "Training Alliance"
+      logoBg: "from-green-500 to-emerald-500"
     },
     {
-      name: "DataStream",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=DataStream",
-      description: "Big data and analytics platform",
+      id: 5,
+      name: "DataFusion",
+      logo: partnerLogos["DataFusion"],
+      description: "Big data analytics and AI solutions",
       category: "Data Partner",
       since: "2023",
+      partnershipType: "Integration Partner",
+      fullDescription: "DataFusion specializes in turning raw data into actionable insights. Our partnership delivers end-to-end data solutions, from ingestion to visualization, helping clients make data-driven decisions.",
+      achievements: [
+        "100+ data pipelines built",
+        "50TB+ data processed",
+        "Real-time analytics"
+      ],
       website: "#",
-      partnershipType: "Integration Partner"
+      logoBg: "from-orange-500 to-red-500"
     },
     {
-      name: "SecureNet",
-      logo: "https://placehold.co/200x100/1e293b/ffffff?text=SecureNet",
-      description: "Cybersecurity and compliance solutions",
+      id: 6,
+      name: "SecureShield",
+      logo: partnerLogos["SecureShield"],
+      description: "Cybersecurity and compliance experts",
       category: "Security Partner",
       since: "2024",
+      partnershipType: "Security Alliance",
+      fullDescription: "SecureShield provides enterprise-grade security solutions. Our partnership ensures that all CodeNagar projects meet the highest security standards, including ISO 27001 and SOC 2 compliance.",
+      achievements: [
+        "Zero security breaches",
+        "ISO 27001 certified",
+        "24/7 security monitoring"
+      ],
       website: "#",
-      partnershipType: "Security Alliance"
+      logoBg: "from-red-500 to-rose-500"
     }
   ];
 
@@ -71,7 +132,6 @@ const Partners = () => {
     { icon: TrendingUp, title: "Growth Opportunities", desc: "Expand market reach" },
     { icon: Shield, title: "Trusted Partnership", desc: "Reliable and transparent" },
   ];
-
 
   return (
     <div className="pt-24 pb-16 px-4">
@@ -155,7 +215,8 @@ const Partners = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="glass-card p-6 hover:border-cyan-500 transition-all"
+                className="glass-card p-6 hover:border-cyan-500 transition-all cursor-pointer"
+                onClick={() => setSelectedPartner(partner)}
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 bg-dark-400 rounded-lg flex items-center justify-center overflow-hidden">
@@ -178,19 +239,82 @@ const Partners = () => {
                   <span className="text-cyan-400">{partner.partnershipType}</span>
                 </div>
                 <div className="mt-4 pt-3 border-t border-white/10">
-                  <a 
-                    href={partner.website} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-sm"
-                  >
+                  <button className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-sm">
                     Learn More <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </button>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Partner Details Modal */}
+        {selectedPartner && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4" onClick={() => setSelectedPartner(null)}>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="bg-dark-200 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-cyan-500"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-white/10 sticky top-0 bg-dark-200">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-dark-400 rounded-lg flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={selectedPartner.logo} 
+                        alt={selectedPartner.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold">{selectedPartner.name}</h2>
+                      <p className="text-cyan-400 text-sm">{selectedPartner.partnershipType}</p>
+                    </div>
+                  </div>
+                  <button onClick={() => setSelectedPartner(null)} className="hover:text-cyan-400">
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <div className="p-6 space-y-5">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">About the Partnership</h3>
+                  <p className="text-gray-300 leading-relaxed">{selectedPartner.fullDescription}</p>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">Key Achievements</h3>
+                  <div className="space-y-2">
+                    {selectedPartner.achievements.map((achievement, i) => (
+                      <div key={i} className="flex items-center gap-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-cyan-400" />
+                        {achievement}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex gap-3 pt-4">
+                  <a 
+                    href={selectedPartner.website} 
+                    className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition"
+                  >
+                    Visit Website
+                  </a>
+                  <Link 
+                    to="/contact" 
+                    className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition"
+                    onClick={() => setSelectedPartner(null)}
+                  >
+                    Inquire About Partnership
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
 
         {/* Become a Partner CTA */}
         <motion.div 
