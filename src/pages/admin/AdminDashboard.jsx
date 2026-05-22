@@ -70,6 +70,7 @@ const AdminDashboard = () => {
     { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
     { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
     { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
+    { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs" },
   ];
 
   const getStatusColor = (status) => {
