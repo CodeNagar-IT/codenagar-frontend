@@ -190,14 +190,29 @@ const Leadership = () => {
                     ))}
                   </div>
                   
-                  <div className="flex justify-center gap-3 pt-3 border-t border-white/10">
-                    <a href={member.social.linkedin} className="text-gray-400 hover:text-cyan-400 transition">
-                      <FaLinkedin className="w-5 h-5" />
-                    </a>
-                    <a href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-cyan-400 transition">
-                      <Mail className="w-5 h-5" />
-                    </a>
-                  </div>
+                 <div className="flex justify-center gap-3 pt-3 border-t border-white/10">
+  {member.social?.linkedin && member.social.linkedin !== "#" && (
+    <a 
+      href={member.social.linkedin} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-cyan-400 transition"
+    >
+      <FaLinkedin className="w-5 h-5" />
+    </a>
+  )}
+  {member.social?.email && member.social.email !== "#" && (
+    <a 
+      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.social.email}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-400 hover:text-cyan-400 transition"
+      title={`Send email to ${member.social.email}`}
+    >
+      <Mail className="w-5 h-5" />
+    </a>
+  )}
+</div>
                 </div>
               </motion.div>
             ))}
