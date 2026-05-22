@@ -17,6 +17,7 @@ import Careers from "./pages/Careers";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Leadership from "./pages/Leadership";
+import Partners from "./pages/Partners";
 // Service Pages
 import Services from "./pages/services/Services";
 import WebDev from "./pages/services/WebDev";
@@ -75,6 +76,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/leadership" element={<Leadership />} />
+              <Route path="/partners" element={<Partners />} />
               {/* Service Routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDev />} />
