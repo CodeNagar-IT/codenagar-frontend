@@ -2,11 +2,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
-  Sparkles, Search, Filter, Calendar, ExternalLink, CheckCircle, Briefcase,
+  Sparkles, Search, Filter, Calendar, CheckCircle, Briefcase,
   Code, Smartphone, Brain, Cloud, ShoppingBag, Palette,
  Users, Star, X
 } from "lucide-react";
-import { FaGithub} from "react-icons/fa";
 
 import axios from "axios";
 
@@ -92,9 +91,9 @@ const fetchPortfolio = async () => {
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {[
-            { value: items.length, label: "Projects Completed", icon: Briefcase },
-            { value: "50+", label: "Happy Clients", icon: Users },
-            { value: "4.9★", label: "Client Rating", icon: Star },
+            { value: "50+", label: "Projects Completed", icon: Briefcase },
+            { value: "100+", label: "Happy Clients", icon: Users },
+            { value: "4.8★", label: "Client Rating", icon: Star },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -330,18 +329,6 @@ const fetchPortfolio = async () => {
                   </ul>
                 </div>
 
-                <div className="flex gap-3 pt-4">
-                  {selectedItem.liveUrl && (
-                    <a href={selectedItem.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition">
-                      <ExternalLink className="w-4 h-4 inline mr-1" /> Live Demo
-                    </a>
-                  )}
-                  {selectedItem.githubUrl && (
-                    <a href={selectedItem.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition">
-                      <FaGithub className="w-4 h-4 inline mr-1" /> View Code
-                    </a>
-                  )}
-                </div>
               </div>
             </motion.div>
           </div>

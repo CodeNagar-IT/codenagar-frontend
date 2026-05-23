@@ -25,14 +25,13 @@ const AdminPortfolio = () => {
     technologies: [],
     image: "",
     gallery: [],
-    liveUrl: "",
-    githubUrl: "",
     featured: false,
     completedDate: "",
   });
   const [resultInput, setResultInput] = useState("");
   const [techInput, setTechInput] = useState("");
-  const [setImageInput] = useState("");
+  // FIX: Change from setImageInput to imageInput
+  const [imageInput, setImageInput] = useState("");
 
   const fetchItems = async () => {
     try {
@@ -71,7 +70,8 @@ const AdminPortfolio = () => {
       setEditingItem(null);
       resetForm();
       fetchItems();
-    } catch  {
+    } catch (error) {
+      console.error("Save error:", error);
       alert("Failed to save portfolio item");
     }
   };
@@ -82,7 +82,8 @@ const AdminPortfolio = () => {
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/portfolio/${id}`);
         alert("Portfolio item deleted successfully!");
         fetchItems();
-      } catch  {
+      } catch (error) {
+        console.error("Delete error:", error);
         alert("Failed to delete portfolio item");
       }
     }
@@ -102,8 +103,6 @@ const AdminPortfolio = () => {
       technologies: item.technologies || [],
       image: item.image || "",
       gallery: item.gallery || [],
-      liveUrl: item.liveUrl || "",
-      githubUrl: item.githubUrl || "",
       featured: item.featured || false,
       completedDate: item.completedDate?.split('T')[0] || "",
     });
@@ -123,8 +122,6 @@ const AdminPortfolio = () => {
       technologies: [],
       image: "",
       gallery: [],
-      liveUrl: "",
-      githubUrl: "",
       featured: false,
       completedDate: "",
     });
@@ -167,9 +164,26 @@ const AdminPortfolio = () => {
     });
   };
 
+  const addGalleryImage = () => {
+    if (imageInput.trim()) {
+      setFormData({
+        ...formData,
+        gallery: [...formData.gallery, imageInput.trim()]
+      });
+      setImageInput("");
+    }
+  };
+
+  const removeGalleryImage = (index) => {
+    setFormData({
+      ...formData,
+      gallery: formData.gallery.filter((_, i) => i !== index)
+    });
+  };
+
   const filteredItems = items.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.client.toLowerCase().includes(searchTerm.toLowerCase())
+    item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.client?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const categories = ["Web Development", "App Development", "AI/ML", "Cloud Solutions", "E-commerce", "UI/UX Design"];
@@ -467,24 +481,29 @@ const AdminPortfolio = () => {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Live URL</label>
+                {/* Gallery Images Section */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Gallery Images</label>
+                  <div className="flex gap-2 mb-2">
                     <input
                       type="url"
-                      value={formData.liveUrl}
-                      onChange={(e) => setFormData({ ...formData, liveUrl: e.target.value })}
-                      className="w-full px-4 py-2 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-white/10"
+                      value={imageInput}
+                      onChange={(e) => setImageInput(e.target.value)}
+                      className="flex-1 px-4 py-2 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-white/10"
+                      placeholder="https://... (additional image URL)"
+                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addGalleryImage())}
                     />
+                    <button type="button" onClick={addGalleryImage} className="px-4 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700">Add</button>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">GitHub URL</label>
-                    <input
-                      type="url"
-                      value={formData.githubUrl}
-                      onChange={(e) => setFormData({ ...formData, githubUrl: e.target.value })}
-                      className="w-full px-4 py-2 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-white/10"
-                    />
+                  <div className="flex flex-wrap gap-2">
+                    {formData.gallery.map((img, i) => (
+                      <span key={i} className="flex items-center gap-1 px-2 py-1 bg-dark-400 rounded-full text-sm">
+                        Image {i + 1}
+                        <button type="button" onClick={() => removeGalleryImage(i)} className="hover:text-red-400">
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    ))}
                   </div>
                 </div>
 
