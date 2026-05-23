@@ -1,10 +1,9 @@
 // frontend/src/components/Navbar.jsx
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud, Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap, Store, Mail, User } from "lucide-react";
+import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud,Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../assets/logo.png";
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -77,13 +76,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about", dropdown: "about" },
     { name: "Services", path: "/services", dropdown: "services", megaMenu: true },
     { name: "Courses", path: "/courses", dropdown: "courses" },
-    { name: "Store", path: "/store" },  // ADDED: Store link
-    { name: "Portfolio", path: "/portfolio" },
+    { name: "Store", path: "/store" },
+    { name: "About", path: "/about", dropdown: "about" },
     { name: "Resources", path: "/resources", dropdown: "resources" },
-    { name: "Contact", path: "/contact" },  // ADDED: Contact link
   ];
 
   const aboutDropdown = [
@@ -91,6 +88,8 @@ const Navbar = () => {
     { name: "Leadership", path: "/leadership" },
     { name: "Careers", path: "/careers" },
     { name: "Partners", path: "/partners" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const coursesDropdown = [
@@ -107,7 +106,7 @@ const Navbar = () => {
     { name: "White Papers", path: "/white-papers" },
     { name: "Webinars", path: "/webinars" },
     { name: "Documentation", path: "/docs" },
-    { name: "Events", path: "/events" },  // ADDED: Events in Resources dropdown
+    { name: "Events", path: "/events" },
   ];
 
   const renderDropdownContent = () => {
@@ -273,13 +272,13 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-                <img 
-                  src={Logo} 
-                  alt="CodeNagar Logo" 
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
-                />
-              </div>
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                              <img 
+                                src={Logo} 
+                                alt="CodeNagar Logo" 
+                                className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
+                              />
+                            </div>
               <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 CodeNagar
               </span>
@@ -324,14 +323,12 @@ const Navbar = () => {
                     ) : (
                       <Link
                         to={link.path}
-                        className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-1 ${
+                        className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                           location.pathname === link.path
                             ? "text-cyan-400 bg-white/5"
                             : "text-gray-300 hover:text-white hover:bg-white/5"
                         }`}
                       >
-                        {link.name === "Store" && <Store className="w-4 h-4" />}
-                        {link.name === "Contact" && <Mail className="w-4 h-4" />}
                         {link.name}
                       </Link>
                     )}
@@ -340,36 +337,36 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Right Section */}
-            <div className="hidden lg:flex items-center gap-4">
-              {user ? (
-                <div className="relative group">
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
-                    <User className="w-4 h-4" />
-                    {user.name?.split(' ')[0] || 'User'}
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
-                  <div className="absolute top-full right-0 mt-2 w-48 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Dashboard</Link>
-                    <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">My Orders</Link>
-                    <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Profile</Link>
-                    <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/5">Logout</button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <Link to="/login" className="text-gray-300 hover:text-white transition">
-                    Log in
-                  </Link>
-                  <Link to="/signup" className="btn-primary">
-                    Sign up
-                  </Link>
-                </>
-              )}
-              <Link to="/careers" className="btn-outline">
-                Join Team
-              </Link>
-            </div>
+           {/* Right Section */}
+<div className="hidden lg:flex items-center gap-4">
+  {user ? (
+    <div className="relative group">
+      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
+        <user className="w-4 h-4" />
+        {user.name?.split(' ')[0] || 'User'}
+        <ChevronDown className="w-4 h-4" />
+      </button>
+      <div className="absolute top-full right-0 mt-2 w-48 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+        <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Dashboard</Link>
+        <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">My Orders</Link>
+        <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Profile</Link>
+        <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/5">Logout</button>
+      </div>
+    </div>
+  ) : (
+    <>
+      <Link to="/login" className="text-gray-300 hover:text-white transition">
+        Log in
+      </Link>
+      <Link to="/signup" className="btn-primary">
+        Sign up
+      </Link>
+    </>
+  )}
+  <Link to="/careers" className="btn-outline">
+    Join Team
+  </Link>
+</div>
 
             {/* Mobile Menu Button */}
             <button
@@ -463,15 +460,6 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Store Link - Mobile */}
-              <Link
-                to="/store"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-4 transition"
-              >
-                <Store className="w-4 h-4" /> Store
-              </Link>
-
               <Link
                 to="/portfolio"
                 onClick={() => setIsOpen(false)}
@@ -493,15 +481,6 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
-
-              {/* Contact Link - Mobile */}
-              <Link
-                to="/contact"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-4 transition"
-              >
-                <Mail className="w-4 h-4" /> Contact
-              </Link>
 
               <div className="pt-4 space-y-3">
                 <Link

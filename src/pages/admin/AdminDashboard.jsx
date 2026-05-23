@@ -71,6 +71,7 @@ const AdminDashboard = () => {
     { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
     { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
     { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs" },
+{ title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/portfolio" },
   ];
 
   const getStatusColor = (status) => {

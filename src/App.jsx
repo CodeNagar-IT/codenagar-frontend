@@ -23,6 +23,8 @@ import CaseStudies from "./pages/CaseStudies";
 import Whitepapers from "./pages/Whitepapers";
 import Documentation from "./pages/Documentation";
 import Webinars from "./pages/Webinars";
+import Portfolio from "./pages/Portfolio";
+import AdminPortfolio from "./pages/admin/AdminPortfolio";
 // Service Pages
 import Services from "./pages/services/Services";
 import WebDev from "./pages/services/WebDev";
@@ -87,6 +89,8 @@ function App() {
 <Route path="/whitepapers" element={<Whitepapers />} />
 <Route path="/docs" element={<Documentation />} />
 <Route path="/webinars" element={<Webinars />} />
+<Route path="/portfolio" element={<Portfolio />} />
+<Route path="/admin/portfolio" element={<AdminRoute><AdminPortfolio /></AdminRoute>} />
               {/* Service Routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDev />} />
