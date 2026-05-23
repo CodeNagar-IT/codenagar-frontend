@@ -297,12 +297,7 @@ const Partners = () => {
                 </div>
                 
                 <div className="flex gap-3 pt-4">
-                  <a 
-                    href={selectedPartner.website} 
-                    className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition"
-                  >
-                    Visit Website
-                  </a>
+                  
                   <Link 
                     to="/contact" 
                     className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition"
