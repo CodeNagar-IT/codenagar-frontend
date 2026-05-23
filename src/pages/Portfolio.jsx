@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
-  Sparkles, Search, Filter, Calendar, 
-  Github, ExternalLink, CheckCircle, Briefcase,
+  Sparkles, Search, Filter, Calendar, ExternalLink, CheckCircle, Briefcase,
   Code, Smartphone, Brain, Cloud, ShoppingBag, Palette,
  Users, Star, X
 } from "lucide-react";
+import { FaGithub} from "react-icons/fa";
+
 import axios from "axios";
 
 const Portfolio = () => {
@@ -337,7 +338,7 @@ const fetchPortfolio = async () => {
                   )}
                   {selectedItem.githubUrl && (
                     <a href={selectedItem.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition">
-                      <Github className="w-4 h-4 inline mr-1" /> View Code
+                      <FaGithub className="w-4 h-4 inline mr-1" /> View Code
                     </a>
                   )}
                 </div>
