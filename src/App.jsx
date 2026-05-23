@@ -18,6 +18,11 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Leadership from "./pages/Leadership";
 import Partners from "./pages/Partners";
+import Blog from "./pages/Blog";
+import CaseStudies from "./pages/CaseStudies";
+import Whitepapers from "./pages/Whitepapers";
+import Documentation from "./pages/Documentation";
+import Webinars from "./pages/Webinars";
 // Service Pages
 import Services from "./pages/services/Services";
 import WebDev from "./pages/services/WebDev";
@@ -77,6 +82,11 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/partners" element={<Partners />} />
+              <Route path="/blog" element={<Blog />} />
+<Route path="/case-studies" element={<CaseStudies />} />
+<Route path="/whitepapers" element={<Whitepapers />} />
+<Route path="/docs" element={<Documentation />} />
+<Route path="/webinars" element={<Webinars />} />
               {/* Service Routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDev />} />
