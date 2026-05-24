@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Mail, Phone, MapPin, Send, Clock, MessageSquare, User, Building, 
-  CheckCircle, AlertCircle, Sparkles, Headphones, Globe, Facebook, 
-  Twitter, Linkedin, Instagram, Users,
+  CheckCircle, AlertCircle, Sparkles, Headphones, Globe, Users,
   Clock as ClockIcon, Award, Shield, ThumbsUp
 } from "lucide-react";
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 
 const Contact = () => {
@@ -55,10 +55,11 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "https://facebook.com/codenagar", color: "hover:bg-blue-600" },
-    { name: "Twitter", icon: Twitter, href: "https://twitter.com/codenagar", color: "hover:bg-sky-500" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/company/codenagar", color: "hover:bg-blue-700" },
-    { name: "Instagram", icon: Instagram, href: "https://instagram.com/codenagar", color: "hover:bg-pink-600" },
+    { name: "Facebook", icon: FaFacebook, href: "https://facebook.com/codenagar", color: "hover:bg-blue-600" },
+    { name: "Twitter", icon: FaTwitter, href: "https://twitter.com/codenagar", color: "hover:bg-sky-500" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/company/codenagar", color: "hover:bg-blue-700" },
+    { name: "Instagram", icon: FaInstagram, href: "https://instagram.com/codenagar", color: "hover:bg-pink-600" },
+    { name: "Github", icon: FaGithub, href: "https://github.com/codenagar", color: "hover:bg-pink-600" },
   ];
 
   const officeHours = [
