@@ -1,7 +1,12 @@
 // frontend/src/pages/Contact.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Clock, MessageSquare, User, Building, CheckCircle, AlertCircle, Sparkles, Headphones, Globe } from "lucide-react";
+import { 
+  Mail, Phone, MapPin, Send, Clock, MessageSquare, User, Building, 
+  CheckCircle, AlertCircle, Sparkles, Headphones, Globe, Facebook, 
+  Twitter, Linkedin, Instagram, Users,
+  Clock as ClockIcon, Award, Shield, ThumbsUp
+} from "lucide-react";
 import axios from "axios";
 
 const Contact = () => {
@@ -14,6 +19,18 @@ const Contact = () => {
   });
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const [focusedField, setFocusedField] = useState(null);
+  const [charCount, setCharCount] = useState(0);
+
+  // Auto-clear status after 5 seconds
+  useEffect(() => {
+    if (status.message) {
+      const timer = setTimeout(() => {
+        setStatus({ type: "", message: "" });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status.message]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,14 +39,40 @@ const Contact = () => {
 
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
-      setStatus({ type: "success", message: "Message sent successfully! We'll get back to you within 24 hours." });
+      setStatus({ type: "success", message: "✓ Message sent successfully! We'll get back to you within 24 hours." });
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setCharCount(0);
     } catch  {
-      setStatus({ type: "error", message: "Failed to send message. Please try again." });
+      setStatus({ type: "error", message: "✗ Failed to send message. Please try again or call us directly." });
     } finally {
       setLoading(false);
     }
   };
+
+  const handleMessageChange = (e) => {
+    setFormData({ ...formData, message: e.target.value });
+    setCharCount(e.target.value.length);
+  };
+
+  const socialLinks = [
+    { name: "Facebook", icon: Facebook, href: "https://facebook.com/codenagar", color: "hover:bg-blue-600" },
+    { name: "Twitter", icon: Twitter, href: "https://twitter.com/codenagar", color: "hover:bg-sky-500" },
+    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/company/codenagar", color: "hover:bg-blue-700" },
+    { name: "Instagram", icon: Instagram, href: "https://instagram.com/codenagar", color: "hover:bg-pink-600" },
+  ];
+
+  const officeHours = [
+    { day: "Monday - Friday", hours: "9:00 AM - 7:00 PM", status: "open" },
+    { day: "Saturday", hours: "10:00 AM - 4:00 PM", status: "open" },
+    { day: "Sunday", hours: "Closed", status: "closed" },
+  ];
+
+  const stats = [
+    { icon: Award, value: "50+", label: "Projects Completed" },
+    { icon: Users, value: "100+", label: "Happy Clients" },
+    { icon: ThumbsUp, value: "98%", label: "Satisfaction Rate" },
+    { icon: ClockIcon, value: "24/7", label: "Support Available" },
+  ];
 
   return (
     <div className="pt-24 pb-16 px-4">
@@ -40,105 +83,126 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-300 text-sm">We're Here to Help</span>
+          <div className="inline-flex items-center gap-2 bg-cyan-500/10 rounded-full px-4 py-2 mb-4">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-cyan-300 text-sm">We're Here to Help</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Contact <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Us</span>
+            Contact <span className="gradient-text">Us</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Have a question or want to start a project? We'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        {/* Stats Section */}
+        <div className="grid md:grid-cols-4 gap-6 mb-12">
+          {stats.map((stat, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="glass-card p-4 text-center"
+            >
+              <stat.icon className="w-8 h-8 mx-auto mb-2 text-cyan-400" />
+              <div className="text-2xl font-bold text-white">{stat.value}</div>
+              <div className="text-gray-400 text-xs">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             animate={{ opacity: 1, x: 0 }} 
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl p-8 border border-blue-500/20 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <Globe className="w-6 h-6 text-blue-400" />
-                Get in Touch
+            {/* Main Contact Card */}
+            <div className="glass-card p-6">
+              <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Globe className="w-5 h-5 text-cyan-400" />
+                Contact Information
               </h2>
-              <div className="space-y-5">
-                <motion.div 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-4 group cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
-                    <MapPin className="w-5 h-5 text-blue-400" />
+              <div className="space-y-4">
+                {[
+                  { icon: MapPin, title: "Visit Us", details: ["Sajjad Complex, Upper Adda", "Muzaffarabad, Azad Kashmir"], link: null },
+                  { icon: Phone, title: "Call Us", details: ["+92 307 5762192", "+92 333 0508929"], link: "tel:+923075762192" },
+                  { icon: Mail, title: "Email Us", details: ["info@codenagar.com"], link: "mailto:info@codenagar.com" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors">
+                    <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">{item.title}</p>
+                      {item.details.map((detail, i) => (
+                        item.link ? (
+                          <a key={i} href={item.link} className="text-gray-400 text-sm hover:text-cyan-400 transition block">
+                            {detail}
+                          </a>
+                        ) : (
+                          <p key={i} className="text-gray-400 text-sm">{detail}</p>
+                        )
+                      ))}
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-semibold">Visit Us</p>
-                    <p className="text-gray-400 text-sm">Sajjad Complex, Upper Adda, Muzaffarabad, Azad Kashmir</p>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-4 group cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
-                    <Phone className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Call Us</p>
-                    <p className="text-gray-400 text-sm">+92 307 5762192</p>
-                    <p className="text-gray-400 text-sm">+92 333 0508929</p>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-4 group cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
-                    <Mail className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Email Us</p>
-                    <p className="text-gray-400 text-sm">info@codenagar.com</p>
-                  </div>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-4 group cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all">
-                    <Clock className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Business Hours</p>
-                    <p className="text-gray-400 text-sm">Mon-Fri: 9:00 AM - 7:00 PM</p>
-                    <p className="text-gray-400 text-sm">Sat: 10:00 AM - 4:00 PM</p>
-                    <p className="text-gray-400 text-sm">Sun: Closed</p>
-                  </div>
-                </motion.div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-6 border border-blue-500/20">
-              <div className="flex items-center gap-3 mb-3">
-                <Headphones className="w-8 h-8 text-blue-400" />
-                <h3 className="font-bold text-lg">24/7 Emergency Support</h3>
+            {/* Business Hours */}
+            <div className="glass-card p-6">
+              <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-cyan-400" />
+                Business Hours
+              </h2>
+              <div className="space-y-3">
+                {officeHours.map((item, idx) => (
+                  <div key={idx} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
+                    <span className="text-gray-300">{item.day}</span>
+                    <span className={`text-sm ${item.status === 'closed' ? 'text-red-400' : 'text-green-400'}`}>
+                      {item.hours}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <p className="text-gray-300 text-sm mb-3">For urgent technical issues, call our dedicated support line:</p>
-              <p className="text-blue-400 font-bold text-2xl">+92 307 5762192</p>
-              <p className="text-xs text-gray-500 mt-2">Available 24/7 for critical issues</p>
+              <div className="mt-4 pt-3 border-t border-white/10">
+                <p className="text-xs text-gray-500 flex items-center gap-1">
+                  <Shield className="w-3 h-3" /> Emergency support available 24/7
+                </p>
+              </div>
+            </div>
+
+            {/* Emergency Support */}
+            <div className="glass-card p-6 border-l-4 border-l-cyan-500">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                  <Headphones className="w-5 h-5 text-cyan-400" />
+                </div>
+                <h3 className="font-bold">24/7 Emergency Support</h3>
+              </div>
+              <p className="text-gray-400 text-sm mb-3">For urgent technical issues:</p>
+              <a href="tel:+923075762192" className="text-cyan-400 font-bold text-2xl block mb-1 hover:text-cyan-300 transition">
+                +92 307 5762192
+              </a>
+              <p className="text-xs text-gray-500">Available 24/7 for critical issues</p>
             </div>
 
             {/* Social Links */}
-            <div className="bg-gray-800/30 rounded-2xl p-6 text-center">
-              <p className="text-sm text-gray-400 mb-3">Connect with us on social media</p>
-              <div className="flex justify-center gap-4">
-                {["Facebook", "Twitter", "LinkedIn", "Instagram"].map((social, idx) => (
-                  <a key={idx} href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all hover:scale-110">
-                    <span className="text-sm">{social[0]}</span>
+            <div className="glass-card p-6">
+              <h3 className="font-semibold mb-3 text-center">Connect With Us</h3>
+              <div className="flex justify-center gap-3">
+                {socialLinks.map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 bg-dark-400 rounded-full flex items-center justify-center ${social.color} transition-all hover:scale-110 hover:text-white`}
+                  >
+                    <social.icon className="w-4 h-4" />
                   </a>
                 ))}
               </div>
@@ -151,66 +215,75 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }} 
             className="lg:col-span-2"
           >
-            <form onSubmit={handleSubmit} className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-xl">
+            <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <MessageSquare className="w-6 h-6 text-blue-400" />
+                <MessageSquare className="w-6 h-6 text-cyan-400" />
                 Send us a Message
               </h2>
+              <p className="text-gray-400 text-sm mb-6">Fill out the form below and we'll get back to you within 24 hours.</p>
               
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-5 mb-5">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Your Name *</label>
-                  <div className="relative group">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                  <label className="block text-sm font-medium mb-2">Your Name <span className="text-red-400">*</span></label>
+                  <div className={`relative transition-all duration-200 ${focusedField === 'name' ? 'ring-2 ring-cyan-500 rounded-lg' : ''}`}>
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input 
                       type="text" 
                       required 
                       value={formData.name} 
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onFocus={() => setFocusedField('name')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none border border-white/10 transition-all" 
                       placeholder="John Doe" 
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email Address *</label>
-                  <div className="relative group">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                  <label className="block text-sm font-medium mb-2">Email Address <span className="text-red-400">*</span></label>
+                  <div className={`relative transition-all duration-200 ${focusedField === 'email' ? 'ring-2 ring-cyan-500 rounded-lg' : ''}`}>
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input 
                       type="email" 
                       required 
                       value={formData.email} 
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none border border-white/10 transition-all" 
                       placeholder="you@example.com" 
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-5 mb-5">
                 <div>
                   <label className="block text-sm font-medium mb-2">Phone Number</label>
-                  <div className="relative group">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                  <div className={`relative transition-all duration-200 ${focusedField === 'phone' ? 'ring-2 ring-cyan-500 rounded-lg' : ''}`}>
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input 
                       type="tel" 
                       value={formData.phone} 
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all" 
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onFocus={() => setFocusedField('phone')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none border border-white/10 transition-all" 
                       placeholder="+92 300 1234567" 
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Subject *</label>
-                  <div className="relative group">
-                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                  <label className="block text-sm font-medium mb-2">Subject <span className="text-red-400">*</span></label>
+                  <div className={`relative transition-all duration-200 ${focusedField === 'subject' ? 'ring-2 ring-cyan-500 rounded-lg' : ''}`}>
+                    <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <select 
                       required 
                       value={formData.subject} 
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })} 
-                      className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all appearance-none"
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      onFocus={() => setFocusedField('subject')}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none border border-white/10 transition-all appearance-none"
                     >
                       <option value="">Select Subject</option>
                       <option>General Inquiry</option>
@@ -219,23 +292,31 @@ const Contact = () => {
                       <option>Hardware Purchase</option>
                       <option>Technical Support</option>
                       <option>Careers</option>
+                      <option>Partnership</option>
                     </select>
                   </div>
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Message *</label>
-                <div className="relative group">
-                  <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+              <div className="mb-5">
+                <label className="block text-sm font-medium mb-2">Message <span className="text-red-400">*</span></label>
+                <div className={`relative transition-all duration-200 ${focusedField === 'message' ? 'ring-2 ring-cyan-500 rounded-lg' : ''}`}>
+                  <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-500" />
                   <textarea 
-                    rows="6" 
+                    rows="5" 
                     required 
                     value={formData.message} 
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })} 
-                    className="w-full pl-10 pr-4 py-3 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 transition-all resize-none" 
+                    onChange={handleMessageChange}
+                    onFocus={() => setFocusedField('message')}
+                    onBlur={() => setFocusedField(null)}
+                    className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none border border-white/10 transition-all resize-none" 
                     placeholder="Tell us about your project or inquiry..."
-                  ></textarea>
+                  />
+                </div>
+                <div className="flex justify-end mt-1">
+                  <span className={`text-xs ${charCount > 500 ? 'text-red-400' : 'text-gray-500'}`}>
+                    {charCount}/500 characters
+                  </span>
                 </div>
               </div>
 
@@ -243,24 +324,27 @@ const Contact = () => {
                 <motion.div 
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`mb-6 p-4 rounded-lg flex items-center gap-2 ${
+                  className={`mb-6 p-4 rounded-xl flex items-center gap-3 ${
                     status.type === "success" 
-                      ? "bg-green-500/20 text-green-400 border border-green-500" 
-                      : "bg-red-500/20 text-red-400 border border-red-500"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/50" 
+                      : "bg-red-500/20 text-red-400 border border-red-500/50"
                   }`}
                 >
-                  {status.type === "success" ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
-                  {status.message}
+                  {status.type === "success" ? <CheckCircle className="w-5 h-5 flex-shrink-0" /> : <AlertCircle className="w-5 h-5 flex-shrink-0" />}
+                  <span className="text-sm">{status.message}</span>
                 </motion.div>
               )}
 
               <button 
                 type="submit" 
                 disabled={loading} 
-                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
+                className="w-full py-3.5 bg-gradient-primary rounded-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 group"
               >
                 {loading ? (
-                  "Sending..."
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Sending...
+                  </>
                 ) : (
                   <>
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> 
@@ -269,12 +353,41 @@ const Contact = () => {
                 )}
               </button>
 
-              <p className="text-xs text-gray-500 text-center mt-4">
-                We'll respond to your message within 24 hours during business days.
-              </p>
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <p className="text-xs text-gray-500 text-center flex items-center justify-center gap-2">
+                  <Shield className="w-3 h-3" />
+                  Your information is secure and will not be shared
+                </p>
+              </div>
             </form>
           </motion.div>
         </div>
+
+        {/* FAQ Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Frequently Asked <span className="gradient-text">Questions</span></h2>
+            <p className="text-gray-400">Quick answers to common questions</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { q: "How quickly do you respond?", a: "We respond to all inquiries within 24 hours during business days." },
+              { q: "Do you offer free consultations?", a: "Yes, we offer free initial consultations to understand your project needs." },
+              { q: "What payment methods do you accept?", a: "We accept bank transfers, credit cards, and online payments." },
+              { q: "Do you work with international clients?", a: "Yes, we work with clients worldwide remotely." },
+            ].map((faq, idx) => (
+              <div key={idx} className="glass-card p-4">
+                <h3 className="font-semibold text-cyan-400 mb-1">{faq.q}</h3>
+                <p className="text-gray-400 text-sm">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Map Section */}
         <motion.div 
@@ -283,17 +396,38 @@ const Contact = () => {
           viewport={{ once: true }}
           className="mt-16"
         >
-          <div className="bg-gray-800/30 rounded-2xl overflow-hidden border border-gray-700">
+          <div className="glass-card overflow-hidden p-1">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
               width="100%"
-              height="400"
+              height="350"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               title="CodeNagar Location"
-              className="grayscale hover:grayscale-0 transition-all duration-500"
+              className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
             ></iframe>
+          </div>
+        </motion.div>
+
+        {/* Newsletter CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center glass-card p-8"
+        >
+          <h3 className="text-xl font-bold mb-2">Subscribe to Our Newsletter</h3>
+          <p className="text-gray-400 text-sm mb-4">Get the latest updates and offers directly in your inbox.</p>
+          <div className="flex max-w-md mx-auto gap-2">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-1 px-4 py-2.5 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-white/10"
+            />
+            <button className="px-5 py-2.5 bg-gradient-primary rounded-lg hover:shadow-lg transition whitespace-nowrap">
+              Subscribe
+            </button>
           </div>
         </motion.div>
       </div>
