@@ -38,6 +38,14 @@ import CloudSolutions from "./pages/services/CloudSolutions";
 import DevOps from "./pages/services/DevOps";
 import UIDesign from "./pages/services/UIDesign";
 import Ecommerce from "./pages/services/Ecommerce";
+import ServiceInquiry from "./pages/ServiceInquiry";
+import AdminServiceInquiries from "./pages/admin/AdminServiceInquiries";
+import DatabaseManagement from "./pages/services/DatabaseManagement";
+import CyberSecurity from "./pages/services/CyberSecurity";
+import CrossPlatform from "./pages/services/CrossPlatform";
+import ComputerVision from "./pages/services/ComputerVision";
+import AndroidDev from "./pages/services/AndroidDev";
+import NLP from "./pages/services/NLP";
 
 // Course Pages
 import Courses from "./pages/courses/Courses";
@@ -65,6 +73,7 @@ import AdminMessages from "./pages/admin/AdminMessages";
 import AdminCareers from "./pages/admin/AdminCareers";
 import AdminEvents from "./pages/admin/AdminEvents";
 import AdminJobs from "./pages/admin/AdminJobs";
+import IOSDev from "./pages/services/iOSDev";
 function App() {
   return (
     <AuthProvider>
@@ -104,7 +113,15 @@ function App() {
               <Route path="/services/devops" element={<DevOps />} />
               <Route path="/services/ui-ux-design" element={<UIDesign />} />
               <Route path="/services/ecommerce-development" element={<Ecommerce />} />
-              
+              <Route path="/services/:serviceId/inquiry" element={<ServiceInquiry />} />
+<Route path="/admin/service-inquiries" element={<AdminRoute><AdminServiceInquiries /></AdminRoute>} />
+<Route path="/services/database-management" element={<DatabaseManagement />} />
+<Route path="/services/android-development" element={<AndroidDev />} />
+<Route path="/services/computer-vision" element={<ComputerVision />} />
+<Route path="/services/cross-platform" element={<CrossPlatform />} />
+<Route path="/services/cybersecurity" element={<CyberSecurity />} />
+<Route path="/services/nlp" element={<NLP />} />
+<Route path="/services/ios-development" element={<IOSDev />} />
               {/* Course Routes */}
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/:slug" element={<CourseDetails />} />

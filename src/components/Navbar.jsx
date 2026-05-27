@@ -1,7 +1,7 @@
 // frontend/src/components/Navbar.jsx
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud,Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap } from "lucide-react";
+import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud, User, Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../assets/logo.png";
 const Navbar = () => {
@@ -70,7 +70,7 @@ const Navbar = () => {
       { name: "Cloud Solutions", path: "/services/cloud-solutions", icon: Cloud },
       { name: "DevOps", path: "/services/devops", icon: GitBranch },
       { name: "Cybersecurity", path: "/services/cybersecurity", icon: Shield },
-      { name: "Database Management", path: "/services/database", icon: Database },
+      { name: "Database Management", path: "/services/database-management", icon: Database },
     ],
   };
 
@@ -343,7 +343,7 @@ const Navbar = () => {
   {user ? (
     <div className="relative group">
       <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
-        <user className="w-4 h-4" />
+        <User className="w-4 h-4" />
         {user.name?.split(' ')[0] || 'User'}
         <ChevronDown className="w-4 h-4" />
       </button>
@@ -364,8 +364,8 @@ const Navbar = () => {
       </Link>
     </>
   )}
-  <Link to="/careers" className="btn-outline">
-    Join Team
+  <Link to="/contact" className="btn-outline">
+    Contact Us
   </Link>
 </div>
 
@@ -460,7 +460,13 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
-
+<Link
+  to="/store"
+  onClick={() => setIsOpen(false)}
+  className="block py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-4 transition"
+>
+  Store
+</Link>
               <Link
                 to="/portfolio"
                 onClick={() => setIsOpen(false)}
