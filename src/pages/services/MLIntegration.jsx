@@ -492,7 +492,7 @@ export default function MLIntegration() {
                   <p className="text-gray-300 italic">"CodeNagar's ML solution transformed our business. The recommendation engine has been a game-changer for our sales."</p>
                   <div className="mt-4">
                     <p className="font-semibold">Sarah Ahmed</p>
-                    <p className="text-sm text-gray-400">CTO, TechStore.pk</p>
+                    <p className="text-sm text-gray-400">CTO, TechStore</p>
                   </div>
                 </div>
               </div>

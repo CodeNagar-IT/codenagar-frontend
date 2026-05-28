@@ -534,7 +534,7 @@ export default function DatabaseManagement() {
                   <p className="text-gray-300 italic">"CodeNagar's database optimization transformed our application performance. The team's expertise in query optimization and indexing is outstanding."</p>
                   <div className="mt-4">
                     <p className="font-semibold">Hina Malik</p>
-                    <p className="text-sm text-gray-400">CTO, ShopFast.pk</p>
+                    <p className="text-sm text-gray-400">CTO, ShopFast</p>
                   </div>
                 </div>
               </div>

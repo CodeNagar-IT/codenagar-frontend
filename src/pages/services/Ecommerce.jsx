@@ -540,7 +540,7 @@ export default function Ecommerce() {
                   <p className="text-gray-300 italic">"CodeNagar built us a stunning online store that has transformed our business. Sales have tripled and customers love the experience!"</p>
                   <div className="mt-4">
                     <p className="font-semibold">Ayesha Khan</p>
-                    <p className="text-sm text-gray-400">Founder, StyleHub.pk</p>
+                    <p className="text-sm text-gray-400">Founder, StyleHub</p>
                   </div>
                 </div>
               </div>

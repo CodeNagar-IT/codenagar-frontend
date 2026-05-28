@@ -530,7 +530,7 @@ export default function DevOps() {
                   <p className="text-gray-300 italic">"CodeNagar transformed our infrastructure. Deployments are now effortless and our team can focus on building features instead of managing servers."</p>
                   <div className="mt-4">
                     <p className="font-semibold">Bilal Ahmed</p>
-                    <p className="text-sm text-gray-400">CTO, TechFlow.ai</p>
+                    <p className="text-sm text-gray-400">CTO, TechFlow</p>
                   </div>
                 </div>
               </div>

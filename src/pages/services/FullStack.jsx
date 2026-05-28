@@ -532,7 +532,7 @@ export default function FullStack() {
                   <p className="text-gray-300 italic">"CodeNagar's full stack team delivered beyond our expectations. The platform is robust, scalable, and a pleasure to use."</p>
                   <div className="mt-4">
                     <p className="font-semibold">Omar Farooq</p>
-                    <p className="text-sm text-gray-400">CEO, ShopEasy.pk</p>
+                    <p className="text-sm text-gray-400">CEO, ShopEasy</p>
                   </div>
                 </div>
               </div>

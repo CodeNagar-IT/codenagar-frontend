@@ -1,6 +1,7 @@
 // frontend/src/pages/services/WebDev.jsx
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import PortfolioModal from "../../components/PortfolioModal";
 import { Link } from "react-router-dom";
 import { 
   CheckCircle, Code, Globe, Zap, Shield, Layout, Smartphone, Database, 
@@ -12,7 +13,7 @@ import axios from "axios";
 export default function WebDev() {
   const [portfolioItems, setPortfolioItems] = useState([]);
   const [loadingPortfolio, setLoadingPortfolio] = useState(true);
-
+  const [selectedProject, setSelectedProject] = useState(null);
   // Pricing configuration (1 USD = 280 PKR)
   const prices = {
     basic: { usd: 499, pkr: 139000 },
@@ -338,7 +339,7 @@ export default function WebDev() {
                   transition={{ delay: idx * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="glass-card overflow-hidden group cursor-pointer"
-                  onClick={() => window.location.href = `/portfolio/${item.slug}`}
+                  onClick={() => setSelectedProject(item)}
                 >
                   <div className="h-48 overflow-hidden relative">
                     <img 
@@ -412,7 +413,11 @@ export default function WebDev() {
             </Link>
           </div>
         </motion.div>
+        
       </div>
+           {selectedProject && (
+  <PortfolioModal item={selectedProject} onClose={() => setSelectedProject(null)} />
+)}
     </div>
   );
 }
