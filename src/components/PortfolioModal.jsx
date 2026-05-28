@@ -1,7 +1,6 @@
 // frontend/src/components/PortfolioModal.jsx
 import { motion } from "framer-motion";
-import { X, ExternalLink, CheckCircle,  } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { X,  CheckCircle,  } from "lucide-react";
 
 const PortfolioModal = ({ item, onClose }) => {
   if (!item) return null;
@@ -65,20 +64,7 @@ const PortfolioModal = ({ item, onClose }) => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="flex gap-3 pt-4">
-            {item.liveUrl && (
-              <a href={item.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition">
-                <ExternalLink className="w-4 h-4 inline mr-1" /> Live Demo
-              </a>
-            )}
-            {item.githubUrl && (
-              <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition">
-                <FaGithub className="w-4 h-4 inline mr-1" /> View Code
-              </a>
-            )}
-          </div>
+          </div>    
         </div>
       </motion.div>
     </div>

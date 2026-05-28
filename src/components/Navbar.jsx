@@ -1,9 +1,10 @@
 // frontend/src/components/Navbar.jsx
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud, User, Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap } from "lucide-react";
+import { Menu, X, ChevronDown, Code, Smartphone, Brain, Cloud, User, Layout, Server, Layers, ShoppingBag, Apple, Monitor, Globe, Eye, MessageSquare, GitBranch, Shield, Database, Zap, GraduationCap, BookOpen, Award } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../assets/logo.png";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -72,6 +73,12 @@ const Navbar = () => {
       { name: "Cybersecurity", path: "/services/cybersecurity", icon: Shield },
       { name: "Database Management", path: "/services/database-management", icon: Database },
     ],
+    // NEW: FYP Section for University Students
+    fyp: [
+      { name: "FYP Projects", path: "/fyp", icon: GraduationCap, badge: "40% OFF" },
+      { name: "Thesis Writing", path: "/fyp?type=Thesis", icon: BookOpen, badge: "Student Discount" },
+      { name: "Technical Reports", path: "/fyp?type=Report", icon: Award, badge: "University" },
+    ],
   };
 
   const navLinks = [
@@ -105,7 +112,6 @@ const Navbar = () => {
     { name: "Case Studies", path: "/case-studies" },
     { name: "White Papers", path: "/whitepapers" },
     { name: "Webinars", path: "/webinars" },
-  
     { name: "Documentation", path: "/docs" },
     { name: "Events", path: "/events" },
   ];
@@ -130,8 +136,9 @@ const Navbar = () => {
     
     if (activeDropdown === "services") {
       return (
-        <div className="w-[800px] p-6">
-          <div className="grid grid-cols-4 gap-6">
+        <div className="w-[1000px] p-6">
+          <div className="grid grid-cols-5 gap-6">
+            {/* Web Development Column */}
             <div>
               <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
                 <Code className="w-4 h-4" /> Web Development
@@ -151,6 +158,8 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
+            
+            {/* Mobile Development Column */}
             <div>
               <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
                 <Smartphone className="w-4 h-4" /> Mobile Development
@@ -170,6 +179,8 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
+            
+            {/* AI & ML Column */}
             <div>
               <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
                 <Brain className="w-4 h-4" /> AI & ML
@@ -189,6 +200,8 @@ const Navbar = () => {
                 ))}
               </ul>
             </div>
+            
+            {/* Cloud & DevOps Column */}
             <div>
               <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
                 <Cloud className="w-4 h-4" /> Cloud & DevOps
@@ -207,6 +220,49 @@ const Navbar = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            {/* NEW: FYP for Students Column */}
+            <div className="relative">
+              <div className="absolute -top-2 -right-2">
+                <span className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs px-2 py-0.5 rounded-full animate-pulse">
+                  Popular
+                </span>
+              </div>
+              <h4 className="text-green-400 text-sm font-semibold mb-3 flex items-center gap-2">
+                <GraduationCap className="w-4 h-4" /> For Students
+              </h4>
+              <ul className="space-y-2">
+                {services.fyp.map((item) => (
+                  <li key={item.path}>
+                    <Link
+                      to={item.path}
+                      className="flex items-center justify-between gap-2 text-gray-400 hover:text-white text-sm transition-colors group"
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      <span className="flex items-center gap-2">
+                        <item.icon className="w-3.5 h-3.5 text-green-400" />
+                        {item.name}
+                      </span>
+                      {item.badge && (
+                        <span className="text-xs bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full group-hover:bg-green-500/30">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 pt-3 border-t border-green-500/20">
+                <Link
+                  to="/fyp"
+                  className="flex items-center gap-2 text-xs text-green-400 hover:text-green-300 transition-colors"
+                  onClick={() => setActiveDropdown(null)}
+                >
+                  <GraduationCap className="w-3 h-3" />
+                  Exclusive for University Students →
+                </Link>
+              </div>
             </div>
           </div>
           <div className="mt-6 pt-4 border-t border-white/10">
@@ -273,13 +329,13 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 group">
               <div className="relative">
-                              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-                              <img 
-                                src={Logo} 
-                                alt="CodeNagar Logo" 
-                                className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
-                              />
-                            </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                <img 
+                  src={Logo} 
+                  alt="CodeNagar Logo" 
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
+                />
+              </div>
               <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 CodeNagar
               </span>
@@ -338,36 +394,36 @@ const Navbar = () => {
               </div>
             </div>
 
-           {/* Right Section */}
-<div className="hidden lg:flex items-center gap-4">
-  {user ? (
-    <div className="relative group">
-      <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
-        <User className="w-4 h-4" />
-        {user.name?.split(' ')[0] || 'User'}
-        <ChevronDown className="w-4 h-4" />
-      </button>
-      <div className="absolute top-full right-0 mt-2 w-48 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-        <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Dashboard</Link>
-        <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">My Orders</Link>
-        <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Profile</Link>
-        <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/5">Logout</button>
-      </div>
-    </div>
-  ) : (
-    <>
-      <Link to="/login" className="text-gray-300 hover:text-white transition">
-        Log in
-      </Link>
-      <Link to="/signup" className="btn-primary">
-        Sign up
-      </Link>
-    </>
-  )}
-  <Link to="/contact" className="btn-outline">
-    Contact Us
-  </Link>
-</div>
+            {/* Right Section */}
+            <div className="hidden lg:flex items-center gap-4">
+              {user ? (
+                <div className="relative group">
+                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
+                    <User className="w-4 h-4" />
+                    {user.name?.split(' ')[0] || 'User'}
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <div className="absolute top-full right-0 mt-2 w-48 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <Link to="/dashboard" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Dashboard</Link>
+                    <Link to="/orders" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">My Orders</Link>
+                    <Link to="/profile" className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5">Profile</Link>
+                    <button onClick={logout} className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/5">Logout</button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Link to="/login" className="text-gray-300 hover:text-white transition">
+                    Log in
+                  </Link>
+                  <Link to="/signup" className="btn-primary">
+                    Sign up
+                  </Link>
+                </>
+              )}
+              <Link to="/contact" className="btn-outline">
+                Contact Us
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -438,6 +494,32 @@ const Navbar = () => {
                     {item.name}
                   </Link>
                 ))}
+                
+                {/* NEW: FYP Section for Mobile */}
+                <div className="mt-3 pt-2">
+                  <div className="text-green-400 px-4 py-2 text-sm font-semibold flex items-center gap-2">
+                    <GraduationCap className="w-4 h-4" /> FOR STUDENTS
+                  </div>
+                  {services.fyp.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-between py-2 pl-8 pr-4 text-gray-400 hover:text-white hover:bg-green-500/10 rounded-lg transition"
+                    >
+                      <span className="flex items-center gap-2">
+                        <item.icon className="w-4 h-4 text-green-400" />
+                        {item.name}
+                      </span>
+                      {item.badge && (
+                        <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+                
                 <Link
                   to="/services"
                   onClick={() => setIsOpen(false)}
@@ -460,13 +542,15 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
-<Link
-  to="/store"
-  onClick={() => setIsOpen(false)}
-  className="block py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-4 transition"
->
-  Store
-</Link>
+              
+              <Link
+                to="/store"
+                onClick={() => setIsOpen(false)}
+                className="block py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg px-4 transition"
+              >
+                Store
+              </Link>
+              
               <Link
                 to="/portfolio"
                 onClick={() => setIsOpen(false)}

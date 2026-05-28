@@ -46,7 +46,9 @@ import CrossPlatform from "./pages/services/CrossPlatform";
 import ComputerVision from "./pages/services/ComputerVision";
 import AndroidDev from "./pages/services/AndroidDev";
 import NLP from "./pages/services/NLP";
-
+import FYPProjects from "./pages/FYPProjects";
+import FYPInquiry from "./pages/FYPInquiry";
+import AdminFYP from "./pages/admin/AdminFYP";
 // Course Pages
 import Courses from "./pages/courses/Courses";
 import CourseDetails from "./pages/courses/CourseDetails";
@@ -122,6 +124,9 @@ function App() {
 <Route path="/services/cybersecurity" element={<CyberSecurity />} />
 <Route path="/services/nlp" element={<NLP />} />
 <Route path="/services/ios-development" element={<IOSDev />} />
+<Route path="/fyp" element={<FYPProjects />} />
+<Route path="/fyp/inquiry/:slug" element={<FYPInquiry />} />
+<Route path="/admin/fyp" element={<AdminFYP />} />
               {/* Course Routes */}
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/:slug" element={<CourseDetails />} />
