@@ -60,7 +60,7 @@ const FYPInquiry = () => {
         }));
       } catch (error) {
         console.error("Failed to fetch project", error);
-        setStatus({ type: "", message: "Please Apply for your Custom Project." });
+        setStatus({ type: "error", message: "Failed to load project details. Please try again." });
       } finally {
         setLoading(false);
       }
@@ -84,22 +84,20 @@ const FYPInquiry = () => {
     const formDataToSend = new FormData();
     
     if (isCustomProject) {
-      // Send custom project data
+      // For custom projects - append only custom fields
       formDataToSend.append("projectTitle", formData.customProjectTitle || "Custom Project Request");
       formDataToSend.append("projectType", "Custom");
       formDataToSend.append("customProject", "true");
-      formDataToSend.append("customCategory", formData.customCategory);
-      formDataToSend.append("customTechnologies", formData.customTechnologies);
+      formDataToSend.append("customCategory", formData.customCategory || "");
+      formDataToSend.append("customTechnologies", formData.customTechnologies || "");
     } else {
-      // Send regular project data
-      Object.keys(formData).forEach(key => {
-        if (key !== "customProjectTitle" && key !== "customCategory" && key !== "customTechnologies") {
-          formDataToSend.append(key, formData[key]);
-        }
-      });
+      // For regular projects - append project fields only once
+      formDataToSend.append("projectId", formData.projectId);
+      formDataToSend.append("projectTitle", formData.projectTitle);
+      formDataToSend.append("projectType", formData.projectType);
     }
     
-    // Add common fields
+    // Append student information fields (common for both)
     formDataToSend.append("fullName", formData.fullName);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phone", formData.phone);
