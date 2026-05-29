@@ -40,7 +40,7 @@ const FYPInquiry = () => {
   });
 
   useEffect(() => {
-    // Check if it's a custom project inquiry
+    // Check if it's a custom project inquiry FIRST
     if (slug === "custom") {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsCustomProject(true);
@@ -48,24 +48,31 @@ const FYPInquiry = () => {
       return;
     }
     
-    const fetchProject = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${slug}`);
-        setProject(response.data);
-        setFormData(prev => ({
-          ...prev,
-          projectId: response.data._id,
-          projectTitle: response.data.title,
-          projectType: response.data.type,
-        }));
-      } catch (error) {
-        console.error("Failed to fetch project", error);
-        setStatus({ type: "error", message: "Failed to load project details. Please try again." });
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProject();
+    // Only fetch project if slug exists and is not "custom"
+    if (slug && slug !== "custom") {
+      const fetchProject = async () => {
+        try {
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${slug}`);
+          setProject(response.data);
+          setFormData(prev => ({
+            ...prev,
+            projectId: response.data._id,
+            projectTitle: response.data.title,
+            projectType: response.data.type,
+          }));
+        } catch (error) {
+          console.error("Failed to fetch project", error);
+          setStatus({ type: "error", message: "Failed to load project details. Please try again." });
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchProject();
+    } else if (!slug) {
+      // Handle case where slug is completely missing
+      setStatus({ type: "error", message: "Invalid project request." });
+      setLoading(false);
+    }
   }, [slug]);
 
   const handleFileChange = (e) => {
@@ -84,14 +91,21 @@ const FYPInquiry = () => {
     const formDataToSend = new FormData();
     
     if (isCustomProject) {
-      // For custom projects - append only custom fields
-      formDataToSend.append("projectTitle", formData.customProjectTitle || "Custom Project Request");
+      // For custom projects
+      const projectTitleValue = formData.customProjectTitle || "Custom Project Request";
+      
+      formDataToSend.append("projectTitle", projectTitleValue);
       formDataToSend.append("projectType", "Custom");
       formDataToSend.append("customProject", "true");
       formDataToSend.append("customCategory", formData.customCategory || "");
       formDataToSend.append("customTechnologies", formData.customTechnologies || "");
     } else {
-      // For regular projects - append project fields only once
+      // For regular projects
+      if (!formData.projectTitle) {
+        setStatus({ type: "error", message: "Project information is missing. Please go back and try again." });
+        setSubmitting(false);
+        return;
+      }
       formDataToSend.append("projectId", formData.projectId);
       formDataToSend.append("projectTitle", formData.projectTitle);
       formDataToSend.append("projectType", formData.projectType);
@@ -114,9 +128,10 @@ const FYPInquiry = () => {
     }
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry`, formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+     await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry`, formDataToSend, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
+      
       setStatus({ type: "success", message: "Inquiry submitted successfully! We'll contact you within 24 hours." });
       setTimeout(() => {
         navigate("/fyp");

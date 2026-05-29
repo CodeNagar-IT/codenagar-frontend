@@ -127,7 +127,7 @@ function App() {
 <Route path="/fyp" element={<FYPProjects />} />
 <Route path="/fyp/inquiry/:slug" element={<FYPInquiry />} />
 <Route path="/admin/fyp" element={<AdminFYP />} />
-<Route path="/fyp/inquiry/custom" element={<FYPInquiry />} />
+
               {/* Course Routes */}
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/:slug" element={<CourseDetails />} />
