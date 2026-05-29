@@ -88,6 +88,17 @@ const Leadership = () => {
       experience: "5+ years",
       expertise: ["Process Optimization", "Resource Management", "Quality Assurance", "Project Planning", "Team Coordination", "Client Relations"],
       social: { linkedin: "#", email: "Sh4nkhan22@gmail.com" }
+    },
+    
+     {
+      name: "Ahmed Raza",
+      role: "Senior AI Engineer",
+      image: "https://i.ibb.co/SwM4S01J/Screenshot-2026-05-29-071038.jpg",
+      bio: "A dedicated AI specialist with a degree in Artificial Intelligence, Ahmed brings cutting-edge machine learning solutions to real-world challenges. His expertise spans from developing intelligent chatbots to implementing complex computer vision systems, ensuring businesses leverage AI for maximum impact and efficiency.",
+      education: "BS Artificial Intelligence",
+      experience: "5+ years",
+      expertise: ["Deep Learning", "Natural Language Processing", "Computer Vision", "Reinforcement Learning", "Large Language Models", "TensorFlow", "PyTorch", "Scikit-learn", "Data Analytics", "Model Optimization"],
+      social: { linkedin: "#", email: "ahmedraza@gmail.com" }
     }
   ];
 
