@@ -1,5 +1,5 @@
 // frontend/src/pages/admin/AdminFYP.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -45,7 +45,7 @@ const AdminFYP = () => {
   const types = ["Project", "Thesis", "Report"];
   const difficulties = ["Beginner", "Intermediate", "Advanced"];
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("adminToken");
@@ -73,7 +73,8 @@ const AdminFYP = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
   // Check authentication and fetch data
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
@@ -83,11 +84,33 @@ const AdminFYP = () => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchData();
     }
-  }, );
+  }, [navigate, fetchData]);
 
-  
+  const resetForm = useCallback(() => {
+    setEditingProject(null);
+    setFormData({
+      title: "",
+      slug: "",
+      category: "Web Development",
+      type: "Project",
+      description: "",
+      technologies: "",
+      features: "",
+      deliverables: "",
+      image: "",
+      difficulty: "Intermediate",
+      duration: "",
+      price: "",
+      discountedPrice: "",
+      studentPrice: "",
+      originalPrice: "",
+      discountPercentage: 40,
+      featured: false,
+      isActive: true
+    });
+  }, []);
 
-  const handleSaveProject = async () => {
+  const handleSaveProject = useCallback(async () => {
     try {
       const token = localStorage.getItem("adminToken");
       if (!token) {
@@ -127,9 +150,9 @@ const AdminFYP = () => {
         navigate("/admin/login");
       }
     }
-  };
+  }, [formData, editingProject, navigate, fetchData, resetForm]);
 
-  const handleDeleteProject = async (id) => {
+  const handleDeleteProject = useCallback(async (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
         const token = localStorage.getItem("adminToken");
@@ -141,9 +164,9 @@ const AdminFYP = () => {
         console.error("Failed to delete project", error);
       }
     }
-  };
+  }, [fetchData]);
 
-  const handleUpdateInquiryStatus = async (id, status) => {
+  const handleUpdateInquiryStatus = useCallback(async (id, status) => {
     try {
       const token = localStorage.getItem("adminToken");
       await axios.put(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry/${id}/status`, 
@@ -154,33 +177,9 @@ const AdminFYP = () => {
     } catch (error) {
       console.error("Failed to update status", error);
     }
-  };
+  }, [fetchData]);
 
-  const resetForm = () => {
-    setEditingProject(null);
-    setFormData({
-      title: "",
-      slug: "",
-      category: "Web Development",
-      type: "Project",
-      description: "",
-      technologies: "",
-      features: "",
-      deliverables: "",
-      image: "",
-      difficulty: "Intermediate",
-      duration: "",
-      price: "",
-      discountedPrice: "",
-      studentPrice: "",
-      originalPrice: "",
-      discountPercentage: 40,
-      featured: false,
-      isActive: true
-    });
-  };
-
-  const editProject = (project) => {
+  const editProject = useCallback((project) => {
     setEditingProject(project);
     setFormData({
       ...project,
@@ -189,7 +188,7 @@ const AdminFYP = () => {
       deliverables: project.deliverables?.join(", ") || "",
     });
     setShowModal(true);
-  };
+  }, []);
 
   const getStatusColor = (status) => {
     switch(status) {

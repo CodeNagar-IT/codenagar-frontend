@@ -1,9 +1,9 @@
 // frontend/src/pages/admin/AdminLogin.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Mail, Lock, Eye, EyeOff, AlertCircle, } from "lucide-react";
-import { useAuth } from "../../context/AuthContext";
+import { Shield, Mail, Lock, Eye, EyeOff, AlertCircle } from "lucide-react";
+import axios from "axios";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +11,11 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get the page they were trying to access
+  const from = location.state?.from?.pathname || "/admin/dashboard";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,14 +23,25 @@ const AdminLogin = () => {
     setLoading(true);
     
     try {
-      const user = await login(email, password);
+      // Direct API call for admin login (not using useAuth)
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { 
+        email, 
+        password 
+      });
+      
+      const { token, user } = response.data;
+      
       if (user.role === "admin") {
-        navigate("/admin");
+        // Store admin specific data
+        localStorage.setItem("adminToken", token);
+        localStorage.setItem("adminData", JSON.stringify(user));
+        // Redirect to the page they came from
+        navigate(from, { replace: true });
       } else {
         setError("Admin access only. This account does not have administrator privileges.");
       }
-    } catch  {
-      setError("Invalid credentials. Please check your email and password.");
+    } catch (err) {
+      setError(err.response?.data?.error || "Invalid credentials. Please check your email and password.");
     } finally {
       setLoading(false);
     }

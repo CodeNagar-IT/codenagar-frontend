@@ -100,7 +100,7 @@ const AdminDashboard = () => {
   { title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-purple-500 to-pink-500", link: "/admin/portfolio", change: "" },
   { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: MessageSquare, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "" },
   { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Off" },
-  { title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
+{ title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
 ];
 
   const getStatusColor = (status) => {
@@ -324,8 +324,8 @@ const AdminDashboard = () => {
               </span>
             </h2>
             <Link to="/admin/fyp" className="text-green-400 text-sm hover:text-green-300 flex items-center gap-1">
-              Manage FYP <ArrowRight className="w-4 h-4" />
-            </Link>
+  Manage FYP <ArrowRight className="w-4 h-4" />
+</Link>
           </div>
           
           <div className="overflow-x-auto">
@@ -358,7 +358,7 @@ const AdminDashboard = () => {
                       </span>
                     </td>
                     <td className="py-3">
-                      <Link to={`/admin/fyp`} className="text-green-400 hover:text-green-300 text-sm">View Details</Link>
+                      <Link to="/admin/fyp" className="text-green-400 hover:text-green-300 text-sm">View Details</Link>
                     </td>
                   </tr>
                 ))}
