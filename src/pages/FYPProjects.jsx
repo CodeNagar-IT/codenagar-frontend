@@ -4,15 +4,17 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { 
   Sparkles, Search, Clock, 
-  Award, Users,  DollarSign, 
-   Code, Smartphone, Brain,
-  Cpu, Database, Cloud, Shield,  Briefcase
+  Award, Users, DollarSign, 
+  Code, Smartphone, Brain,
+  Cpu, Database, Cloud, Shield, Briefcase, Gamepad2,
+  AlertCircle
 } from "lucide-react";
 import axios from "axios";
 
 const FYPProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedType, setSelectedType] = useState("all");
@@ -24,12 +26,16 @@ const FYPProjects = () => {
   ];
 
   const types = ["all", "Project", "Thesis", "Report"];
-const fetchProjects = async () => {
+
+  const fetchProjects = async () => {
     try {
+      setLoading(true);
+      setError(null);
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects`);
       setProjects(response.data);
     } catch (error) {
       console.error("Failed to fetch projects", error);
+      setError("Failed to load projects. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
@@ -39,8 +45,6 @@ const fetchProjects = async () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProjects();
   }, []);
-
-  
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -66,7 +70,7 @@ const fetchProjects = async () => {
       "AI/ML": Brain,
       "Data Science": Database,
       "IoT": Cpu,
-      "Game Development": Gamepad,
+      "Game Development": Gamepad2,
       "Blockchain": Shield,
       "Cloud Computing": Cloud,
     };
@@ -74,8 +78,21 @@ const fetchProjects = async () => {
     return <Icon className="w-4 h-4" />;
   };
 
+  if (error) {
+    return (
+      <div className="pt-32 text-center min-h-screen bg-dark-100">
+        <AlertCircle className="w-16 h-16 mx-auto text-red-400 mb-4" />
+        <h2 className="text-2xl font-bold mb-2">Error Loading Projects</h2>
+        <p className="text-gray-400 mb-6">{error}</p>
+        <button onClick={fetchProjects} className="btn-primary">
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="pt-24 pb-16 px-4">
+    <div className="pt-24 pb-16 px-4 min-h-screen bg-dark-100">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
         <motion.div 

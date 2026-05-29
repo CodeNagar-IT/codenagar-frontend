@@ -1,32 +1,25 @@
 // frontend/src/pages/admin/AdminFYP.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Plus, Edit, Trash2, Search,  X, Save, Users, 
+  Plus, Edit, Trash2, Search, X, Save, Users, 
   CheckCircle, Clock, AlertCircle, MessageSquare, 
   Image as ImageIcon, Briefcase
 } from "lucide-react";
 import axios from "axios";
 
 const AdminFYP = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
-const [inquiries, setInquiries] = useState([]);
-const [activeTab, setActiveTab] = useState("projects");
-const [loading, setLoading] = useState(true);
-const [showModal, setShowModal] = useState(false);
-const [editingProject, setEditingProject] = useState(null);
-const [selectedInquiry, setSelectedInquiry] = useState(null);
-const [searchTerm, setSearchTerm] = useState("");
-const [stats, setStats] = useState({
-  totalProjects: 0,
-  totalInquiries: 0,
-  pendingInquiries: 0,
-  contactedInquiries: 0,
-  completedInquiries: 0,
-  unreadInquiries: 0,
-  totalStudentDiscount: 0
-});
-
+  const [inquiries, setInquiries] = useState([]);
+  const [activeTab, setActiveTab] = useState("projects");
+  const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [editingProject, setEditingProject] = useState(null);
+  const [selectedInquiry, setSelectedInquiry] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -52,42 +45,60 @@ const [stats, setStats] = useState({
   const types = ["Project", "Thesis", "Report"];
   const difficulties = ["Beginner", "Intermediate", "Advanced"];
 
-const fetchData = async () => {
-  try {
-    const [projectsRes, inquiriesRes] = await Promise.all([
-      axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects`),
-      axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
-      })
-    ]);
-    setProjects(projectsRes.data);
-    setInquiries(inquiriesRes.data);
-  } catch (error) {
-    console.error("Failed to fetch data", error);
-  } finally {
-    setLoading(false); // Add this to set loading to false
-  }
-};
-
-  const fetchStats = async () => {
+  const fetchData = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries/stats`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
-      });
-      setStats(res.data);
+      const token = localStorage.getItem("adminToken");
+      if (!token) {
+        navigate("/admin/login");
+        return;
+      }
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+
+      const [projectsRes, inquiriesRes] = await Promise.all([
+        axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries`, config)
+      ]);
+      setProjects(projectsRes.data);
+      setInquiries(inquiriesRes.data);
     } catch (error) {
-      console.error("Failed to fetch stats", error);
+      console.error("Failed to fetch data", error);
+      if (error.response?.status === 401) {
+        localStorage.removeItem("adminToken");
+        navigate("/admin/login");
+      }
+    } finally {
+      setLoading(false);
     }
   };
-
+  // Check authentication and fetch data
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchData();
-    fetchStats();
-  }, []);
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      navigate("/admin/login");
+    } else {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+      fetchData();
+    }
+  }, );
+
+  
 
   const handleSaveProject = async () => {
     try {
+      const token = localStorage.getItem("adminToken");
+      if (!token) {
+        navigate("/admin/login");
+        return;
+      }
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+
       const projectData = {
         ...formData,
         technologies: formData.technologies.split(",").map(t => t.trim()),
@@ -101,13 +112,9 @@ const fetchData = async () => {
       };
 
       if (editingProject) {
-        await axios.put(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${editingProject._id}`, projectData, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
-        });
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${editingProject._id}`, projectData, config);
       } else {
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/projects`, projectData, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
-        });
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/projects`, projectData, config);
       }
       
       setShowModal(false);
@@ -115,14 +122,19 @@ const fetchData = async () => {
       resetForm();
     } catch (error) {
       console.error("Failed to save project", error);
+      if (error.response?.status === 401) {
+        localStorage.removeItem("adminToken");
+        navigate("/admin/login");
+      }
     }
   };
 
   const handleDeleteProject = async (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       try {
+        const token = localStorage.getItem("adminToken");
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
+          headers: { Authorization: `Bearer ${token}` }
         });
         fetchData();
       } catch (error) {
@@ -133,11 +145,12 @@ const fetchData = async () => {
 
   const handleUpdateInquiryStatus = async (id, status) => {
     try {
-      await axios.put(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry/${id}/status`, { status, read: true }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
-      });
+      const token = localStorage.getItem("adminToken");
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry/${id}/status`, 
+        { status, read: true }, 
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       fetchData();
-      fetchStats();
     } catch (error) {
       console.error("Failed to update status", error);
     }
@@ -193,20 +206,22 @@ const fetchData = async () => {
   );
 
   const filteredInquiries = inquiries.filter(i => 
-    i.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    i.projectTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    i.university.toLowerCase().includes(searchTerm.toLowerCase())
+    i.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    i.projectTitle?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    i.university?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-if (loading) {
-  return (
-    <div className="pt-32 pb-16 px-4 min-h-screen bg-dark-100">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
-        <p className="text-gray-400">Loading FYP Management...</p>
+
+  if (loading) {
+    return (
+      <div className="pt-32 pb-16 px-4 min-h-screen bg-dark-100">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading FYP Management...</p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+
   return (
     <div className="pt-20 pb-16 px-4 bg-dark-100 min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -218,7 +233,7 @@ if (loading) {
           </div>
           <button
             onClick={() => { resetForm(); setShowModal(true); }}
-            className="btn-primary flex items-center gap-2"
+            className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-2 rounded-lg font-semibold flex items-center gap-2 hover:shadow-lg transition"
           >
             <Plus className="w-5 h-5" /> Add Project
           </button>
@@ -228,32 +243,32 @@ if (loading) {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
           <div className="glass-card p-4 text-center">
             <Briefcase className="w-6 h-6 mx-auto text-green-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.totalProjects || projects.length}</div>
+            <div className="text-2xl font-bold">{projects.length}</div>
             <div className="text-xs text-gray-400">Total Projects</div>
           </div>
           <div className="glass-card p-4 text-center">
             <Users className="w-6 h-6 mx-auto text-blue-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.totalInquiries || inquiries.length}</div>
+            <div className="text-2xl font-bold">{inquiries.length}</div>
             <div className="text-xs text-gray-400">Total Inquiries</div>
           </div>
           <div className="glass-card p-4 text-center">
             <Clock className="w-6 h-6 mx-auto text-yellow-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.pendingInquiries}</div>
+            <div className="text-2xl font-bold">{inquiries.filter(i => i.status === "pending").length}</div>
             <div className="text-xs text-gray-400">Pending</div>
           </div>
           <div className="glass-card p-4 text-center">
             <MessageSquare className="w-6 h-6 mx-auto text-blue-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.contactedInquiries}</div>
+            <div className="text-2xl font-bold">{inquiries.filter(i => i.status === "contacted").length}</div>
             <div className="text-xs text-gray-400">Contacted</div>
           </div>
           <div className="glass-card p-4 text-center">
             <CheckCircle className="w-6 h-6 mx-auto text-green-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.completedInquiries}</div>
+            <div className="text-2xl font-bold">{inquiries.filter(i => i.status === "completed").length}</div>
             <div className="text-xs text-gray-400">Completed</div>
           </div>
           <div className="glass-card p-4 text-center">
             <AlertCircle className="w-6 h-6 mx-auto text-red-400 mb-2" />
-            <div className="text-2xl font-bold">{stats.unreadInquiries}</div>
+            <div className="text-2xl font-bold">{inquiries.filter(i => !i.read).length}</div>
             <div className="text-xs text-gray-400">Unread</div>
           </div>
         </div>
@@ -278,9 +293,9 @@ if (loading) {
             }`}
           >
             Student Inquiries
-            {stats.unreadInquiries > 0 && (
+            {inquiries.filter(i => !i.read).length > 0 && (
               <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                {stats.unreadInquiries}
+                {inquiries.filter(i => !i.read).length}
               </span>
             )}
             {activeTab === "inquiries" && (
@@ -347,6 +362,11 @@ if (loading) {
                 </div>
               </motion.div>
             ))}
+            {filteredProjects.length === 0 && (
+              <div className="text-center py-12 glass-card">
+                <p className="text-gray-400">No projects found</p>
+              </div>
+            )}
           </div>
         )}
 
@@ -406,6 +426,11 @@ if (loading) {
                 </div>
               </motion.div>
             ))}
+            {filteredInquiries.length === 0 && (
+              <div className="text-center py-12 glass-card">
+                <p className="text-gray-400">No inquiries found</p>
+              </div>
+            )}
           </div>
         )}
 
@@ -537,7 +562,7 @@ if (loading) {
                           setFormData({ 
                             ...formData, 
                             originalPrice: val,
-                            studentPrice: Math.round(val * 0.6) // 40% discount
+                            studentPrice: Math.round(val * 0.6)
                           });
                         }}
                         className="w-full px-3 py-2 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 border border-white/10"

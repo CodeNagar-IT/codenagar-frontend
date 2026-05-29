@@ -47,6 +47,7 @@ const FYPInquiry = () => {
         }));
       } catch (error) {
         console.error("Failed to fetch project", error);
+        setStatus({ type: "error", message: "Failed to load project details. Please try again." });
       } finally {
         setLoading(false);
       }
@@ -83,8 +84,9 @@ const FYPInquiry = () => {
       setTimeout(() => {
         navigate("/fyp");
       }, 3000);
-    } catch  {
-      setStatus({ type: "error", message: "Failed to submit inquiry. Please try again." });
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus({ type: "error", message: error.response?.data?.error || "Failed to submit inquiry. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -92,7 +94,7 @@ const FYPInquiry = () => {
 
   if (loading) {
     return (
-      <div className="pt-32 text-center">
+      <div className="pt-32 text-center min-h-screen bg-dark-100">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
         <p className="text-gray-400">Loading...</p>
       </div>
@@ -101,7 +103,7 @@ const FYPInquiry = () => {
 
   if (!project) {
     return (
-      <div className="pt-32 text-center">
+      <div className="pt-32 text-center min-h-screen bg-dark-100">
         <AlertCircle className="w-16 h-16 mx-auto text-red-400 mb-4" />
         <h2 className="text-2xl font-bold mb-2">Project Not Found</h2>
         <p className="text-gray-400 mb-6">The project you're looking for doesn't exist.</p>
@@ -113,7 +115,7 @@ const FYPInquiry = () => {
   }
 
   return (
-    <div className="pt-24 pb-16 px-4">
+    <div className="pt-24 pb-16 px-4 min-h-screen bg-dark-100">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <button 

@@ -90,19 +90,18 @@ const AdminDashboard = () => {
   };
 
   const statCards = [
-    { title: "Total Users", value: stats.users || 0, icon: Users, color: "from-blue-500 to-cyan-500", link: "/admin/users", change: "+12%" },
-    { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-blue-500 to-indigo-500", link: "/admin/products", change: "+5%" },
-    { title: "Messages", value: stats.messages || 0, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/admin/messages", change: stats.unread ? `${stats.unread} unread` : "0 unread" },
-    { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
-    { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
-    { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
-    { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs" },
-    { title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/portfolio" },
-    { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "+0%" },
-    // NEW: FYP Statistics Card
-    { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Student Discount" },
-    { title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp?tab=inquiries", change: `${fypStats.unreadInquiries || 0} unread` },
-  ];
+  { title: "Total Users", value: stats.users || 0, icon: Users, color: "from-blue-500 to-cyan-500", link: "/admin/users", change: "+12%" },
+  { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-blue-500 to-indigo-500", link: "/admin/products", change: "+5%" },
+  { title: "Messages", value: stats.messages || 0, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/admin/messages", change: stats.unreadMessages ? `${stats.unreadMessages} unread` : "0 unread" },
+  { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
+  { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
+  { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
+  { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs", change: "" },
+  { title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-purple-500 to-pink-500", link: "/admin/portfolio", change: "" },
+  { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: MessageSquare, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "" },
+  { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Off" },
+  { title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
+];
 
   const getStatusColor = (status) => {
     switch(status) {
