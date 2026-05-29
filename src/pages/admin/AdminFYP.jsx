@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Plus, Edit, Trash2, Search, X, Save, Users, 
-  CheckCircle, Clock, AlertCircle, MessageSquare, 
+  CheckCircle, Clock, AlertCircle, PenTool, MessageSquare, 
   Image as ImageIcon, Briefcase
 } from "lucide-react";
 import axios from "axios";
@@ -369,69 +369,83 @@ const AdminFYP = () => {
           </div>
         )}
 
-        {/* Inquiries Tab */}
-        {activeTab === "inquiries" && (
-          <div className="space-y-4">
-            {filteredInquiries.map(inquiry => (
-              <motion.div
-                key={inquiry._id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`glass-card p-4 hover:shadow-lg transition cursor-pointer ${
-                  !inquiry.read ? "border-l-4 border-l-green-500" : ""
-                }`}
-                onClick={() => setSelectedInquiry(inquiry)}
-              >
-                <div className="flex flex-wrap justify-between items-start">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h3 className="font-semibold">{inquiry.fullName}</h3>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${getStatusColor(inquiry.status)}`}>
-                        {inquiry.status}
-                      </span>
-                      {!inquiry.read && (
-                        <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
-                          New
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-400">
-                      <span className="text-white">Project:</span> {inquiry.projectTitle}
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      <span className="text-white">University:</span> {inquiry.university} | <span className="text-white">Program:</span> {inquiry.program}
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      <span className="text-white">Email:</span> {inquiry.email} | <span className="text-white">Phone:</span> {inquiry.phone}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs text-gray-500">{new Date(inquiry.createdAt).toLocaleDateString()}</p>
-                    <div className="flex gap-2 mt-2">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); handleUpdateInquiryStatus(inquiry._id, "contacted"); }}
-                        className="px-3 py-1 bg-blue-500/20 rounded-lg text-xs hover:bg-blue-500/30"
-                      >
-                        Contacted
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); handleUpdateInquiryStatus(inquiry._id, "completed"); }}
-                        className="px-3 py-1 bg-green-500/20 rounded-lg text-xs hover:bg-green-500/30"
-                      >
-                        Complete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-            {filteredInquiries.length === 0 && (
-              <div className="text-center py-12 glass-card">
-                <p className="text-gray-400">No inquiries found</p>
-              </div>
+       {activeTab === "inquiries" && (
+  <div className="space-y-4">
+    {filteredInquiries.map(inquiry => (
+      <motion.div
+        key={inquiry._id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={`glass-card p-4 hover:shadow-lg transition cursor-pointer ${
+          !inquiry.read ? "border-l-4 border-l-green-500" : ""
+        }`}
+        onClick={() => setSelectedInquiry(inquiry)}
+      >
+        <div className="flex flex-wrap justify-between items-start">
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <h3 className="font-semibold">{inquiry.fullName}</h3>
+              <span className={`text-xs px-2 py-0.5 rounded-full ${getStatusColor(inquiry.status)}`}>
+                {inquiry.status}
+              </span>
+              {!inquiry.read && (
+                <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
+                  New
+                </span>
+              )}
+              {/* NEW: Custom Project Badge */}
+              {inquiry.isCustomProject && (
+                <span className="text-xs px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded-full flex items-center gap-1">
+                  <PenTool className="w-3 h-3" /> Custom Request
+                </span>
+              )}
+            </div>
+            <p className="text-sm text-gray-400">
+              <span className="text-white">Project:</span> {inquiry.projectTitle}
+              {inquiry.isCustomProject && inquiry.customCategory && (
+                <span className="ml-2 text-purple-400">({inquiry.customCategory})</span>
+              )}
+            </p>
+            <p className="text-sm text-gray-400">
+              <span className="text-white">University:</span> {inquiry.university} | <span className="text-white">Program:</span> {inquiry.program}
+            </p>
+            <p className="text-sm text-gray-400">
+              <span className="text-white">Email:</span> {inquiry.email} | <span className="text-white">Phone:</span> {inquiry.phone}
+            </p>
+            {/* NEW: Show custom technologies if present */}
+            {inquiry.isCustomProject && inquiry.customTechnologies && (
+              <p className="text-sm text-gray-400 mt-1">
+                <span className="text-white">Technologies:</span> {inquiry.customTechnologies}
+              </p>
             )}
           </div>
-        )}
+          <div className="text-right">
+            <p className="text-xs text-gray-500">{new Date(inquiry.createdAt).toLocaleDateString()}</p>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={(e) => { e.stopPropagation(); handleUpdateInquiryStatus(inquiry._id, "contacted"); }}
+                className="px-3 py-1 bg-blue-500/20 rounded-lg text-xs hover:bg-blue-500/30"
+              >
+                Contacted
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); handleUpdateInquiryStatus(inquiry._id, "completed"); }}
+                className="px-3 py-1 bg-green-500/20 rounded-lg text-xs hover:bg-green-500/30"
+              >
+                Complete
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+    {filteredInquiries.length === 0 && (
+      <div className="text-center py-12 glass-card">
+        <p className="text-gray-400">No inquiries found</p>
+      </div>
+    )}
+  </div>
+)}
 
         {/* Project Modal */}
         <AnimatePresence>
@@ -655,100 +669,112 @@ const AdminFYP = () => {
         {/* Inquiry Details Modal */}
         <AnimatePresence>
           {selectedInquiry && (
-            <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-dark-200 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              >
-                <div className="sticky top-0 bg-dark-200 p-6 border-b border-white/10 flex justify-between items-center">
-                  <h2 className="text-2xl font-bold">Student Inquiry Details</h2>
-                  <button onClick={() => setSelectedInquiry(null)} className="p-2 hover:bg-white/10 rounded-lg">
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-                <div className="p-6 space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-400">Full Name</p>
-                      <p className="font-medium">{selectedInquiry.fullName}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Email</p>
-                      <p className="font-medium">{selectedInquiry.email}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Phone</p>
-                      <p className="font-medium">{selectedInquiry.phone}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Student ID</p>
-                      <p className="font-medium">{selectedInquiry.studentId}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">University</p>
-                      <p className="font-medium">{selectedInquiry.university}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Program</p>
-                      <p className="font-medium">{selectedInquiry.program}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Semester</p>
-                      <p className="font-medium">{selectedInquiry.semester}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Deadline</p>
-                      <p className="font-medium">{selectedInquiry.deadline}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Budget</p>
-                      <p className="font-medium">{selectedInquiry.budget}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Project</p>
-                      <p className="font-medium">{selectedInquiry.projectTitle}</p>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm text-gray-400">Requirements</p>
-                    <p className="bg-dark-400 p-3 rounded-lg mt-1">{selectedInquiry.requirements}</p>
-                  </div>
-
-                  {selectedInquiry.studentCard && (
-                    <div>
-                      <p className="text-sm text-gray-400">Student ID Card</p>
-                      <a 
-                        href={selectedInquiry.studentCard} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-green-400 hover:underline flex items-center gap-2 mt-1"
-                      >
-                        <ImageIcon className="w-4 h-4" /> View Student ID
-                      </a>
-                    </div>
-                  )}
-
-                  <div className="flex gap-3 pt-4">
-                    <button
-                      onClick={() => { handleUpdateInquiryStatus(selectedInquiry._id, "contacted"); setSelectedInquiry(null); }}
-                      className="flex-1 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition"
-                    >
-                      Mark as Contacted
-                    </button>
-                    <button
-                      onClick={() => { handleUpdateInquiryStatus(selectedInquiry._id, "completed"); setSelectedInquiry(null); }}
-                      className="flex-1 py-2 bg-green-500 rounded-lg hover:bg-green-600 transition"
-                    >
-                      Mark as Completed
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+  <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.9, opacity: 0 }}
+      className="bg-dark-200 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+    >
+      <div className="sticky top-0 bg-dark-200 p-6 border-b border-white/10 flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Student Inquiry Details</h2>
+        <button onClick={() => setSelectedInquiry(null)} className="p-2 hover:bg-white/10 rounded-lg">
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+      <div className="p-6 space-y-4">
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <p className="text-sm text-gray-400">Full Name</p>
+            <p className="font-medium">{selectedInquiry.fullName}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Email</p>
+            <p className="font-medium">{selectedInquiry.email}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Phone</p>
+            <p className="font-medium">{selectedInquiry.phone}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Student ID</p>
+            <p className="font-medium">{selectedInquiry.studentId}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">University</p>
+            <p className="font-medium">{selectedInquiry.university}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Program</p>
+            <p className="font-medium">{selectedInquiry.program}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Semester</p>
+            <p className="font-medium">{selectedInquiry.semester}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Deadline</p>
+            <p className="font-medium">{selectedInquiry.deadline}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Budget</p>
+            <p className="font-medium">{selectedInquiry.budget}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Project</p>
+            <p className="font-medium">{selectedInquiry.projectTitle}</p>
+          </div>
+          {selectedInquiry.isCustomProject && (
+            <>
+              <div>
+                <p className="text-sm text-gray-400">Custom Category</p>
+                <p className="font-medium">{selectedInquiry.customCategory || 'Not specified'}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-400">Technologies</p>
+                <p className="font-medium">{selectedInquiry.customTechnologies || 'Not specified'}</p>
+              </div>
+            </>
           )}
+        </div>
+        
+        <div>
+          <p className="text-sm text-gray-400">Requirements</p>
+          <p className="bg-dark-400 p-3 rounded-lg mt-1">{selectedInquiry.requirements}</p>
+        </div>
+
+        {selectedInquiry.studentCard && (
+          <div>
+            <p className="text-sm text-gray-400">Student ID Card</p>
+            <a 
+              href={selectedInquiry.studentCard} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-green-400 hover:underline flex items-center gap-2 mt-1"
+            >
+              <ImageIcon className="w-4 h-4" /> View Student ID
+            </a>
+          </div>
+        )}
+
+        <div className="flex gap-3 pt-4">
+          <button
+            onClick={() => { handleUpdateInquiryStatus(selectedInquiry._id, "contacted"); setSelectedInquiry(null); }}
+            className="flex-1 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition"
+          >
+            Mark as Contacted
+          </button>
+          <button
+            onClick={() => { handleUpdateInquiryStatus(selectedInquiry._id, "completed"); setSelectedInquiry(null); }}
+            className="flex-1 py-2 bg-green-500 rounded-lg hover:bg-green-600 transition"
+          >
+            Mark as Completed
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+)}
         </AnimatePresence>
       </div>
     </div>

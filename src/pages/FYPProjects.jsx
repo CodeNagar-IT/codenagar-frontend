@@ -7,7 +7,7 @@ import {
   Award, Users, DollarSign, 
   Code, Smartphone, Brain,
   Cpu, Database, Cloud, Shield, Briefcase, Gamepad2,
-  AlertCircle
+  AlertCircle, PenTool, PlusCircle
 } from "lucide-react";
 import axios from "axios";
 
@@ -153,6 +153,33 @@ const FYPProjects = () => {
           ))}
         </div>
 
+        {/* Custom Project CTA Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-12 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl p-6 border border-purple-500/30"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center">
+                <PenTool className="w-8 h-8 text-purple-400" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-purple-400">Don't see your project idea?</h3>
+                <p className="text-gray-300">Tell us your requirements and we'll create a custom FYP solution just for you!</p>
+              </div>
+            </div>
+            <Link
+              to="/fyp/inquiry/custom"
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2"
+            >
+              <PlusCircle className="w-5 h-5" />
+              Request Custom Project
+            </Link>
+          </div>
+        </motion.div>
+
         {/* Search and Filter */}
         <div className="flex flex-wrap gap-4 mb-8">
           <div className="flex-1 relative">
@@ -195,6 +222,12 @@ const FYPProjects = () => {
           <div className="text-center py-20 glass-card">
             <Briefcase className="w-16 h-16 mx-auto text-gray-600 mb-4" />
             <p className="text-gray-400">No projects found matching your criteria.</p>
+            <Link
+              to="/fyp/inquiry/custom"
+              className="inline-block mt-4 px-6 py-2 bg-purple-600 rounded-lg hover:bg-purple-700 transition"
+            >
+              Request a Custom Project Instead
+            </Link>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

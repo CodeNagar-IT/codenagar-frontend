@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { 
   Send, User, Mail, Phone, DollarSign, Calendar, 
   Sparkles, CheckCircle, AlertCircle, ArrowLeft, FileText, 
-  GraduationCap, BookOpen, Clock, Upload, X
+  GraduationCap, BookOpen, Clock, Upload, X, PenTool
 } from "lucide-react";
 import axios from "axios";
 
@@ -18,6 +18,8 @@ const FYPInquiry = () => {
   const [status, setStatus] = useState({ type: "", message: "" });
   const [studentCard, setStudentCard] = useState(null);
   const [studentCardPreview, setStudentCardPreview] = useState(null);
+  const [isCustomProject, setIsCustomProject] = useState(false);
+  
   const [formData, setFormData] = useState({
     projectId: "",
     projectTitle: "",
@@ -32,9 +34,20 @@ const FYPInquiry = () => {
     requirements: "",
     deadline: "",
     budget: "",
+    customProjectTitle: "",
+    customCategory: "",
+    customTechnologies: "",
   });
 
   useEffect(() => {
+    // Check if it's a custom project inquiry
+    if (slug === "custom") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsCustomProject(true);
+      setLoading(false);
+      return;
+    }
+    
     const fetchProject = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/projects/${slug}`);
@@ -69,9 +82,35 @@ const FYPInquiry = () => {
     setStatus({ type: "", message: "" });
 
     const formDataToSend = new FormData();
-    Object.keys(formData).forEach(key => {
-      formDataToSend.append(key, formData[key]);
-    });
+    
+    if (isCustomProject) {
+      // Send custom project data
+      formDataToSend.append("projectTitle", formData.customProjectTitle || "Custom Project Request");
+      formDataToSend.append("projectType", "Custom");
+      formDataToSend.append("customProject", "true");
+      formDataToSend.append("customCategory", formData.customCategory);
+      formDataToSend.append("customTechnologies", formData.customTechnologies);
+    } else {
+      // Send regular project data
+      Object.keys(formData).forEach(key => {
+        if (key !== "customProjectTitle" && key !== "customCategory" && key !== "customTechnologies") {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
+    }
+    
+    // Add common fields
+    formDataToSend.append("fullName", formData.fullName);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("university", formData.university);
+    formDataToSend.append("studentId", formData.studentId);
+    formDataToSend.append("semester", formData.semester);
+    formDataToSend.append("program", formData.program);
+    formDataToSend.append("requirements", formData.requirements);
+    formDataToSend.append("deadline", formData.deadline);
+    formDataToSend.append("budget", formData.budget);
+    
     if (studentCard) {
       formDataToSend.append("studentCard", studentCard);
     }
@@ -101,19 +140,6 @@ const FYPInquiry = () => {
     );
   }
 
-  if (!project) {
-    return (
-      <div className="pt-32 text-center min-h-screen bg-dark-100">
-        <AlertCircle className="w-16 h-16 mx-auto text-red-400 mb-4" />
-        <h2 className="text-2xl font-bold mb-2">Project Not Found</h2>
-        <p className="text-gray-400 mb-6">The project you're looking for doesn't exist.</p>
-        <button onClick={() => navigate("/fyp")} className="btn-primary">
-          Back to Projects
-        </button>
-      </div>
-    );
-  }
-
   return (
     <div className="pt-24 pb-16 px-4 min-h-screen bg-dark-100">
       <div className="max-w-4xl mx-auto">
@@ -122,7 +148,7 @@ const FYPInquiry = () => {
           onClick={() => navigate(-1)} 
           className="flex items-center gap-2 text-gray-400 hover:text-green-400 mb-6 transition"
         >
-          <ArrowLeft className="w-5 h-5" /> Back
+          <ArrowLeft className="w-5 h-5" /> Back to Projects
         </button>
 
         {/* Header */}
@@ -131,37 +157,69 @@ const FYPInquiry = () => {
           animate={{ opacity: 1, y: 0 }} 
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 bg-green-500/10 rounded-full px-4 py-2 mb-4">
-            <Sparkles className="w-4 h-4 text-green-400" />
-            <span className="text-green-300 text-sm">Student Inquiry</span>
+          <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 mb-4 ${isCustomProject ? 'bg-purple-500/10' : 'bg-green-500/10'}`}>
+            <Sparkles className={`w-4 h-4 ${isCustomProject ? 'text-purple-400' : 'text-green-400'}`} />
+            <span className={`text-sm ${isCustomProject ? 'text-purple-300' : 'text-green-300'}`}>
+              {isCustomProject ? "Custom Project Request" : "Student Inquiry"}
+            </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Apply for <span className="gradient-text">{project.title}</span>
+            {isCustomProject ? (
+              <>Request <span className="gradient-text">Custom FYP</span></>
+            ) : (
+              <>Apply for <span className="gradient-text">{project?.title}</span></>
+            )}
           </h1>
           <p className="text-gray-400 text-lg">
-            Fill out the form below to get your student discount quote
+            {isCustomProject 
+              ? "Don't see your idea? Tell us what you need and we'll create it for you!"
+              : "Fill out the form below to get your student discount quote"
+            }
           </p>
         </motion.div>
 
-        {/* Project Info Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-card p-6 mb-8"
-        >
-          <div className="flex flex-wrap gap-6 justify-between items-center">
-            <div>
-              <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-400 text-sm">{project.type} • {project.category}</p>
-              <p className="text-gray-400 text-sm">Duration: {project.duration}</p>
+        {/* Project Info Card - Only for non-custom projects */}
+        {!isCustomProject && project && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card p-6 mb-8"
+          >
+            <div className="flex flex-wrap gap-6 justify-between items-center">
+              <div>
+                <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-400 text-sm">{project.type} • {project.category}</p>
+                <p className="text-gray-400 text-sm">Duration: {project.duration}</p>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-bold text-green-400">${project.studentPrice}</div>
+                <p className="text-xs text-gray-500 line-through">${project.originalPrice}</p>
+                <p className="text-xs text-green-400">{project.discountPercentage}% Student Discount</p>
+              </div>
             </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-green-400">${project.studentPrice}</div>
-              <p className="text-xs text-gray-500 line-through">${project.originalPrice}</p>
-              <p className="text-xs text-green-400">{project.discountPercentage}% Student Discount</p>
+          </motion.div>
+        )}
+
+        {/* Custom Project Info Card */}
+        {isCustomProject && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card p-6 mb-8 border border-purple-500/30"
+          >
+            <div className="flex flex-wrap gap-4 items-center">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center">
+                <PenTool className="w-8 h-8 text-purple-400" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-purple-400 mb-1">Custom Project Request</h3>
+                <p className="text-gray-400 text-sm">
+                  Tell us about your unique project idea and we'll provide a custom quote with the same 40% student discount!
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         {/* Inquiry Form */}
         <motion.form 
@@ -186,6 +244,63 @@ const FYPInquiry = () => {
             </motion.div>
           )}
 
+          {/* Custom Project Fields */}
+          {isCustomProject && (
+            <>
+              <div className="grid md:grid-cols-2 gap-5 mb-5">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Project Title *</label>
+                  <div className="relative">
+                    <PenTool className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                    <input
+                      type="text"
+                      required
+                      value={formData.customProjectTitle}
+                      onChange={(e) => setFormData({ ...formData, customProjectTitle: e.target.value })}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/10"
+                      placeholder="e.g., AI-Powered Healthcare System"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Project Category *</label>
+                  <div className="relative">
+                    <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                    <select
+                      required
+                      value={formData.customCategory}
+                      onChange={(e) => setFormData({ ...formData, customCategory: e.target.value })}
+                      className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/10"
+                    >
+                      <option value="">Select Category</option>
+                      <option>Web Development</option>
+                      <option>App Development</option>
+                      <option>AI/ML</option>
+                      <option>Data Science</option>
+                      <option>IoT</option>
+                      <option>Game Development</option>
+                      <option>Blockchain</option>
+                      <option>Cloud Computing</option>
+                      <option>Cybersecurity</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-5">
+                <label className="block text-sm font-medium mb-2">Technologies (comma separated)</label>
+                <input
+                  type="text"
+                  value={formData.customTechnologies}
+                  onChange={(e) => setFormData({ ...formData, customTechnologies: e.target.value })}
+                  className="w-full px-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border border-white/10"
+                  placeholder="React, Python, TensorFlow, Node.js, MongoDB"
+                />
+              </div>
+            </>
+          )}
+
+          {/* Student Information Fields (Common for both) */}
           <div className="grid md:grid-cols-2 gap-5 mb-5">
             <div>
               <label className="block text-sm font-medium mb-2">Full Name *</label>
@@ -406,7 +521,11 @@ const FYPInquiry = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className={`w-full py-3 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+              isCustomProject 
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-purple-500/25' 
+                : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:shadow-green-500/25'
+            }`}
           >
             {submitting ? (
               <>
@@ -416,7 +535,7 @@ const FYPInquiry = () => {
             ) : (
               <>
                 <Send className="w-5 h-5" />
-                Submit Student Inquiry
+                {isCustomProject ? "Submit Custom Project Request" : "Submit Student Inquiry"}
               </>
             )}
           </button>
