@@ -60,7 +60,7 @@ const FYPInquiry = () => {
         }));
       } catch (error) {
         console.error("Failed to fetch project", error);
-        setStatus({ type: "error", message: "Failed to load project details. Please try again." });
+        setStatus({ type: "", message: "Please Apply for your Custom Project." });
       } finally {
         setLoading(false);
       }
