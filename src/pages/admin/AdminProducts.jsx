@@ -212,9 +212,9 @@ const AdminProducts = () => {
                         <span className="px-2 py-1 bg-blue-500/20 rounded-full text-xs">{product.category}</span>
                        </td>
                       <td className="px-6 py-4">
-                        <span className="font-bold text-blue-400">${product.price}</span>
+                        <span className="font-bold text-blue-400">PKR {product.price}</span>
                         {product.originalPrice && (
-                          <span className="text-xs text-gray-500 line-through ml-1">${product.originalPrice}</span>
+                          <span className="text-xs text-gray-500 line-through ml-1">PKR {product.originalPrice}</span>
                         )}
                        </td>
                       <td className="px-6 py-4">

@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
-  Users, Package, MessageSquare, GraduationCap, Briefcase, DollarSign, 
-  TrendingUp, ShoppingCart, Clock, ArrowRight, 
-  Download, RefreshCw, AlertCircle, CheckCircle, Truck, Activity,
-   Award, GraduationCap as FYPIcon, Database as FYPProjectsIcon
+  Users, Package, MessageSquare, GraduationCap, Briefcase, 
+  TrendingUp, Clock, ArrowRight, 
+  Download, RefreshCw, AlertCircle, CheckCircle, Activity,
+  Award, GraduationCap as FYPIcon, Database as FYPProjectsIcon,
+  Store, Phone, MapPin
 } from "lucide-react";
 import axios from "axios";
 
@@ -20,7 +21,7 @@ const AdminDashboard = () => {
     completedInquiries: 0,
     unreadInquiries: 0
   });
-  const [recentOrders, setRecentOrders] = useState([]);
+  const [recentReservations, setRecentReservations] = useState([]);
   const [recentMessages, setRecentMessages] = useState([]);
   const [recentApplications, setRecentApplications] = useState([]);
   const [recentFypInquiries, setRecentFypInquiries] = useState([]);
@@ -30,9 +31,11 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        const [statsRes, ordersRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes] = await Promise.all([
+        const [statsRes, reservationsRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes] = await Promise.all([
           axios.get(`${import.meta.env.VITE_API_URL}/api/stats`),
-          axios.get(`${import.meta.env.VITE_API_URL}/api/orders/all`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/reservations/all`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
+          }),
           axios.get(`${import.meta.env.VITE_API_URL}/api/contacts`),
           axios.get(`${import.meta.env.VITE_API_URL}/api/courses/applications`),
           axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries/stats`, {
@@ -45,7 +48,7 @@ const AdminDashboard = () => {
         
         setStats(statsRes.data);
         setFypStats(fypStatsRes.data);
-        setRecentOrders(ordersRes.data.slice(0, 5));
+        setRecentReservations(reservationsRes.data.slice(0, 5));
         setRecentMessages(messagesRes.data.slice(0, 5));
         setRecentApplications(appsRes.data.slice(0, 5));
         setRecentFypInquiries(fypInquiriesRes.data.slice(0, 5));
@@ -63,9 +66,11 @@ const AdminDashboard = () => {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      const [statsRes, ordersRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes] = await Promise.all([
+      const [statsRes, reservationsRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes] = await Promise.all([
         axios.get(`${import.meta.env.VITE_API_URL}/api/stats`),
-        axios.get(`${import.meta.env.VITE_API_URL}/api/orders/all`),
+        axios.get(`${import.meta.env.VITE_API_URL}/api/reservations/all`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
+        }),
         axios.get(`${import.meta.env.VITE_API_URL}/api/contacts`),
         axios.get(`${import.meta.env.VITE_API_URL}/api/courses/applications`),
         axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries/stats`, {
@@ -78,7 +83,7 @@ const AdminDashboard = () => {
       
       setStats(statsRes.data);
       setFypStats(fypStatsRes.data);
-      setRecentOrders(ordersRes.data.slice(0, 5));
+      setRecentReservations(reservationsRes.data.slice(0, 5));
       setRecentMessages(messagesRes.data.slice(0, 5));
       setRecentApplications(appsRes.data.slice(0, 5));
       setRecentFypInquiries(fypInquiriesRes.data.slice(0, 5));
@@ -90,42 +95,36 @@ const AdminDashboard = () => {
   };
 
   const statCards = [
-  { title: "Total Users", value: stats.users || 0, icon: Users, color: "from-blue-500 to-cyan-500", link: "/admin/users", change: "+12%" },
-  { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-blue-500 to-indigo-500", link: "/admin/products", change: "+5%" },
-  { title: "Messages", value: stats.messages || 0, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/admin/messages", change: stats.unreadMessages ? `${stats.unreadMessages} unread` : "0 unread" },
-  { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
-  { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
-  { title: "Total Orders", value: stats.orders || 0, icon: DollarSign, color: "from-indigo-500 to-blue-500", link: "/admin/orders", change: `$${stats.revenue || 0}` },
-  { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs", change: "" },
-  { title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-purple-500 to-pink-500", link: "/admin/portfolio", change: "" },
-  { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: MessageSquare, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "" },
-  { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Off" },
-{ title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
-];
+    { title: "Total Users", value: stats.users || 0, icon: Users, color: "from-blue-500 to-cyan-500", link: "/admin/users", change: "+12%" },
+    { title: "Total Products", value: stats.products || 0, icon: Package, color: "from-blue-500 to-indigo-500", link: "/admin/products", change: "+5%" },
+    { title: "Messages", value: stats.messages || 0, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/admin/messages", change: stats.unreadMessages ? `${stats.unreadMessages} unread` : "0 unread" },
+    { title: "Applications", value: stats.applications || 0, icon: GraduationCap, color: "from-orange-500 to-red-500", link: "/admin/applications", change: "+8%" },
+    { title: "Career Apps", value: stats.careers || 0, icon: Briefcase, color: "from-yellow-500 to-amber-500", link: "/admin/careers", change: "+3%" },
+    { title: "Reservations", value: stats.reservations || 0, icon: Store, color: "from-indigo-500 to-blue-500", link: "/admin/reservations", change: "In-Store" },
+    { title: "Job Positions", value: stats.jobs || 0, icon: Briefcase, color: "from-cyan-500 to-blue-500", link: "/admin/jobs", change: "" },
+    { title: "Portfolio", value: stats.portfolio || 0, icon: Briefcase, color: "from-purple-500 to-pink-500", link: "/admin/portfolio", change: "" },
+    { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: MessageSquare, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "" },
+    { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Off" },
+    { title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
+  ];
 
   const getStatusColor = (status) => {
     switch(status) {
-      case "delivered": return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "shipped": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "processing": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
       case "completed": return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "contacted": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      case "pending": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+      case "ready_for_pickup": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "pending_pickup": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+      case "expired": return "bg-red-500/20 text-red-400 border-red-500/30";
+      case "cancelled": return "bg-gray-500/20 text-gray-400 border-gray-500/30";
       default: return "bg-gray-500/20 text-gray-400 border-gray-500/30";
     }
   };
 
   const getStatusIcon = (status) => {
     switch(status) {
-      case "delivered":
-      case "completed":
-        return <CheckCircle className="w-4 h-4" />;
-      case "shipped":
-      case "contacted":
-        return <Truck className="w-4 h-4" />;
-      case "processing":
-      case "pending":
-        return <Clock className="w-4 h-4" />;
+      case "completed": return <CheckCircle className="w-4 h-4" />;
+      case "ready_for_pickup": return <Store className="w-4 h-4" />;
+      case "pending_pickup": return <Clock className="w-4 h-4" />;
+      case "expired": return <AlertCircle className="w-4 h-4" />;
       default: return <AlertCircle className="w-4 h-4" />;
     }
   };
@@ -160,6 +159,27 @@ const AdminDashboard = () => {
             <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
             Refresh
           </button>
+        </div>
+
+        {/* Store Info Banner */}
+        <div className="mb-8 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-4 border border-blue-500/30">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Store className="w-6 h-6 text-blue-400" />
+              <div>
+                <p className="font-semibold">Store Location</p>
+                <p className="text-sm text-gray-400">CodeNagar Store, Muzaffarabad City</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Clock className="w-5 h-5 text-blue-400" />
+              <span className="text-sm text-gray-300">Mon-Sat: 10AM - 8PM</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-blue-400" />
+              <span className="text-sm text-gray-300">+92 5822 123456</span>
+            </div>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -218,13 +238,13 @@ const AdminDashboard = () => {
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-400" />
-              Revenue Overview
+              Store Performance
             </h2>
             <div className="h-64 bg-gray-900/50 rounded-xl flex items-center justify-center border border-gray-700">
               <div className="text-center">
-                <DollarSign className="w-12 h-12 mx-auto text-gray-600 mb-2" />
-                <p className="text-gray-500 text-sm">Chart visualization will appear here</p>
-                <p className="text-xs text-gray-600">Monthly revenue trends</p>
+                <Store className="w-12 h-12 mx-auto text-gray-600 mb-2" />
+                <p className="text-gray-500 text-sm">Reservation analytics will appear here</p>
+                <p className="text-xs text-gray-600">Daily reservation trends</p>
               </div>
             </div>
           </div>
@@ -235,24 +255,24 @@ const AdminDashboard = () => {
               Recent Activity
             </h2>
             <div className="space-y-3">
-              {recentOrders.slice(0, 2).map((order) => (
-                <div key={order._id} className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg">
-                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
-                    <ShoppingCart className="w-4 h-4 text-blue-400" />
+              {recentReservations.slice(0, 2).map((reservation) => (
+                <div key={reservation._id} className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg">
+                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <Store className="w-4 h-4 text-green-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-semibold">New Order #{order._id.slice(-6)}</p>
-                    <p className="text-xs text-gray-400">${order.total} • {new Date(order.createdAt).toLocaleDateString()}</p>
+                    <p className="text-sm font-semibold">New Reservation: {reservation.reservationCode}</p>
+                    <p className="text-xs text-gray-400">PKR {reservation.total} • {new Date(reservation.createdAt).toLocaleDateString()}</p>
                   </div>
-                  <span className={`text-xs px-2 py-1 rounded-full ${getStatusColor(order.status)}`}>
-                    {order.status}
+                  <span className={`text-xs px-2 py-1 rounded-full ${getStatusColor(reservation.status)}`}>
+                    {reservation.status?.replace(/_/g, ' ')}
                   </span>
                 </div>
               ))}
               {recentFypInquiries.slice(0, 2).map((inquiry) => (
                 <div key={inquiry._id} className="flex items-center gap-3 p-3 bg-gray-900 rounded-lg">
-                  <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
-                    <GraduationCap className="w-4 h-4 text-green-400" />
+                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
+                    <GraduationCap className="w-4 h-4 text-purple-400" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold">Student Inquiry: {inquiry.fullName}</p>
@@ -267,14 +287,14 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Recent Orders Table */}
+        {/* Recent Reservations Table */}
         <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700 mb-8">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5 text-blue-400" />
-              Recent Orders
+              <Store className="w-5 h-5 text-blue-400" />
+              Recent Reservations
             </h2>
-            <Link to="/admin/orders" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
+            <Link to="/admin/reservations" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1">
               View All <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -283,7 +303,7 @@ const AdminDashboard = () => {
             <table className="w-full">
               <thead className="border-b border-gray-700">
                 <tr className="text-left text-gray-400 text-sm">
-                  <th className="pb-3">Order ID</th>
+                  <th className="pb-3">Reservation Code</th>
                   <th className="pb-3">Customer</th>
                   <th className="pb-3">Date</th>
                   <th className="pb-3">Total</th>
@@ -292,22 +312,29 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {recentOrders.map((order) => (
-                  <tr key={order._id} className="border-b border-gray-700/50 hover:bg-gray-800/30 transition">
-                    <td className="py-3 font-mono text-sm">#{order._id.slice(-8).toUpperCase()}</td>
-                    <td className="py-3 text-sm">{order.userId?.name || "Guest"}</td>
-                    <td className="py-3 text-sm text-gray-400">{new Date(order.createdAt).toLocaleDateString()}</td>
-                    <td className="py-3 font-semibold">${order.total?.toFixed(2)}</td>
+                {recentReservations.map((reservation) => (
+                  <tr key={reservation._id} className="border-b border-gray-700/50 hover:bg-gray-800/30 transition">
+                    <td className="py-3 font-mono text-sm font-bold text-blue-400">{reservation.reservationCode}</td>
+                    <td className="py-3 text-sm">{reservation.customerInfo?.fullName || "N/A"}</td>
+                    <td className="py-3 text-sm text-gray-400">{new Date(reservation.createdAt).toLocaleDateString()}</td>
+                    <td className="py-3 font-semibold">PKR {reservation.total?.toFixed(2)}</td>
                     <td className="py-3">
-                      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)}`}>
-                        {getStatusIcon(order.status)} {order.status}
+                      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(reservation.status)}`}>
+                        {getStatusIcon(reservation.status)} {reservation.status?.replace(/_/g, ' ')}
                       </span>
                     </td>
                     <td className="py-3">
-                      <Link to={`/admin/orders/${order._id}`} className="text-blue-400 hover:text-blue-300 text-sm">View</Link>
+                      <Link to={`/admin/reservations`} className="text-blue-400 hover:text-blue-300 text-sm">View</Link>
                     </td>
                   </tr>
                 ))}
+                {recentReservations.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="py-8 text-center text-gray-500">
+                      No reservations yet
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -324,8 +351,8 @@ const AdminDashboard = () => {
               </span>
             </h2>
             <Link to="/admin/fyp" className="text-green-400 text-sm hover:text-green-300 flex items-center gap-1">
-  Manage FYP <ArrowRight className="w-4 h-4" />
-</Link>
+              Manage FYP <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
           
           <div className="overflow-x-auto">
@@ -452,8 +479,8 @@ const AdminDashboard = () => {
         <div className="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
             { title: "Add Product", icon: Package, link: "/admin/products/add", color: "bg-blue-600" },
-            { title: "View Orders", icon: ShoppingCart, link: "/admin/orders", color: "bg-blue-600" },
-            { title: "Manage Courses", icon: GraduationCap, link: "/admin/courses", color: "bg-green-600" },
+            { title: "View Reservations", icon: Store, link: "/admin/reservations", color: "bg-green-600" },
+            { title: "Manage Courses", icon: GraduationCap, link: "/admin/courses", color: "bg-blue-600" },
             { title: "Manage FYP", icon: FYPIcon, link: "/admin/fyp", color: "bg-emerald-600" },
             { title: "Export Data", icon: Download, link: "/admin/export", color: "bg-orange-600" },
           ].map((action, idx) => (
@@ -464,6 +491,26 @@ const AdminDashboard = () => {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Store Map Section */}
+        <div className="mt-8 glass-card overflow-hidden">
+          <div className="p-4 border-b border-white/10">
+            <h3 className="font-semibold flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-blue-400" />
+              Store Location - Muzaffarabad
+            </h3>
+          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
+            width="100%"
+            height="250"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            title="CodeNagar Location"
+            className="grayscale hover:grayscale-0 transition-all duration-500"
+          ></iframe>
         </div>
       </div>
     </div>

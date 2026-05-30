@@ -223,7 +223,7 @@ const AdminReservations = () => {
                         {new Date(reservation.createdAt).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 text-sm">{reservation.items?.length || 0} items</td>
-                      <td className="px-6 py-4 font-bold text-blue-400">${reservation.total?.toFixed(2)}</td>
+                      <td className="px-6 py-4 font-bold text-blue-400">PKR {reservation.total?.toFixed(2)}</td>
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(reservation.status)}`}>
                           {getStatusIcon(reservation.status)} {getStatusText(reservation.status)}
@@ -320,7 +320,7 @@ const AdminReservations = () => {
                           <p className="font-semibold">{item.name}</p>
                           <p className="text-sm text-gray-400">Quantity: {item.quantity}</p>
                         </div>
-                        <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-bold">PKR {(item.price * item.quantity).toFixed(2)}</p>
                       </div>
                     ))}
                   </div>
@@ -330,7 +330,7 @@ const AdminReservations = () => {
                 <div className="bg-gray-900 rounded-xl p-4">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total to Pay at Store</span>
-                    <span className="text-blue-400">${selectedReservation.total?.toFixed(2)}</span>
+                    <span className="text-blue-400">PKR {selectedReservation.total?.toFixed(2)}</span>
                   </div>
                   <p className="text-xs text-gray-500 mt-2">* Customer will pay at pickup</p>
                 </div>

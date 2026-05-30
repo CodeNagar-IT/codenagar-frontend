@@ -148,12 +148,12 @@ const ProductDetails = () => {
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="text-4xl md:text-5xl font-bold text-blue-400">${product.price}</span>
+              <span className="text-4xl md:text-5xl font-bold text-blue-400">PKR {product.price}</span>
               {product.originalPrice && (
                 <>
-                  <span className="text-xl text-gray-500 line-through">${product.originalPrice}</span>
+                  <span className="text-xl text-gray-500 line-through">PKR {product.originalPrice}</span>
                   <span className="text-sm bg-green-500/20 text-green-400 px-2 py-1 rounded-lg">
-                    Save ${(product.originalPrice - product.price).toFixed(2)}
+                    Save PKR {(product.originalPrice - product.price).toFixed(2)}
                   </span>
                 </>
               )}

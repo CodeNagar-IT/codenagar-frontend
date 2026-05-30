@@ -236,7 +236,7 @@ const Store = () => {
                   )}
                   {product.originalPrice && (
                     <div className="absolute top-2 right-2 bg-green-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
-                      Save ${(product.originalPrice - product.price).toFixed(2)}
+                      Save PKR {(product.originalPrice - product.price).toFixed(2)}
                     </div>
                   )}
                   <div className="absolute bottom-2 right-2 bg-blue-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
@@ -253,9 +253,9 @@ const Store = () => {
                   
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <span className="text-2xl font-bold text-blue-400">${product.price}</span>
+                      <span className="text-2xl font-bold text-blue-400">PKR {product.price}</span>
                       {product.originalPrice && (
-                        <span className="text-xs text-gray-500 line-through ml-2">${product.originalPrice}</span>
+                        <span className="text-xs text-gray-500 line-through ml-2">PKR {product.originalPrice}</span>
                       )}
                     </div>
                     {product.stock > 0 ? (

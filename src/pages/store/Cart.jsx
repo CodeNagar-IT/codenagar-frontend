@@ -74,7 +74,7 @@ const Cart = () => {
                           </h3>
                           <p className="text-sm text-gray-400">by CodeNagar</p>
                           <p className="text-blue-400 font-bold text-xl mt-1">
-                            ${item.price}
+                            PKR {item.price}
                           </p>
                         </div>
                         <button 
@@ -104,7 +104,7 @@ const Cart = () => {
                           </button>
                         </div>
                         <span className="text-sm text-gray-400">
-                          Total: ${(item.price * item.quantity).toFixed(2)}
+                          Total: PKR {(item.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -134,7 +134,7 @@ const Cart = () => {
                       <span className="font-medium">{item.name}</span>
                       <span className="text-gray-400 text-xs ml-1">x{item.quantity}</span>
                     </div>
-                    <span className="font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold">PKR {(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
@@ -143,7 +143,7 @@ const Cart = () => {
               <div className="border-t border-gray-700 pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total Amount</span>
-                  <span className="text-blue-400">${total.toFixed(2)}</span>
+                  <span className="text-blue-400">PKR {total.toFixed(2)}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">* Pay at store when you pick up</p>
               </div>

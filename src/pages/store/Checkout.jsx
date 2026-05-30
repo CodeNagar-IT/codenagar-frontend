@@ -236,7 +236,7 @@ const ReservationConfirmation = () => {
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5 group-hover:scale-110 transition" />
-                    Confirm Reservation • ${total.toFixed(2)}
+                    Confirm Reservation • PKR {total.toFixed(2)}
                   </>
                 )}
               </button>
@@ -266,7 +266,7 @@ const ReservationConfirmation = () => {
                       <span className="font-medium">{item.name}</span>
                       <span className="text-gray-400 text-xs ml-1">x{item.quantity}</span>
                     </div>
-                    <span className="font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold">PKR {(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
@@ -274,7 +274,7 @@ const ReservationConfirmation = () => {
               <div className="border-t border-gray-700 pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-blue-400">${total.toFixed(2)}</span>
+                  <span className="text-blue-400">PKR {total.toFixed(2)}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">* Pay at store upon pickup</p>
               </div>

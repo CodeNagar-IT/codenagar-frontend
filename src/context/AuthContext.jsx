@@ -78,6 +78,10 @@ export const AuthProvider = ({ children }) => {
     delete axios.defaults.headers.common["Authorization"];
     setToken(null);
     setUser(null);
+    
+    // Also clear admin data if exists (important for security)
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("adminData");
   };
 
   const updateUser = (updatedData) => {

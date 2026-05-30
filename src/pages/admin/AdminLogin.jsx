@@ -23,7 +23,7 @@ const AdminLogin = () => {
     setLoading(true);
     
     try {
-      // Direct API call for admin login (not using useAuth)
+      // Direct API call for admin login
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { 
         email, 
         password 
@@ -31,17 +31,30 @@ const AdminLogin = () => {
       
       const { token, user } = response.data;
       
+      // CRITICAL: Check if user has admin role
       if (user.role === "admin") {
-        // Store admin specific data
+        // Store admin specific data with role explicitly included
         localStorage.setItem("adminToken", token);
-        localStorage.setItem("adminData", JSON.stringify(user));
+        localStorage.setItem("adminData", JSON.stringify({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,  // Explicitly store role for frontend validation
+          createdAt: user.createdAt
+        }));
         // Redirect to the page they came from
         navigate(from, { replace: true });
       } else {
         setError("Admin access only. This account does not have administrator privileges.");
+        // Clear any existing admin data
+        localStorage.removeItem("adminToken");
+        localStorage.removeItem("adminData");
       }
     } catch (err) {
       setError(err.response?.data?.error || "Invalid credentials. Please check your email and password.");
+      // Clear any existing admin data on failed login
+      localStorage.removeItem("adminToken");
+      localStorage.removeItem("adminData");
     } finally {
       setLoading(false);
     }

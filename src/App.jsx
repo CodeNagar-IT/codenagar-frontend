@@ -115,7 +115,6 @@ function App() {
               <Route path="/services/ui-ux-design" element={<UIDesign />} />
               <Route path="/services/ecommerce-development" element={<Ecommerce />} />
               <Route path="/services/:serviceId/inquiry" element={<ServiceInquiry />} />
-<Route path="/admin/service-inquiries" element={<AdminRoute><AdminServiceInquiries /></AdminRoute>} />
 <Route path="/services/database-management" element={<DatabaseManagement />} />
 <Route path="/services/android-development" element={<AndroidDev />} />
 <Route path="/services/computer-vision" element={<ComputerVision />} />
@@ -125,7 +124,7 @@ function App() {
 <Route path="/services/ios-development" element={<IOSDev />} />
 <Route path="/fyp" element={<FYPProjects />} />
 <Route path="/fyp/inquiry/:slug" element={<FYPInquiry />} />
-<Route path="/admin/fyp" element={<AdminFYP />} />
+
 
               {/* Course Routes */}
               <Route path="/courses" element={<Courses />} />
@@ -144,15 +143,18 @@ function App() {
               <Route path="/my-reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
 
               {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-              <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
-              <Route path="/admin/reservations" element={<AdminRoute><AdminReservations /></AdminRoute>} />
-              <Route path="/admin/applications" element={<AdminRoute><AdminApplications /></AdminRoute>} />
-              <Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
-              <Route path="/admin/careers" element={<AdminRoute><AdminCareers /></AdminRoute>} />
-              <Route path="/admin/events" element={<AdminRoute><AdminEvents /></AdminRoute>} />
-              <Route path="/admin/jobs" element={<AdminRoute><AdminJobs /></AdminRoute>} />
+<Route path="/admin/login" element={<AdminLogin />} />
+<Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+<Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+<Route path="/admin/reservations" element={<AdminRoute><AdminReservations /></AdminRoute>} />
+<Route path="/admin/applications" element={<AdminRoute><AdminApplications /></AdminRoute>} />
+<Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
+<Route path="/admin/careers" element={<AdminRoute><AdminCareers /></AdminRoute>} />
+<Route path="/admin/events" element={<AdminRoute><AdminEvents /></AdminRoute>} />
+<Route path="/admin/jobs" element={<AdminRoute><AdminJobs /></AdminRoute>} />
+<Route path="/admin/fyp" element={<AdminRoute><AdminFYP /></AdminRoute>} />
+<Route path="/admin/portfolio" element={<AdminRoute><AdminPortfolio /></AdminRoute>} />
+<Route path="/admin/service-inquiries" element={<AdminRoute><AdminServiceInquiries /></AdminRoute>} />
             </Routes>
             <Footer />
           </div>
