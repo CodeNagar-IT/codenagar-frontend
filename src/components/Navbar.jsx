@@ -124,7 +124,6 @@ const Navbar = () => {
   const userMenuItems = [
     { name: "Dashboard", path: "/dashboard", icon: Layout },
     { name: "My Reservations", path: "/my-reservations", icon: ShoppingBag },
-    { name: "Course Applications", path: "/dashboard?tab=courses", icon: BookOpen },
     { name: "Profile", path: "/profile", icon: User },
   ];
 
