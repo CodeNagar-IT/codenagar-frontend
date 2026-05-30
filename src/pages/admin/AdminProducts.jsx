@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Package, Plus, Edit, Trash2, Search, 
-  X, CheckCircle, XCircle, RefreshCw, Store
+  X, CheckCircle, XCircle, RefreshCw, Store, Upload
 } from "lucide-react";
 import axios from "axios";
 
@@ -14,6 +14,7 @@ const AdminProducts = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -23,6 +24,7 @@ const AdminProducts = () => {
     specs: "",
     stock: "",
     featured: false,
+    images: [],
   });
 
   const fetchProducts = async () => {
@@ -40,6 +42,29 @@ const AdminProducts = () => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProducts();
   }, []);
+
+  const handleImageUrlAdd = () => {
+    const url = prompt("Enter image URL:");
+    if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
+      setFormData(prev => ({
+        ...prev,
+        images: [...prev.images, url]
+      }));
+      if (!imagePreview) setImagePreview(url);
+    } else if (url) {
+      alert("Please enter a valid image URL (http:// or https://)");
+    }
+  };
+
+  const removeImage = (indexToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, index) => index !== indexToRemove)
+    }));
+    if (imagePreview === formData.images[indexToRemove]) {
+      setImagePreview(formData.images[0] || "");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,9 +87,12 @@ const AdminProducts = () => {
         specs: "",
         stock: "",
         featured: false,
+        images: [],
       });
+      setImagePreview("");
       fetchProducts();
-    } catch {
+    } catch (error) {
+      console.error("Save error:", error);
       alert("Failed to save product");
     }
   };
@@ -92,7 +120,9 @@ const AdminProducts = () => {
       specs: product.specs || "",
       stock: product.stock,
       featured: product.featured || false,
+      images: product.images || [],
     });
+    setImagePreview(product.images?.[0] || "");
     setShowModal(true);
   };
 
@@ -126,7 +156,9 @@ const AdminProducts = () => {
                 specs: "",
                 stock: "",
                 featured: false,
+                images: [],
               });
+              setImagePreview("");
               setShowModal(true);
             }}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
@@ -185,6 +217,7 @@ const AdminProducts = () => {
               <table className="w-full">
                 <thead className="bg-gray-900 border-b border-gray-700">
                   <tr className="text-left text-gray-400 text-sm">
+                    <th className="px-6 py-4">Image</th>
                     <th className="px-6 py-4">Product</th>
                     <th className="px-6 py-4">Category</th>
                     <th className="px-6 py-4">Price</th>
@@ -203,18 +236,31 @@ const AdminProducts = () => {
                       className="border-b border-gray-700 hover:bg-gray-800/50 transition"
                     >
                       <td className="px-6 py-4">
+                        {product.images && product.images[0] ? (
+                          <img 
+                            src={product.images[0]} 
+                            alt={product.name}
+                            className="w-12 h-12 object-cover rounded-lg"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center text-2xl">
+                            🖥️
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
                         <div>
                           <p className="font-semibold">{product.name}</p>
                           <p className="text-xs text-gray-500 line-clamp-1">{product.description}</p>
                         </div>
-                       </td>
+                      </td>
                       <td className="px-6 py-4">
                         <span className="px-2 py-1 bg-blue-500/20 rounded-full text-xs">{product.category}</span>
                        </td>
                       <td className="px-6 py-4">
-                        <span className="font-bold text-blue-400">PKR {product.price}</span>
+                        <span className="font-bold text-blue-400">PKR {product.price?.toLocaleString()}</span>
                         {product.originalPrice && (
-                          <span className="text-xs text-gray-500 line-through ml-1">PKR {product.originalPrice}</span>
+                          <span className="text-xs text-gray-500 line-through ml-1">PKR {product.originalPrice?.toLocaleString()}</span>
                         )}
                        </td>
                       <td className="px-6 py-4">
@@ -296,12 +342,19 @@ const AdminProducts = () => {
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">Select Category</option>
-                      <option>Computers</option>
-                      <option>Displays</option>
-                      <option>Peripherals</option>
+                      <option>Chargers</option>
                       <option>Audio</option>
-                      <option>Mobile</option>
-                      <option>Networking</option>
+                      <option>Mobile Cases</option>
+                      <option>Laptop Bags</option>
+                      <option>Accessories</option>
+                      <option>Cables</option>
+                      <option>Cooling Pads</option>
+                      <option>Wearables</option>
+                      <option>USB Hubs</option>
+                      <option>Mobile Accessories</option>
+                      <option>Peripherals</option>
+                      <option>Screen Protectors</option>
+                      <option>Storage</option>
                     </select>
                   </div>
                   <div>
@@ -313,26 +366,26 @@ const AdminProducts = () => {
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Number of units available"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Stock will be updated as customers reserve items</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Price *</label>
+                    <label className="block text-sm font-medium mb-1">Price (PKR) *</label>
                     <input
                       type="number"
-                      step="0.01"
+                      step="1"
                       required
                       value={formData.price}
                       onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="e.g., 3500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Original Price (Optional)</label>
+                    <label className="block text-sm font-medium mb-1">Original Price (PKR)</label>
                     <input
                       type="number"
-                      step="0.01"
+                      step="1"
                       value={formData.originalPrice}
                       onChange={(e) => setFormData({ ...formData, originalPrice: parseFloat(e.target.value) })}
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -340,6 +393,41 @@ const AdminProducts = () => {
                     />
                   </div>
                 </div>
+
+                {/* Images Section */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">Product Images</label>
+                  <button
+                    type="button"
+                    onClick={handleImageUrlAdd}
+                    className="mb-3 px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition flex items-center gap-2 text-sm"
+                  >
+                    <Upload className="w-4 h-4" /> Add Image URL
+                  </button>
+                  
+                  {formData.images.length > 0 && (
+                    <div className="flex flex-wrap gap-3 mt-2">
+                      {formData.images.map((img, idx) => (
+                        <div key={idx} className="relative">
+                          <img 
+                            src={img} 
+                            alt={`Product ${idx + 1}`}
+                            className="w-20 h-20 object-cover rounded-lg border border-gray-600"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(idx)}
+                            className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1 hover:bg-red-600 transition"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <p className="text-xs text-gray-500 mt-2">Add image URLs (first image will be the main product image)</p>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium mb-1">Description</label>
                   <textarea

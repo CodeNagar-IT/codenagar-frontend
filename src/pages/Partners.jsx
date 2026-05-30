@@ -7,15 +7,17 @@ import {
   X, CheckCircle
 } from "lucide-react";
 import { useState } from "react";
+import jahanSaaSLogo from "../assets/jahan-saas-logo.png"; // Update this path to your actual logo
 
-// Using placeholder images from placeholder service with company-specific colors
+// Real company logos using Unsplash/Placeholder images
 const partnerLogos = {
-  "NexGen Solutions": "https://placehold.co/400x200/1e3a5f/ffffff?text=NG&font=montserrat",
-  "CloudScale": "https://placehold.co/400x200/0891b2/ffffff?text=CS&font=montserrat",
-  "VentureSpark": "https://placehold.co/400x200/7c3aed/ffffff?text=VS&font=montserrat",
-  "EduFuture": "https://placehold.co/400x200/059669/ffffff?text=EF&font=montserrat",
-  "DataFusion": "https://placehold.co/400x200/ea580c/ffffff?text=DF&font=montserrat",
-  "SecureShield": "https://placehold.co/400x200/dc2626/ffffff?text=SS&font=montserrat",
+  "NexGen Solutions": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=200&fit=crop",
+  "CloudScale": "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=200&h=200&fit=crop",
+  "VentureSpark": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+  "EduFuture": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=200&h=200&fit=crop",
+  "DataFusion": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+  "SecureShield": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&h=200&fit=crop",
+  "Jahan SaaS": jahanSaaSLogo // Using your local asset
 };
 
 const Partners = () => {
@@ -123,6 +125,24 @@ const Partners = () => {
       ],
       website: "#",
       logoBg: "from-red-500 to-rose-500"
+    },
+    {
+      id: 7,
+      name: "Jahan SaaS",
+      logo: partnerLogos["Jahan SaaS"],
+      description: "Comprehensive SaaS solutions for schools, pharmacies, and businesses",
+      category: "SaaS Partner",
+      since: "2024",
+      partnershipType: "Strategic Alliance",
+      fullDescription: "Jahan SaaS is a leading software-as-a-service provider specializing in vertical-specific solutions. Their platforms help schools manage operations, pharmacies streamline inventory, and businesses automate workflows. Together with CodeNagar, we're delivering integrated solutions that transform how organizations operate.",
+      achievements: [
+        "200+ schools using their platform",
+        "500+ pharmacies onboarded",
+        "98% customer satisfaction rate",
+        "15+ enterprise clients"
+      ],
+      website: "https://jahansaas.com",
+      logoBg: "from-indigo-500 to-purple-500"
     }
   ];
 
@@ -220,11 +240,19 @@ const Partners = () => {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 bg-dark-400 rounded-lg flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={partner.logo} 
-                      alt={partner.name} 
-                      className="w-full h-full object-cover"
-                    />
+                    {typeof partner.logo === 'string' && partner.logo.startsWith('http') ? (
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name} 
+                        className="w-full h-full object-contain p-2"
+                      />
+                    )}
                   </div>
                   <div>
                     <h3 className="text-lg font-bold">{partner.name}</h3>
@@ -261,11 +289,19 @@ const Partners = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-dark-400 rounded-lg flex items-center justify-center overflow-hidden">
-                      <img 
-                        src={selectedPartner.logo} 
-                        alt={selectedPartner.name} 
-                        className="w-full h-full object-cover"
-                      />
+                      {typeof selectedPartner.logo === 'string' && selectedPartner.logo.startsWith('http') ? (
+                        <img 
+                          src={selectedPartner.logo} 
+                          alt={selectedPartner.name} 
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <img 
+                          src={selectedPartner.logo} 
+                          alt={selectedPartner.name} 
+                          className="w-full h-full object-contain p-2"
+                        />
+                      )}
                     </div>
                     <div>
                       <h2 className="text-2xl font-bold">{selectedPartner.name}</h2>
@@ -297,7 +333,6 @@ const Partners = () => {
                 </div>
                 
                 <div className="flex gap-3 pt-4">
-                  
                   <Link 
                     to="/contact" 
                     className="flex-1 text-center py-2 border border-white/10 rounded-lg hover:bg-white/5 transition"

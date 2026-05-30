@@ -60,7 +60,12 @@ const ProductDetails = () => {
     );
   }
 
-  const productImages = [
+  // Get images from product or use fallback emojis
+  const productImages = product.images && product.images.length > 0 
+    ? product.images 
+    : [];
+
+  const fallbackImages = [
     { id: 1, icon: "🖥️", label: "Front View" },
     { id: 2, icon: "💻", label: "Side View" },
     { id: 3, icon: "⌨️", label: "Accessories" },
@@ -83,27 +88,58 @@ const ProductDetails = () => {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-4"
           >
+            {/* Main Image */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 flex items-center justify-center min-h-[400px]">
-              <div className="text-9xl transform transition-transform duration-500 hover:scale-110">
-                {productImages[activeImage]?.icon || "🖥️"}
-              </div>
+              {productImages.length > 0 ? (
+                <img 
+                  src={productImages[activeImage]} 
+                  alt={product.name}
+                  className="max-w-full max-h-[350px] object-contain transform transition-transform duration-500 hover:scale-110"
+                />
+              ) : (
+                <div className="text-9xl transform transition-transform duration-500 hover:scale-110">
+                  {fallbackImages[activeImage]?.icon || "🖥️"}
+                </div>
+              )}
             </div>
             
             {/* Thumbnail Gallery */}
-            <div className="flex gap-3 justify-center">
-              {productImages.map((img, idx) => (
-                <button
-                  key={img.id}
-                  onClick={() => setActiveImage(idx)}
-                  className={`w-20 h-20 bg-gray-800/50 rounded-xl border-2 flex items-center justify-center text-3xl transition-all ${
-                    activeImage === idx 
-                      ? "border-blue-500 shadow-lg shadow-blue-500/25" 
-                      : "border-gray-700 hover:border-blue-500/50"
-                  }`}
-                >
-                  {img.icon}
-                </button>
-              ))}
+            <div className="flex gap-3 justify-center flex-wrap">
+              {productImages.length > 0 ? (
+                // Show actual image thumbnails
+                productImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImage(idx)}
+                    className={`w-20 h-20 bg-gray-800/50 rounded-xl border-2 overflow-hidden transition-all ${
+                      activeImage === idx 
+                        ? "border-blue-500 shadow-lg shadow-blue-500/25" 
+                        : "border-gray-700 hover:border-blue-500/50"
+                    }`}
+                  >
+                    <img 
+                      src={img} 
+                      alt={`View ${idx + 1}`} 
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))
+              ) : (
+                // Show fallback emoji thumbnails
+                fallbackImages.map((img, idx) => (
+                  <button
+                    key={img.id}
+                    onClick={() => setActiveImage(idx)}
+                    className={`w-20 h-20 bg-gray-800/50 rounded-xl border-2 flex items-center justify-center text-3xl transition-all ${
+                      activeImage === idx 
+                        ? "border-blue-500 shadow-lg shadow-blue-500/25" 
+                        : "border-gray-700 hover:border-blue-500/50"
+                    }`}
+                  >
+                    {img.icon}
+                  </button>
+                ))
+              )}
             </div>
           </motion.div>
 
@@ -148,12 +184,12 @@ const ProductDetails = () => {
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="text-4xl md:text-5xl font-bold text-blue-400">PKR {product.price}</span>
+              <span className="text-4xl md:text-5xl font-bold text-blue-400">PKR {product.price?.toLocaleString()}</span>
               {product.originalPrice && (
                 <>
-                  <span className="text-xl text-gray-500 line-through">PKR {product.originalPrice}</span>
+                  <span className="text-xl text-gray-500 line-through">PKR {product.originalPrice?.toLocaleString()}</span>
                   <span className="text-sm bg-green-500/20 text-green-400 px-2 py-1 rounded-lg">
-                    Save PKR {(product.originalPrice - product.price).toFixed(2)}
+                    Save PKR {(product.originalPrice - product.price).toLocaleString()}
                   </span>
                 </>
               )}

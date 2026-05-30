@@ -226,8 +226,18 @@ const Store = () => {
                 className="group bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300"
               >
                 <div className="relative">
-                  <div className="w-full h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">
-                    🖥️
+                  <div className="relative w-full h-48 overflow-hidden bg-gray-800">
+                    {product.images && product.images[0] ? (
+                      <img 
+                        src={product.images[0]} 
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-6xl">
+                        🖥️
+                      </div>
+                    )}
                   </div>
                   {product.featured && (
                     <div className="absolute top-2 left-2 bg-gradient-to-r from-blue-600 to-indigo-600 px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1">
@@ -236,7 +246,7 @@ const Store = () => {
                   )}
                   {product.originalPrice && (
                     <div className="absolute top-2 right-2 bg-green-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
-                      Save PKR {(product.originalPrice - product.price).toFixed(2)}
+                      Save PKR {(product.originalPrice - product.price).toLocaleString()}
                     </div>
                   )}
                   <div className="absolute bottom-2 right-2 bg-blue-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
@@ -253,9 +263,9 @@ const Store = () => {
                   
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <span className="text-2xl font-bold text-blue-400">PKR {product.price}</span>
+                      <span className="text-2xl font-bold text-blue-400">PKR {product.price?.toLocaleString()}</span>
                       {product.originalPrice && (
-                        <span className="text-xs text-gray-500 line-through ml-2">PKR {product.originalPrice}</span>
+                        <span className="text-xs text-gray-500 line-through ml-2">PKR {product.originalPrice?.toLocaleString()}</span>
                       )}
                     </div>
                     {product.stock > 0 ? (

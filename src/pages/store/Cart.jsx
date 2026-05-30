@@ -61,8 +61,16 @@ const Cart = () => {
                 >
                   <div className="flex gap-4">
                     {/* Product Image */}
-                    <div className="w-24 h-24 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center text-4xl group-hover:scale-105 transition-transform duration-300">
-                      🖥️
+                    <div className="w-24 h-24 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      {item.images && item.images[0] ? (
+                        <img 
+                          src={item.images[0]} 
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-4xl">🖥️</div>
+                      )}
                     </div>
                     
                     {/* Product Details */}
@@ -74,7 +82,7 @@ const Cart = () => {
                           </h3>
                           <p className="text-sm text-gray-400">by CodeNagar</p>
                           <p className="text-blue-400 font-bold text-xl mt-1">
-                            PKR {item.price}
+                            PKR {item.price?.toLocaleString()}
                           </p>
                         </div>
                         <button 
@@ -104,7 +112,7 @@ const Cart = () => {
                           </button>
                         </div>
                         <span className="text-sm text-gray-400">
-                          Total: PKR {(item.price * item.quantity).toFixed(2)}
+                          Total: PKR {(item.price * item.quantity).toLocaleString()}
                         </span>
                       </div>
                     </div>
@@ -134,7 +142,7 @@ const Cart = () => {
                       <span className="font-medium">{item.name}</span>
                       <span className="text-gray-400 text-xs ml-1">x{item.quantity}</span>
                     </div>
-                    <span className="font-semibold">PKR {(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold">PKR {(item.price * item.quantity).toLocaleString()}</span>
                   </div>
                 ))}
               </div>
@@ -143,7 +151,7 @@ const Cart = () => {
               <div className="border-t border-gray-700 pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total Amount</span>
-                  <span className="text-blue-400">PKR {total.toFixed(2)}</span>
+                  <span className="text-blue-400">PKR {total.toLocaleString()}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">* Pay at store when you pick up</p>
               </div>

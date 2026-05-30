@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { 
   ShoppingBag, Eye, Search, RefreshCw, Store, 
   CheckCircle, Clock, MapPin, Calendar, User,
-  XCircle, AlertCircle, Phone, Mail, Copy, Check
+  XCircle, AlertCircle, Phone, Mail, Copy, Check, Package
 } from "lucide-react";
 import axios from "axios";
 
@@ -223,7 +223,7 @@ const AdminReservations = () => {
                         {new Date(reservation.createdAt).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 text-sm">{reservation.items?.length || 0} items</td>
-                      <td className="px-6 py-4 font-bold text-blue-400">PKR {reservation.total?.toFixed(2)}</td>
+                      <td className="px-6 py-4 font-bold text-blue-400">PKR {reservation.total?.toLocaleString()}</td>
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getStatusColor(reservation.status)}`}>
                           {getStatusIcon(reservation.status)} {getStatusText(reservation.status)}
@@ -231,12 +231,12 @@ const AdminReservations = () => {
                         {reservation.reservationExpiry && reservation.status === "pending_pickup" && (
                           <p className="text-xs text-gray-500 mt-1">{getTimeRemaining(reservation.reservationExpiry)}</p>
                         )}
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         <button className="text-blue-400 hover:text-blue-300">
                           <Eye className="w-5 h-5" />
                         </button>
-                      </td>
+                       </td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -310,17 +310,38 @@ const AdminReservations = () => {
                   <p className="text-sm text-gray-400 mt-1">🕐 Mon-Sat: 10AM - 8PM | Sunday: Closed</p>
                 </div>
 
-                {/* Items */}
+                {/* Items with Images */}
                 <div>
-                  <h3 className="font-semibold mb-3">Reserved Items</h3>
-                  <div className="space-y-2">
+                  <h3 className="font-semibold mb-3 flex items-center gap-2">
+                    <Package className="w-4 h-4 text-blue-400" />
+                    Reserved Items
+                  </h3>
+                  <div className="space-y-3">
                     {selectedReservation.items?.map((item, i) => (
-                      <div key={i} className="flex justify-between items-center p-3 bg-gray-900 rounded-lg">
-                        <div>
+                      <div key={i} className="flex items-center gap-4 p-3 bg-gray-900 rounded-lg">
+                        {/* Item Image */}
+                        <div className="w-16 h-16 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                          {item.image ? (
+                            <img 
+                              src={item.image} 
+                              alt={item.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-3xl bg-gray-700">
+                              🖥️
+                            </div>
+                          )}
+                        </div>
+                        {/* Item Details */}
+                        <div className="flex-1">
                           <p className="font-semibold">{item.name}</p>
                           <p className="text-sm text-gray-400">Quantity: {item.quantity}</p>
                         </div>
-                        <p className="font-bold">PKR {(item.price * item.quantity).toFixed(2)}</p>
+                        <div className="text-right">
+                          <p className="font-bold text-blue-400">PKR {(item.price * item.quantity).toLocaleString()}</p>
+                          <p className="text-xs text-gray-500">@ PKR {item.price?.toLocaleString()} each</p>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -330,7 +351,7 @@ const AdminReservations = () => {
                 <div className="bg-gray-900 rounded-xl p-4">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total to Pay at Store</span>
-                    <span className="text-blue-400">PKR {selectedReservation.total?.toFixed(2)}</span>
+                    <span className="text-blue-400">PKR {selectedReservation.total?.toLocaleString()}</span>
                   </div>
                   <p className="text-xs text-gray-500 mt-2">* Customer will pay at pickup</p>
                 </div>

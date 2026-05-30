@@ -34,7 +34,8 @@ const ReservationConfirmation = () => {
           productId: item._id,
           name: item.name,
           price: item.price,
-          quantity: item.quantity
+          quantity: item.quantity,
+          image: item.images?.[0] || null
         })),
         total: total,
         customerInfo: {
@@ -53,7 +54,8 @@ const ReservationConfirmation = () => {
       setTimeout(() => {
         navigate("/my-reservations");
       }, 5000);
-    } catch {
+    } catch (err) {
+      console.error("Reservation error:", err);
       setError("Failed to create reservation. Please check your information and try again.");
     } finally {
       setSubmitting(false);
@@ -236,7 +238,7 @@ const ReservationConfirmation = () => {
                 ) : (
                   <>
                     <CheckCircle className="w-5 h-5 group-hover:scale-110 transition" />
-                    Confirm Reservation • PKR {total.toFixed(2)}
+                    Confirm Reservation • PKR {total.toLocaleString()}
                   </>
                 )}
               </button>
@@ -261,12 +263,28 @@ const ReservationConfirmation = () => {
               
               <div className="space-y-3 mb-4 max-h-80 overflow-y-auto custom-scrollbar">
                 {cart.map((item, idx) => (
-                  <div key={idx} className="flex justify-between text-sm py-2 border-b border-gray-700 last:border-0">
-                    <div>
-                      <span className="font-medium">{item.name}</span>
-                      <span className="text-gray-400 text-xs ml-1">x{item.quantity}</span>
+                  <div key={idx} className="flex gap-3 items-center py-2 border-b border-gray-700 last:border-0">
+                    {/* Product Thumbnail */}
+                    <div className="w-12 h-12 bg-gray-700 rounded-lg overflow-hidden flex-shrink-0">
+                      {item.images && item.images[0] ? (
+                        <img 
+                          src={item.images[0]} 
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-2xl">
+                          🖥️
+                        </div>
+                      )}
                     </div>
-                    <span className="font-semibold">PKR {(item.price * item.quantity).toFixed(2)}</span>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">{item.name}</p>
+                      <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-semibold text-sm">PKR {(item.price * item.quantity).toLocaleString()}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -274,7 +292,7 @@ const ReservationConfirmation = () => {
               <div className="border-t border-gray-700 pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-blue-400">PKR {total.toFixed(2)}</span>
+                  <span className="text-blue-400">PKR {total.toLocaleString()}</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">* Pay at store upon pickup</p>
               </div>
