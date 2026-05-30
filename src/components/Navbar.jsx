@@ -111,7 +111,6 @@ const Navbar = () => {
     { name: "Blog", path: "/blog" },
     { name: "Case Studies", path: "/case-studies" },
     { name: "White Papers", path: "/whitepapers" },
-    { name: "Webinars", path: "/webinars" },
     { name: "Documentation", path: "/docs" },
     { name: "Events", path: "/events" },
   ];
