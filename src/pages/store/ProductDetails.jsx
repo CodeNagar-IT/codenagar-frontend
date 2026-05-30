@@ -1,7 +1,8 @@
+// frontend/src/pages/store/ProductDetails.jsx
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingCart, Minus, Plus, Truck, Shield, RotateCcw, Star, Heart, Share2, Check, AlertCircle, ChevronLeft } from "lucide-react";
+import { MapPin, Clock, Phone, Star, Heart, Share2, Check, AlertCircle, ChevronLeft, Calendar, Store } from "lucide-react";
 import axios from "axios";
 import { useCart } from "../../context/CartContext";
 
@@ -9,8 +10,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
-  const [addedToCart, setAddedToCart] = useState(false);
+  const [reserved, setReserved] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   const { addToCart } = useCart();
 
@@ -28,10 +28,10 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    addToCart(product, quantity);
-    setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 3000);
+  const handleReserve = () => {
+    addToCart(product);
+    setReserved(true);
+    setTimeout(() => setReserved(false), 3000);
   };
 
   if (loading) {
@@ -60,7 +60,6 @@ const ProductDetails = () => {
     );
   }
 
-  // Mock images - in production, use product.images array
   const productImages = [
     { id: 1, icon: "🖥️", label: "Front View" },
     { id: 2, icon: "💻", label: "Side View" },
@@ -122,6 +121,14 @@ const ProductDetails = () => {
                   <Heart className="w-6 h-6 text-gray-400 hover:text-red-400 transition" />
                 </button>
               </div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs flex items-center gap-1">
+                  <Store className="w-3 h-3" /> In-Store Only
+                </span>
+                <span className="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs flex items-center gap-1">
+                  <Check className="w-3 h-3" /> Available at Muzaffarabad Store
+                </span>
+              </div>
               <p className="text-gray-400 text-sm">by CodeNagar</p>
             </div>
 
@@ -166,50 +173,49 @@ const ProductDetails = () => {
               </div>
             )}
 
-            {/* Quantity Selector */}
+            {/* Store Pickup Info */}
             <div className="border-t border-gray-700 pt-4">
-              <h3 className="font-semibold mb-3">Quantity</h3>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-3 bg-gray-800 rounded-xl px-4 py-2 border border-gray-700">
-                  <button 
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="hover:text-blue-400 transition p-1"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-12 text-center font-semibold text-lg">{quantity}</span>
-                  <button 
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="hover:text-blue-400 transition p-1"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
+              <h3 className="font-semibold mb-3 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-blue-400" />
+                Pickup Information
+              </h3>
+              <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-500/30">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3 text-sm">
+                    <Store className="w-4 h-4 text-blue-400" />
+                    <span className="text-gray-300">CodeNagar Store, Muzaffarabad City</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Clock className="w-4 h-4 text-blue-400" />
+                    <span className="text-gray-300">Mon-Sat: 10AM - 8PM | Sunday: Closed</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Phone className="w-4 h-4 text-blue-400" />
+                    <span className="text-gray-300">+92 5822 123456</span>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-400">
-                  {product.stock > 0 ? `${product.stock}+ items available` : "Out of stock"}
-                </p>
               </div>
             </div>
 
             {/* Action Buttons */}
             <div className="space-y-3">
               <button 
-                onClick={handleAddToCart} 
+                onClick={handleReserve} 
                 disabled={product.stock === 0}
                 className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
-                <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition" /> 
-                {product.stock === 0 ? "Out of Stock" : `Add to Cart - $${(product.price * quantity).toFixed(2)}`}
+                <MapPin className="w-5 h-5 group-hover:scale-110 transition" /> 
+                {product.stock === 0 ? "Out of Stock" : "Reserve for In-Store Pickup"}
               </button>
               
               {/* Success Message */}
-              {addedToCart && (
+              {reserved && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-green-400 text-sm text-center flex items-center justify-center gap-2"
                 >
-                  <Check className="w-4 h-4" /> Added to cart! <Link to="/cart" className="text-blue-400 underline">View Cart</Link>
+                  <Check className="w-4 h-4" /> Reserved! <Link to="/cart" className="text-blue-400 underline">View Reservations</Link>
                 </motion.div>
               )}
 
@@ -220,44 +226,51 @@ const ProductDetails = () => {
 
             {/* Features */}
             <div className="border-t border-gray-700 pt-6 space-y-3">
-              <h3 className="font-semibold mb-3">Why Buy From Us?</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <h3 className="font-semibold mb-3">Why Reserve From Us?</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Truck className="w-5 h-5 text-blue-400" />
-                  <span>Free shipping over $100</span>
+                  <Store className="w-5 h-5 text-blue-400" />
+                  <span>Reserve now, pay at store</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Shield className="w-5 h-5 text-blue-400" />
-                  <span>2-year warranty</span>
+                  <Clock className="w-5 h-5 text-blue-400" />
+                  <span>48-hour reservation hold</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <RotateCcw className="w-5 h-5 text-blue-400" />
-                  <span>30-day easy returns</span>
+                  <Calendar className="w-5 h-5 text-blue-400" />
+                  <span>Free product testing</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-gray-300">
+                  <Star className="w-5 h-5 text-blue-400" />
+                  <span>Expert staff assistance</span>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Related Products Section */}
+        {/* Map Section */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-20"
         >
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Star className="w-5 h-5 text-blue-400" />
-            You May Also Like
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MapPin className="w-6 h-6 text-blue-400" />
+            Find Us in Muzaffarabad
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((_, idx) => (
-              <Link key={idx} to="/store" className="bg-gray-800/50 rounded-xl p-4 border border-gray-700 hover:border-blue-500 transition-all text-center group">
-                <div className="text-5xl mb-2 group-hover:scale-110 transition-transform">🖥️</div>
-                <p className="text-sm font-semibold group-hover:text-blue-400 transition">Related Product</p>
-                <p className="text-blue-400 font-bold text-sm">$99</p>
-              </Link>
-            ))}
+          <div className="glass-card overflow-hidden p-1">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="CodeNagar Location"
+              className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
+            ></iframe>
           </div>
         </motion.div>
       </div>

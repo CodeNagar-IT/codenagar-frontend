@@ -1,16 +1,13 @@
 // frontend/src/pages/store/Cart.jsx
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag,  Truck, CreditCard, Sparkles } from "lucide-react";
+import { Trash2, MapPin, ShoppingBag, Clock, Store, ChevronRight } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
-  const subtotal = getCartTotal();
-  const shipping = subtotal > 100 ? 0 : 10;
-  const tax = subtotal * 0.05;
-  const total = subtotal + shipping + tax;
+  const total = getCartTotal();
 
   if (cart.length === 0) {
     return (
@@ -23,14 +20,13 @@ const Cart = () => {
           >
             <ShoppingBag className="w-12 h-12 text-gray-600" />
           </motion.div>
-          <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-          <p className="text-gray-400 mb-6">Looks like you haven't added any items yet</p>
+          <h2 className="text-2xl font-bold mb-2">No reservations yet</h2>
+          <p className="text-gray-400 mb-6">Browse our products and reserve items for pickup</p>
           <Link 
             to="/store" 
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all group"
           >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition" /> 
-            Start Shopping
+            Browse Products <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition" />
           </Link>
         </div>
       </div>
@@ -44,9 +40,9 @@ const Cart = () => {
         <div className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-2 flex items-center gap-3">
             <ShoppingBag className="w-10 h-10 text-blue-400" />
-            Shopping Cart
+            My Reservations
           </h1>
-          <p className="text-gray-400">Review and manage your items before checkout</p>
+          <p className="text-gray-400">Review your reserved items before confirming</p>
         </div>
         
         <div className="grid lg:grid-cols-3 gap-8">
@@ -97,18 +93,18 @@ const Cart = () => {
                             className="p-1 hover:text-blue-400 transition-colors"
                             disabled={item.quantity <= 1}
                           >
-                            <Minus className="w-4 h-4" />
+                            -
                           </button>
                           <span className="w-8 text-center font-semibold">{item.quantity}</span>
                           <button 
                             onClick={() => updateQuantity(item._id, item.quantity + 1)}
                             className="p-1 hover:text-blue-400 transition-colors"
                           >
-                            <Plus className="w-4 h-4" />
+                            +
                           </button>
                         </div>
                         <span className="text-sm text-gray-400">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          Total: ${(item.price * item.quantity).toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -118,7 +114,7 @@ const Cart = () => {
             </AnimatePresence>
           </div>
           
-          {/* Order Summary */}
+          {/* Reservation Summary */}
           <div className="lg:col-span-1">
             <motion.div 
               initial={{ opacity: 0, x: 30 }}
@@ -126,8 +122,8 @@ const Cart = () => {
               className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700 sticky top-24"
             >
               <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-blue-400" />
-                Order Summary
+                <Store className="w-5 h-5 text-blue-400" />
+                Reservation Summary
               </h2>
               
               {/* Items List */}
@@ -143,44 +139,27 @@ const Cart = () => {
                 ))}
               </div>
               
-              {/* Price Breakdown */}
-              <div className="border-t border-gray-700 pt-4 space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+              {/* Total */}
+              <div className="border-t border-gray-700 pt-4">
+                <div className="flex justify-between font-bold text-lg">
+                  <span>Total Amount</span>
+                  <span className="text-blue-400">${total.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400 flex items-center gap-1">
-                    <Truck className="w-3 h-3" /> Shipping
-                  </span>
-                  <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                <p className="text-xs text-gray-500 mt-2">* Pay at store when you pick up</p>
+              </div>
+              
+              {/* Pickup Info */}
+              <div className="mt-4 p-3 bg-blue-500/10 rounded-xl border border-blue-500/30">
+                <div className="flex items-center gap-2 text-sm mb-2">
+                  <MapPin className="w-4 h-4 text-blue-400" />
+                  <span className="font-semibold">Pickup Location:</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Tax (5%)</span>
-                  <span>${tax.toFixed(2)}</span>
+                <p className="text-xs text-gray-300 ml-6">CodeNagar Store, Muzaffarabad City</p>
+                <div className="flex items-center gap-2 text-sm mt-2">
+                  <Clock className="w-4 h-4 text-blue-400" />
+                  <span className="font-semibold">Pickup Hours:</span>
                 </div>
-                
-                {/* Free Shipping Progress */}
-                {subtotal < 100 && subtotal > 0 && (
-                  <div className="mt-3 pt-3 border-t border-gray-700">
-                    <p className="text-xs text-blue-400 mb-2">
-                      Add ${(100 - subtotal).toFixed(2)} more for free shipping!
-                    </p>
-                    <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-500"
-                        style={{ width: `${(subtotal / 100) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                )}
-                
-                <div className="border-t border-gray-700 pt-3 mt-2">
-                  <div className="flex justify-between font-bold text-lg">
-                    <span>Total</span>
-                    <span className="text-blue-400">${total.toFixed(2)}</span>
-                  </div>
-                </div>
+                <p className="text-xs text-gray-300 ml-6">Mon-Sat: 10AM - 8PM | Sunday: Closed</p>
               </div>
               
               {/* Action Buttons */}
@@ -190,23 +169,22 @@ const Cart = () => {
                   className="block text-center py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all group"
                 >
                   <span className="flex items-center justify-center gap-2">
-                    <CreditCard className="w-5 h-5 group-hover:scale-110 transition" />
-                    Proceed to Checkout
+                    Confirm Reservation
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition" />
                   </span>
                 </Link>
                 <Link 
-  to="/store" 
-  className="flex items-center justify-center gap-2 text-center py-3 border border-gray-600 rounded-xl hover:bg-white/10 transition-all group"
->
-  <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition" />
-  Continue Shopping
-</Link>
+                  to="/store" 
+                  className="flex items-center justify-center gap-2 text-center py-3 border border-gray-600 rounded-xl hover:bg-white/10 transition-all group"
+                >
+                  Continue Shopping
+                </Link>
               </div>
               
-              {/* Secure Checkout Note */}
+              {/* Note */}
               <div className="mt-4 pt-4 border-t border-gray-700">
-                <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
-                  🔒 Secure checkout guaranteed
+                <p className="text-xs text-gray-500 text-center">
+                  📌 Your reservation will be held for 48 hours. Please visit our store to complete your purchase.
                 </p>
               </div>
             </motion.div>

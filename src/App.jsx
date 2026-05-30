@@ -58,18 +58,17 @@ import CourseApply from "./pages/courses/CourseApply";
 import Store from "./pages/store/Store";
 import ProductDetails from "./pages/store/ProductDetails";
 import Cart from "./pages/store/Cart";
-import Checkout from "./pages/store/Checkout";
+import ReservationConfirmation from "./pages/store/Checkout";
 
 // User Pages
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
-import Orders from "./pages/Orders";
-
+import Reservations from "./pages/Reservations";
 // Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
-import AdminOrders from "./pages/admin/AdminOrders";
+import AdminReservations from "./pages/admin/AdminReservations";
 import AdminApplications from "./pages/admin/AdminApplications";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminCareers from "./pages/admin/AdminCareers";
@@ -137,18 +136,18 @@ function App() {
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:id" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+              <Route path="/checkout" element={<ReservationConfirmation />} />
               
               {/* User Routes */}
               <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
               <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-              <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
-              
+              <Route path="/my-reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
+
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
               <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
-              <Route path="/admin/orders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
+              <Route path="/admin/reservations" element={<AdminRoute><AdminReservations /></AdminRoute>} />
               <Route path="/admin/applications" element={<AdminRoute><AdminApplications /></AdminRoute>} />
               <Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
               <Route path="/admin/careers" element={<AdminRoute><AdminCareers /></AdminRoute>} />

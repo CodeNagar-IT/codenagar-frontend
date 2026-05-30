@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Package, Plus, Edit, Trash2, Search, 
-  X, CheckCircle, XCircle, RefreshCw
+  X, CheckCircle, XCircle, RefreshCw, Store
 } from "lucide-react";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ const AdminProducts = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -63,7 +64,7 @@ const AdminProducts = () => {
         featured: false,
       });
       fetchProducts();
-    } catch  {
+    } catch {
       alert("Failed to save product");
     }
   };
@@ -74,7 +75,7 @@ const AdminProducts = () => {
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
         alert("Product deleted successfully!");
         fetchProducts();
-      } catch  {
+      } catch {
         alert("Failed to delete product");
       }
     }
@@ -95,10 +96,12 @@ const AdminProducts = () => {
     setShowModal(true);
   };
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   const categories = [...new Set(products.map(p => p.category))];
 
@@ -109,7 +112,7 @@ const AdminProducts = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold mb-2">Manage Products</h1>
-            <p className="text-gray-400">Add, edit, and manage your store products</p>
+            <p className="text-gray-400">Add, edit, and manage your in-store products</p>
           </div>
           <button
             onClick={() => {
@@ -132,6 +135,15 @@ const AdminProducts = () => {
           </button>
         </div>
 
+        {/* Store Info Banner */}
+        <div className="mb-6 bg-blue-500/10 rounded-xl p-3 border border-blue-500/30 flex items-center gap-3">
+          <Store className="w-5 h-5 text-blue-400" />
+          <p className="text-sm text-gray-300">
+            Products displayed here are available for reservation at our <span className="text-blue-400 font-semibold">Muzaffarabad Store</span>. 
+            Customers reserve online and pay in-store.
+          </p>
+        </div>
+
         {/* Search and Filter */}
         <div className="flex flex-wrap gap-4 mb-6">
           <div className="flex-1 relative">
@@ -145,7 +157,11 @@ const AdminProducts = () => {
             />
           </div>
           <div className="flex gap-2">
-            <select className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
               <option value="">All Categories</option>
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
@@ -191,28 +207,28 @@ const AdminProducts = () => {
                           <p className="font-semibold">{product.name}</p>
                           <p className="text-xs text-gray-500 line-clamp-1">{product.description}</p>
                         </div>
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         <span className="px-2 py-1 bg-blue-500/20 rounded-full text-xs">{product.category}</span>
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         <span className="font-bold text-blue-400">${product.price}</span>
                         {product.originalPrice && (
                           <span className="text-xs text-gray-500 line-through ml-1">${product.originalPrice}</span>
                         )}
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         <span className={product.stock > 0 ? "text-green-400" : "text-red-400"}>
-                          {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+                          {product.stock > 0 ? `${product.stock} available` : "Out of stock"}
                         </span>
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         {product.featured ? (
                           <CheckCircle className="w-5 h-5 text-green-400" />
                         ) : (
                           <XCircle className="w-5 h-5 text-gray-500" />
                         )}
-                      </td>
+                       </td>
                       <td className="px-6 py-4">
                         <div className="flex gap-2">
                           <button
@@ -228,7 +244,7 @@ const AdminProducts = () => {
                             <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
-                      </td>
+                       </td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -295,7 +311,9 @@ const AdminProducts = () => {
                       value={formData.stock}
                       onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) })}
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Number of units available"
                     />
+                    <p className="text-xs text-gray-500 mt-1">Stock will be updated as customers reserve items</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -318,6 +336,7 @@ const AdminProducts = () => {
                       value={formData.originalPrice}
                       onChange={(e) => setFormData({ ...formData, originalPrice: parseFloat(e.target.value) })}
                       className="w-full px-4 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="For discount display"
                     />
                   </div>
                 </div>
@@ -349,8 +368,17 @@ const AdminProducts = () => {
                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                     className="w-4 h-4 rounded focus:ring-blue-500"
                   />
-                  <label htmlFor="featured" className="text-sm">Feature this product</label>
+                  <label htmlFor="featured" className="text-sm">Feature this product on store page</label>
                 </div>
+
+                {/* Store Info Note */}
+                <div className="bg-blue-500/10 rounded-lg p-3 border border-blue-500/30">
+                  <p className="text-xs text-blue-400 flex items-center gap-2">
+                    <Store className="w-3 h-3" />
+                    This product will be available for in-store pickup only at our Muzaffarabad location.
+                  </p>
+                </div>
+
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"

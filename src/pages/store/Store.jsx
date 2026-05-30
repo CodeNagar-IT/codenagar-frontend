@@ -1,7 +1,8 @@
+// frontend/src/pages/store/Store.jsx
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Search, ShoppingCart, Filter, Sparkles, Star, ChevronRight, X } from "lucide-react";
+import { Search, Filter, Sparkles, Star, X, MapPin, Clock, Phone } from "lucide-react";
 import axios from "axios";
 import { useCart } from "../../context/CartContext";
 
@@ -31,21 +32,17 @@ const Store = () => {
     fetchProducts();
   }, []);
 
-  // Use useMemo instead of useEffect for filtering
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
     
-    // Filter by category
     if (selectedCategory !== "all") {
       filtered = filtered.filter(p => p.category === selectedCategory);
     }
     
-    // Filter by search
     if (searchQuery) {
       filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     
-    // Sort products
     if (sortBy === "price-low") {
       filtered.sort((a, b) => a.price - b.price);
     } else if (sortBy === "price-high") {
@@ -76,14 +73,44 @@ const Store = () => {
         >
           <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-4">
             <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-300 text-sm">Premium Quality</span>
+            <span className="text-blue-300 text-sm">In-Store Only • Muzaffarabad</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Hardware <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Store</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Premium computer and mobile accessories at competitive prices
+            Premium computer and mobile accessories • Reserve online, pay at our store in Muzaffarabad
           </p>
+        </motion.div>
+
+        {/* Store Info Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-8 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-4 border border-blue-500/30"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-blue-400" />
+              </div>
+              <div>
+                <p className="font-semibold">Visit Our Store</p>
+                <p className="text-sm text-gray-400">Muzaffarabad City • Reserve now, pay in-store</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-sm text-gray-300">
+                <Clock className="w-4 h-4" />
+                <span>Mon-Sat: 10AM - 8PM</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-300">
+                <Phone className="w-4 h-4" />
+                <span>+92 5822 123456</span>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Search and Filters Bar */}
@@ -165,9 +192,7 @@ const Store = () => {
             <p className="text-sm text-gray-400">
               Showing {filteredProducts.length} of {products.length} products
             </p>
-            {hasActiveFilters && (
-              <p className="text-xs text-blue-400">Filters applied</p>
-            )}
+            <p className="text-xs text-blue-400">✓ Reserve online • Pay in-store</p>
           </div>
         )}
 
@@ -210,10 +235,13 @@ const Store = () => {
                     </div>
                   )}
                   {product.originalPrice && (
-                    <div className="absolute top-2 right-2 bg-red-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
-                      -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                    <div className="absolute top-2 right-2 bg-green-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
+                      Save ${(product.originalPrice - product.price).toFixed(2)}
                     </div>
                   )}
+                  <div className="absolute bottom-2 right-2 bg-blue-600/90 px-2 py-1 rounded-lg text-xs font-semibold">
+                    In-Store Only
+                  </div>
                 </div>
                 
                 <div className="p-4">
@@ -241,15 +269,15 @@ const Store = () => {
                     <button 
                       onClick={() => addToCart(product)} 
                       disabled={product.stock === 0}
-                      className="flex-1 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                     >
-                      <ShoppingCart className="w-4 h-4" /> Add
+                      <MapPin className="w-4 h-4" /> Reserve for Pickup
                     </button>
                     <Link 
                       to={`/store/product/${product._id}`} 
                       className="px-3 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-all flex items-center justify-center"
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      Details
                     </Link>
                   </div>
                 </div>
@@ -257,6 +285,36 @@ const Store = () => {
             ))}
           </div>
         )}
+
+        {/* Map Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MapPin className="w-6 h-6 text-blue-400" />
+            Visit Our Store in Muzaffarabad
+          </h2>
+          <div className="glass-card overflow-hidden p-1">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="CodeNagar Location"
+              className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500"
+            ></iframe>
+          </div>
+          <div className="mt-4 text-center text-gray-400 text-sm">
+            <p>📍 CodeNagar Store, Muzaffarabad City</p>
+            <p>🕐 Monday - Saturday: 10:00 AM - 8:00 PM | Sunday: Closed</p>
+            <p>📞 +92 5822 123456 | ✉️ store@codenagar.com</p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
