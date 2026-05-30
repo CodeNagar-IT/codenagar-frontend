@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Search, Heart, Clock, Sparkles, Eye, X, 
   ChevronLeft, ChevronRight, Calendar, Tag, Share2,
-  Facebook, Twitter, Linkedin, LinkIcon, MessageCircle
+  LinkIcon, MessageCircle
 } from "lucide-react";
+import { FaLinkedin,  FaFacebook, FaTwitter,  } from "react-icons/fa";
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -513,19 +514,19 @@ const Blog = () => {
                           onClick={() => sharePost('facebook', selectedPost)}
                           className="p-2 bg-[#1877f2]/20 text-[#1877f2] rounded-lg hover:bg-[#1877f2]/30 transition"
                         >
-                          <Facebook className="w-5 h-5" />
+                          <FaFacebook className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => sharePost('twitter', selectedPost)}
                           className="p-2 bg-[#1da1f2]/20 text-[#1da1f2] rounded-lg hover:bg-[#1da1f2]/30 transition"
                         >
-                          <Twitter className="w-5 h-5" />
+                          <FaTwitter className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => sharePost('linkedin', selectedPost)}
                           className="p-2 bg-[#0077b5]/20 text-[#0077b5] rounded-lg hover:bg-[#0077b5]/30 transition"
                         >
-                          <Linkedin className="w-5 h-5" />
+                          <FaLinkedin className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => sharePost('copy', selectedPost)}
