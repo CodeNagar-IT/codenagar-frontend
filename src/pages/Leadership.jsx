@@ -27,7 +27,7 @@ const Leadership = () => {
       education: "MS English, Islamic International University Islamabad",
       experience: "5+ years",
       expertise: ["Client Relations", "Business Strategy", "Technical Communication", "Partnerships"],
-      social: { linkedin: "#",  email: "rajafaizkhan4@gmail.com" }
+      social: { linkedin: "#",  email: "Rajaf3856@gmail.com" }
     },
     {
       name: "Abdul Basit",
@@ -47,7 +47,7 @@ const Leadership = () => {
       education: "BS Computer Science",
       experience: "7+ years",
       expertise: ["Network Security", "Cloud Infrastructure", "Firewall Management", "System Monitoring", "Disaster Recovery"],
-      social: { linkedin: "#",  email: "abdullah@gmail.com" }
+      social: { linkedin: "#",  email: "ma8021087@gmail.com" }
     },
     {
       name: "Mashahid Hussain Syed",
@@ -98,7 +98,7 @@ const Leadership = () => {
       education: "BS Artificial Intelligence",
       experience: "5+ years",
       expertise: ["Deep Learning", "Natural Language Processing", "Computer Vision", "Reinforcement Learning", "Large Language Models", "TensorFlow", "PyTorch", "Scikit-learn", "Data Analytics", "Model Optimization"],
-      social: { linkedin: "#", email: "ahmedraza@gmail.com" }
+      social: { linkedin: "#", email: "ahmedabbasi332003@gmail.com" }
     }
   ];
 

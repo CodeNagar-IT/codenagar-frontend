@@ -1,12 +1,11 @@
 // frontend/src/pages/Blog.jsx
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Search, Heart,
-  Clock, Sparkles,  Eye,
-  ChevronLeft, ChevronRight
+  Search, Heart, Clock, Sparkles, Eye, X, 
+  ChevronLeft, ChevronRight, Calendar, Tag, Share2,
+  Facebook, Twitter, Linkedin, LinkIcon, MessageCircle
 } from "lucide-react";
-
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -14,123 +13,226 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [likedPosts, setLikedPosts] = useState({});
+  const postsPerPage = 9;
 
-  // Mock blog data (will be replaced with API call)
-  const blogPosts = [
+  // Team members data
+  const teamMembers = [
     {
-      id: 1,
-      title: "The Future of Web Development: What to Expect in 2025",
-      slug: "future-of-web-development-2025",
-      excerpt: "Explore the emerging trends and technologies that will shape web development in the coming year, from AI-powered development to edge computing.",
-      content: "Full content here...",
-      category: "Web Development",
-      author: "Ahmed Butt",
-      authorAvatar: "https://ui-avatars.com/api/?background=0891b2&color=fff&name=Ahmed",
-      date: "2025-05-15",
-      readTime: "8 min read",
-      views: 1240,
-      likes: 89,
-      comments: 24,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=Web+Dev+2025",
-      tags: ["Web Development", "Trends", "AI"]
+      name: "Ahmed Butt",
+      role: "CEO & Founder",
+      image: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png",
+      expertise: ["Leadership", "Web Development", "Mobile Development", "Machine Learning", "Artificial Intelligence", "Cloud Architecture"]
     },
     {
-      id: 2,
-      title: "Building Scalable Mobile Apps with React Native",
-      slug: "scalable-mobile-apps-react-native",
-      excerpt: "Learn best practices for building performant and scalable mobile applications using React Native and modern architecture patterns.",
-      content: "Full content here...",
-      category: "Mobile Development",
-      author: "Khawaja Muzammil Rauf",
-      authorAvatar: "https://ui-avatars.com/api/?background=7c3aed&color=fff&name=Muzammil",
-      date: "2025-05-10",
-      readTime: "10 min read",
-      views: 890,
-      likes: 67,
-      comments: 18,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=React+Native",
-      tags: ["Mobile", "React Native", "Performance"]
+      name: "Raja Faiz Khan",
+      role: "Head of Business Development",
+      image: "https://i.ibb.co/XrsmrnGL/Screenshot-2026-05-22-022804.jpg",
+      expertise: ["Client Relations", "Business Strategy", "Technical Communication", "Partnerships"]
     },
     {
-      id: 3,
-      title: "Machine Learning in Production: A Practical Guide",
-      slug: "ml-in-production-guide",
-      excerpt: "From model training to deployment: a comprehensive guide to implementing machine learning solutions in production environments.",
-      content: "Full content here...",
-      category: "AI/ML",
-      author: "Ahmed Butt",
-      authorAvatar: "https://ui-avatars.com/api/?background=0891b2&color=fff&name=Ahmed",
-      date: "2025-05-05",
-      readTime: "12 min read",
-      views: 2150,
-      likes: 156,
-      comments: 42,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=ML+Production",
-      tags: ["Machine Learning", "AI", "DevOps"]
+      name: "Abdul Basit",
+      role: "Head of Human Resources",
+      image: "https://i.ibb.co/YsN0Tnc/Screenshot-2026-05-22-022936.jpg",
+      expertise: ["Employee Relations", "Conflict Resolution", "Talent Acquisition", "HR Strategy"]
     },
     {
-      id: 4,
-      title: "UI/UX Trends That Will Dominate 2025",
-      slug: "ui-ux-trends-2025",
-      excerpt: "Discover the latest UI/UX design trends that are reshaping digital experiences and how to implement them effectively.",
-      content: "Full content here...",
-      category: "Design",
-      author: "Mashahid Hussain Syed",
-      authorAvatar: "https://ui-avatars.com/api/?background=059669&color=fff&name=Mashahid",
-      date: "2025-04-28",
-      readTime: "6 min read",
-      views: 567,
-      likes: 45,
-      comments: 12,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=UI+UX+Trends",
-      tags: ["UI/UX", "Design", "Trends"]
+      name: "Muhammad Abdullah",
+      role: "Network Administrator",
+      image: "https://i.ibb.co/7NQZ1XKm/Screenshot-2026-05-22-023040.jpg",
+      expertise: ["Network Security", "Cloud Infrastructure", "Firewall Management", "System Monitoring"]
     },
     {
-      id: 5,
-      title: "Cloud Cost Optimization Strategies",
-      slug: "cloud-cost-optimization",
-      excerpt: "Practical strategies to reduce your cloud infrastructure costs without compromising performance or reliability.",
-      content: "Full content here...",
-      category: "Cloud Computing",
-      author: "Muhammad Abdullah",
-      authorAvatar: "https://ui-avatars.com/api/?background=ea580c&color=fff&name=Abdullah",
-      date: "2025-04-20",
-      readTime: "9 min read",
-      views: 734,
-      likes: 52,
-      comments: 16,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=Cloud+Cost",
-      tags: ["Cloud", "AWS", "Cost Optimization"]
+      name: "Mashahid Hussain Syed",
+      role: "Lead Technical Writer & Research Analyst",
+      image: "https://i.ibb.co/CsKcKbF1/Screenshot-2026-05-22-023730.jpg",
+      expertise: ["Thesis Writing", "Research Documentation", "Technical Reports", "MS Office Expert"]
     },
     {
-      id: 6,
-      title: "DevOps Best Practices for Startups",
-      slug: "devops-best-practices-startups",
-      excerpt: "How early-stage startups can implement DevOps practices without overwhelming their teams or budgets.",
-      content: "Full content here...",
-      category: "DevOps",
-      author: "Muhammad Imam Tariq Minhas",
-      authorAvatar: "https://ui-avatars.com/api/?background=dc2626&color=fff&name=Imam",
-      date: "2025-04-15",
-      readTime: "7 min read",
-      views: 623,
-      likes: 38,
-      comments: 9,
-      image: "https://placehold.co/800x400/1e293b/ffffff?text=DevOps",
-      tags: ["DevOps", "CI/CD", "Startups"]
+      name: "Khawaja Muzammil Rauf",
+      role: "Lead Mobile Application Developer",
+      image: "https://i.ibb.co/Kjxsc9t9/mzml.jpg",
+      expertise: ["React Native", "Flutter", "iOS Development", "Android Development"]
+    },
+    {
+      name: "Muhammad Imam Tariq Minhas",
+      role: "Senior Project Manager",
+      image: "https://i.ibb.co/4wrzWRZ7/113d20c2-110d-48b1-9d22-5210123efc7f.jpg",
+      expertise: ["Agile Methodology", "Scrum Master", "Risk Management", "Client Communication"]
+    },
+    {
+      name: "Raja Abdul Rehman Ansar",
+      role: "Operations Manager",
+      image: "https://i.ibb.co/YTWryYrc/Chat-GPT-Image-May-22-2026-03-19-45-AM.png",
+      expertise: ["Process Optimization", "Resource Management", "Quality Assurance", "Project Planning"]
+    },
+    {
+      name: "Ahmed Raza",
+      role: "Senior AI Engineer",
+      image: "https://i.ibb.co/SwM4S01J/Screenshot-2026-05-29-071038.jpg",
+      expertise: ["Deep Learning", "Natural Language Processing", "Computer Vision", "Large Language Models"]
     }
   ];
 
-  const categories = ["all", "Web Development", "Mobile Development", "AI/ML", "Design", "Cloud Computing", "DevOps"];
+  // Static blog posts data (no Math.random)
+  const blogPosts = useMemo(() => {
+    const posts = [];
+    
+    const topics = {
+      "Web Development": [
+        { title: "The Future of Web Development: What's Coming in 2025", daysOffset: 1 },
+        { title: "Building Accessible Web Applications: A Complete Guide", daysOffset: 5 },
+        { title: "Why Next.js is the Future of React Development", daysOffset: 10 },
+        { title: "WebAssembly: The Game Changer for Web Performance", daysOffset: 15 }
+      ],
+      "Mobile Development": [
+        { title: "React Native vs Flutter: Which One Should You Choose?", daysOffset: 2 },
+        { title: "Building Offline-First Mobile Apps", daysOffset: 7 },
+        { title: "The Evolution of Cross-Platform Development", daysOffset: 12 },
+        { title: "Push Notifications: Best Practices for Mobile Apps", daysOffset: 18 }
+      ],
+      "AI/ML": [
+        { title: "How to Implement RAG Systems in Production", daysOffset: 3 },
+        { title: "The Rise of Edge AI: Processing at the Source", daysOffset: 8 },
+        { title: "Fine-tuning Large Language Models for Business", daysOffset: 14 },
+        { title: "Computer Vision Applications in Retail", daysOffset: 20 }
+      ],
+      "Cloud Computing": [
+        { title: "Cloud Cost Optimization: Save 40% on AWS", daysOffset: 4 },
+        { title: "Multi-Cloud Strategy: Pros and Cons", daysOffset: 9 },
+        { title: "Serverless Architecture: When to Use It", daysOffset: 16 },
+        { title: "Disaster Recovery Planning in the Cloud", daysOffset: 22 }
+      ],
+      "DevOps": [
+        { title: "CI/CD Pipelines: From Zero to Hero", daysOffset: 6 },
+        { title: "Kubernetes for Small Teams: Overkill or Essential?", daysOffset: 11 },
+        { title: "Infrastructure as Code with Terraform", daysOffset: 17 },
+        { title: "Monitoring and Observability Best Practices", daysOffset: 23 }
+      ],
+      "Cybersecurity": [
+        { title: "Zero Trust Security: Implementation Guide", daysOffset: 13 },
+        { title: "Common API Security Vulnerabilities", daysOffset: 19 },
+        { title: "Social Engineering: How to Protect Your Team", daysOffset: 24 },
+        { title: "GDPR and Data Privacy Compliance", daysOffset: 28 }
+      ],
+      "Business & Strategy": [
+        { title: "Building a Tech Startup: Lessons Learned", daysOffset: 21 },
+        { title: "How to Scale Your Development Team", daysOffset: 25 },
+        { title: "Client Communication: Turning Requirements into Solutions", daysOffset: 29 },
+        { title: "The Art of Technical Proposal Writing", daysOffset: 32 }
+      ],
+      "HR & Culture": [
+        { title: "Remote Work: Building Culture Across Time Zones", daysOffset: 26 },
+        { title: "Hiring Top Tech Talent in Competitive Markets", daysOffset: 30 },
+        { title: "Employee Retention Strategies for Tech Companies", daysOffset: 33 },
+        { title: "Diversity and Inclusion in Tech", daysOffset: 35 }
+      ]
+    };
+
+    const categories = Object.keys(topics);
+    const images = [
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0",
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173",
+      "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa",
+      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e"
+    ];
+
+    const readTimes = [5, 6, 7, 8, 9, 10, 11, 12];
+    const viewsCounts = [120, 340, 560, 890, 1240, 2150, 3420, 4560];
+    const likesCounts = [15, 28, 45, 67, 89, 120, 156, 234];
+    const commentsCounts = [3, 8, 12, 18, 24, 32, 42, 56];
+
+    let postId = 1;
+    const startDate = new Date("2025-01-01");
+
+    for (const category of categories) {
+      const categoryTopics = topics[category];
+      for (let i = 0; i < categoryTopics.length; i++) {
+        const topic = categoryTopics[i];
+        // Cycle through team members instead of random
+        const author = teamMembers[(postId - 1) % teamMembers.length];
+        const date = new Date(startDate);
+        date.setDate(startDate.getDate() + topic.daysOffset);
+        
+        posts.push({
+          id: postId,
+          title: topic.title,
+          slug: topic.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          excerpt: `Discover ${topic.title.toLowerCase()} with insights from ${author.name}, ${author.role} at CodeNagar. Learn practical strategies and best practices.`,
+          content: `
+            <h2>Introduction</h2>
+            <p>In this comprehensive guide, ${author.name}, our ${author.role}, shares expert insights on ${topic.title.toLowerCase()}.</p>
+            
+            <h2>Key Insights</h2>
+            <p>Based on ${author.expertise.slice(0, 3).join(', ')} expertise, we've identified several key areas that businesses should focus on when implementing these strategies.</p>
+            
+            <h2>Practical Applications</h2>
+            <p>At CodeNagar, we've successfully implemented these approaches across multiple projects, resulting in improved efficiency and client satisfaction.</p>
+            
+            <h2>Best Practices</h2>
+            <ul>
+              <li>Start with a clear understanding of your requirements</li>
+              <li>Invest in proper planning and architecture</li>
+              <li>Regular testing and quality assurance</li>
+              <li>Continuous learning and adaptation</li>
+            </ul>
+            
+            <h2>Future Trends</h2>
+            <p>The landscape of ${category.toLowerCase()} is constantly evolving. Stay ahead by following industry leaders and investing in continuous learning.</p>
+            
+            <h2>Conclusion</h2>
+            <p>${author.name} emphasizes that success in ${category.toLowerCase()} comes from combining technical excellence with business understanding. At CodeNagar, we're committed to helping our clients navigate this journey.</p>
+          `,
+          category: category,
+          author: author.name,
+          authorRole: author.role,
+          authorAvatar: author.image,
+          authorExpertise: author.expertise.slice(0, 3),
+          date: date.toISOString().split('T')[0],
+          readTime: `${readTimes[postId % readTimes.length]} min read`,
+          views: viewsCounts[postId % viewsCounts.length],
+          likes: likesCounts[postId % likesCounts.length],
+          comments: commentsCounts[postId % commentsCounts.length],
+          image: images[postId % images.length],
+          tags: [category, author.expertise[0], "CodeNagar", "Tech Insights"]
+        });
+        postId++;
+      }
+    }
+
+    return posts;
+  }, [teamMembers]);
+
+  const categories = ["all", "Web Development", "Mobile Development", "AI/ML", "Cloud Computing", "DevOps", "Cybersecurity", "Business & Strategy", "HR & Culture"];
 
   useEffect(() => {
-    // Simulate API fetch
     setTimeout(() => {
       setPosts(blogPosts);
       setLoading(false);
     }, 500);
-  }, );
+  }, [blogPosts]);
+
+  const handleLike = (postId, e) => {
+    e.stopPropagation();
+    setLikedPosts(prev => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+    setPosts(prev => prev.map(post => 
+      post.id === postId 
+        ? { ...post, likes: post.likes + (likedPosts[postId] ? -1 : 1) }
+        : post
+    ));
+  };
 
   const filteredPosts = posts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -148,6 +250,26 @@ const Blog = () => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const sharePost = (platform, post) => {
+    const url = window.location.href;
+    const text = encodeURIComponent(`Check out "${post.title}" on CodeNagar Blog`);
+    switch(platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${encodeURIComponent(post.title)}`, '_blank');
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(url);
+        alert('Link copied to clipboard!');
+        break;
+    }
   };
 
   return (
@@ -189,7 +311,7 @@ const Blog = () => {
             className="px-4 py-2.5 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-white/10"
           >
             {categories.map(cat => (
-              <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+              <option key={cat} value={cat}>{cat === "all" ? "All Categories" : cat}</option>
             ))}
           </select>
         </div>
@@ -208,10 +330,10 @@ const Blog = () => {
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05 }}
+                  transition={{ delay: idx * 0.03 }}
                   whileHover={{ y: -4 }}
                   className="glass-card overflow-hidden group cursor-pointer"
-                  onClick={() => window.location.href = `/blog/${post.slug}`}
+                  onClick={() => setSelectedPost(post)}
                 >
                   <div className="h-48 overflow-hidden">
                     <img 
@@ -235,7 +357,7 @@ const Blog = () => {
                     <p className="text-gray-400 text-sm mb-4 line-clamp-2">{post.excerpt}</p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <img src={post.authorAvatar} alt={post.author} className="w-8 h-8 rounded-full" />
+                        <img src={post.authorAvatar} alt={post.author} className="w-8 h-8 rounded-full object-cover" />
                         <div>
                           <p className="text-sm font-semibold">{post.author}</p>
                           <p className="text-xs text-gray-500">{formatDate(post.date)}</p>
@@ -243,7 +365,13 @@ const Blog = () => {
                       </div>
                       <div className="flex items-center gap-3 text-gray-500 text-sm">
                         <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {post.views}</span>
-                        <span className="flex items-center gap-1"><Heart className="w-3 h-3" /> {post.likes}</span>
+                        <button 
+                          onClick={(e) => handleLike(post.id, e)}
+                          className="flex items-center gap-1 hover:text-red-400 transition"
+                        >
+                          <Heart className={`w-3 h-3 ${likedPosts[post.id] ? 'fill-red-500 text-red-500' : ''}`} /> 
+                          {post.likes}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -285,6 +413,156 @@ const Blog = () => {
             )}
           </>
         )}
+
+        {/* Blog Post Modal */}
+        <AnimatePresence>
+          {selectedPost && (
+            <div className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 overflow-y-auto" onClick={() => setSelectedPost(null)}>
+              <div className="min-h-screen py-8 px-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  className="max-w-4xl mx-auto bg-dark-200 rounded-2xl overflow-hidden border border-cyan-500/30"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedPost(null)}
+                    className="absolute top-4 right-4 z-10 p-2 bg-dark-400 rounded-full hover:bg-dark-300 transition"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+
+                  {/* Hero Image */}
+                  <div className="h-64 md:h-96 overflow-hidden">
+                    <img 
+                      src={selectedPost.image} 
+                      alt={selectedPost.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 md:p-8">
+                    {/* Categories and Meta */}
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <span className="text-xs px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full">
+                        {selectedPost.category}
+                      </span>
+                      <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {selectedPost.readTime}
+                      </span>
+                      <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <Calendar className="w-3 h-3" /> {formatDate(selectedPost.date)}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h1 className="text-3xl md:text-4xl font-bold mb-6">{selectedPost.title}</h1>
+
+                    {/* Author Info */}
+                    <div className="flex items-center gap-4 p-4 bg-dark-300/50 rounded-xl mb-8">
+                      <img 
+                        src={selectedPost.authorAvatar} 
+                        alt={selectedPost.author}
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                      <div>
+                        <h3 className="text-lg font-semibold">{selectedPost.author}</h3>
+                        <p className="text-cyan-400 text-sm">{selectedPost.authorRole}</p>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {selectedPost.authorExpertise.map((skill, i) => (
+                            <span key={i} className="text-xs px-2 py-0.5 bg-dark-400 rounded-full text-gray-400">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Blog Content */}
+                    <div 
+                      className="prose prose-invert prose-lg max-w-none"
+                      dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                    />
+
+                    {/* Tags */}
+                    <div className="mt-8 pt-6 border-t border-white/10">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Tag className="w-4 h-4 text-cyan-400" />
+                        <span className="font-semibold">Tags:</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedPost.tags.map((tag, i) => (
+                          <span key={i} className="text-xs px-3 py-1 bg-dark-400 rounded-full text-gray-400">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Share Section */}
+                    <div className="mt-8 pt-6 border-t border-white/10">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Share2 className="w-4 h-4 text-cyan-400" />
+                        Share this article:
+                      </h4>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => sharePost('facebook', selectedPost)}
+                          className="p-2 bg-[#1877f2]/20 text-[#1877f2] rounded-lg hover:bg-[#1877f2]/30 transition"
+                        >
+                          <Facebook className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => sharePost('twitter', selectedPost)}
+                          className="p-2 bg-[#1da1f2]/20 text-[#1da1f2] rounded-lg hover:bg-[#1da1f2]/30 transition"
+                        >
+                          <Twitter className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => sharePost('linkedin', selectedPost)}
+                          className="p-2 bg-[#0077b5]/20 text-[#0077b5] rounded-lg hover:bg-[#0077b5]/30 transition"
+                        >
+                          <Linkedin className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => sharePost('copy', selectedPost)}
+                          className="p-2 bg-gray-600/20 text-gray-400 rounded-lg hover:bg-gray-600/30 transition"
+                        >
+                          <LinkIcon className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="mt-6 flex items-center gap-6 pt-4 border-t border-white/10">
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <Eye className="w-4 h-4" />
+                        <span>{selectedPost.views} views</span>
+                      </div>
+                      <button 
+                        onClick={() => {
+                          const fakeEvent = { stopPropagation: () => {} };
+                          handleLike(selectedPost.id, fakeEvent);
+                        }}
+                        className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition"
+                      >
+                        <Heart className={`w-4 h-4 ${likedPosts[selectedPost.id] ? 'fill-red-500 text-red-500' : ''}`} />
+                        <span>{selectedPost.likes} likes</span>
+                      </button>
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <MessageCircle className="w-4 h-4" />
+                        <span>{selectedPost.comments} comments</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          )}
+        </AnimatePresence>
 
         {/* Newsletter CTA */}
         <motion.div 
