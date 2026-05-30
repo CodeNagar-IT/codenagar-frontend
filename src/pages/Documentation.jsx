@@ -1,5 +1,5 @@
 // frontend/src/pages/Documentation.jsx
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   BookOpen, Search, Code, Sparkles, ChevronRight, 
@@ -16,7 +16,13 @@ const Documentation = () => {
     category: "getting-started",
     doc: "introduction"
   });
-
+// Add this useEffect to scroll to top when document changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, [selectedDoc]);
   const documentation = {
     "getting-started": {
       title: "Getting Started",
@@ -52,7 +58,7 @@ CodeNagar is a comprehensive technology solutions provider offering software dev
 
 ## Getting Help
 
-If you need assistance, contact our support team at **support@codenagar.com** or visit our [contact page](/contact).
+If you need assistance, contact our support team at **info@codenagar.com** or visit our [contact page](/contact).
 
 ## Quick Links
 
@@ -114,7 +120,7 @@ Explore the rest of our documentation for detailed guides on specific services.
 
 ## Need Help?
 
-Contact our support team at **support@codenagar.com**
+Contact our support team at **info@codenagar.com**
           `
         }
       ]
@@ -765,7 +771,7 @@ We offer a comprehensive range of technology services including:
 
 ### How do I get a quote?
 
-Contact us through our [contact form](/contact) or email us directly at **sales@codenagar.com**. We'll respond within 24 hours.
+Contact us through our [contact form](/contact) or email us directly at **info@codenagar.com**. We'll respond within 24 hours.
 
 ### What are your payment terms?
 
@@ -801,8 +807,8 @@ Yes, we offer a free tier for developers to test our APIs:
 
 ### How do I get technical support?
 
-- Email: **support@codenagar.com**
-- Phone: **+92 5822 123456**
+- Email: **info@codenagar.com**
+- Phone: **+92 3075762192**
 - Live chat available on our website
 - Response time: Within 2 hours for Pro and Enterprise plans
 
@@ -899,8 +905,8 @@ Invoices are generated automatically and sent to your registered email address. 
 ## Contact Billing Support
 
 For billing inquiries:
-- Email: **billing@codenagar.com**
-- Phone: **+92 5822 123456**
+- Email: **info@codenagar.com**
+- Phone: **+92 3075762192**
 - Hours: Monday-Friday, 9AM-5PM
           `
         }
@@ -1198,7 +1204,7 @@ For billing inquiries:
                     Need more help?
                   </h3>
                   <p className="text-sm text-gray-400">
-                    Can't find what you're looking for? Contact our support team at <strong className="text-cyan-400">support@codenagar.com</strong>
+                    Can't find what you're looking for? Contact our support team at <strong className="text-cyan-400">info@codenagar.com</strong>
                   </p>
                 </div>
               </motion.div>
