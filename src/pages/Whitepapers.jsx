@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   FileText, Download, Sparkles, Search, 
   Calendar,  Eye, Clock, Award, X,
-  BookOpen
+  BookOpen,
   ChevronLeft, ChevronRight
 } from "lucide-react";
 
