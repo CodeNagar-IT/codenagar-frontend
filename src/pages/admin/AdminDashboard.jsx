@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   Users, Package, MessageSquare, GraduationCap, Briefcase, 
-  TrendingUp, Clock, ArrowRight, 
+  TrendingUp, Clock, ArrowRight, FileText, Eye,
   Download, RefreshCw, AlertCircle, CheckCircle, Activity,
   Award, GraduationCap as FYPIcon, Database as FYPProjectsIcon,
   Store, Phone, MapPin
@@ -21,17 +21,23 @@ const AdminDashboard = () => {
     completedInquiries: 0,
     unreadInquiries: 0
   });
+  const [blogStats, setBlogStats] = useState({
+  total: 0,
+  published: 0,
+  draft: 0,
+  totalViews: 0
+});
   const [recentReservations, setRecentReservations] = useState([]);
   const [recentMessages, setRecentMessages] = useState([]);
   const [recentApplications, setRecentApplications] = useState([]);
   const [recentFypInquiries, setRecentFypInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-
+  const [recentBlogs, setRecentBlogs] = useState([]);
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        const [statsRes, reservationsRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes] = await Promise.all([
+        const [statsRes, reservationsRes, messagesRes, appsRes, fypStatsRes, fypInquiriesRes, blogsRes] = await Promise.all([
           axios.get(`${import.meta.env.VITE_API_URL}/api/stats`),
           axios.get(`${import.meta.env.VITE_API_URL}/api/reservations/all`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
@@ -44,6 +50,9 @@ const AdminDashboard = () => {
           axios.get(`${import.meta.env.VITE_API_URL}/api/fyp/inquiries`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
           }),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/admin/blogs`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` }
+      }),
         ]);
         
         setStats(statsRes.data);
@@ -52,6 +61,16 @@ const AdminDashboard = () => {
         setRecentMessages(messagesRes.data.slice(0, 5));
         setRecentApplications(appsRes.data.slice(0, 5));
         setRecentFypInquiries(fypInquiriesRes.data.slice(0, 5));
+        setRecentBlogs(blogsRes.data.slice(0, 5));
+        // Calculate blog stats
+    const blogs = blogsRes.data;
+    setBlogStats({
+      total: blogs.length,
+      published: blogs.filter(b => b.status === "published").length,
+      draft: blogs.filter(b => b.status === "draft").length,
+      totalViews: blogs.reduce((sum, b) => sum + (b.views || 0), 0)
+    });
+
       } catch (err) {
         console.error("Failed to fetch dashboard data", err);
       } finally {
@@ -59,6 +78,7 @@ const AdminDashboard = () => {
         setRefreshing(false);
       }
     };
+
     
     fetchAllData();
   }, []);
@@ -106,6 +126,7 @@ const AdminDashboard = () => {
     { title: "Service Inquiries", value: stats.serviceInquiries || 0, icon: MessageSquare, color: "from-cyan-500 to-blue-500", link: "/admin/service-inquiries", change: "" },
     { title: "FYP Projects", value: stats.fypProjects || 0, icon: FYPProjectsIcon, color: "from-green-500 to-emerald-500", link: "/admin/fyp", change: "40% Off" },
     { title: "Student Inquiries", value: fypStats.totalInquiries || 0, icon: FYPIcon, color: "from-teal-500 to-green-500", link: "/admin/fyp", change: `${fypStats.unreadInquiries || 0} unread` },
+    { title: "Blog Posts", value: blogStats.total || 0, icon: FileText, color: "from-pink-500 to-rose-500", link: "/admin/blogs", change: `${blogStats.published} published` },
   ];
 
   const getStatusColor = (status) => {
@@ -232,7 +253,29 @@ const AdminDashboard = () => {
             <div className="text-xs text-gray-400">Completed</div>
           </div>
         </div>
-
+{/* Blog Quick Stats Row */}
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+  <div className="glass-card p-4 text-center">
+    <FileText className="w-6 h-6 mx-auto text-pink-400 mb-2" />
+    <div className="text-2xl font-bold">{blogStats.total}</div>
+    <div className="text-xs text-gray-400">Total Posts</div>
+  </div>
+  <div className="glass-card p-4 text-center">
+    <CheckCircle className="w-6 h-6 mx-auto text-green-400 mb-2" />
+    <div className="text-2xl font-bold">{blogStats.published}</div>
+    <div className="text-xs text-gray-400">Published</div>
+  </div>
+  <div className="glass-card p-4 text-center">
+    <Clock className="w-6 h-6 mx-auto text-yellow-400 mb-2" />
+    <div className="text-2xl font-bold">{blogStats.draft}</div>
+    <div className="text-xs text-gray-400">Drafts</div>
+  </div>
+  <div className="glass-card p-4 text-center">
+    <Eye className="w-6 h-6 mx-auto text-blue-400 mb-2" />
+    <div className="text-2xl font-bold">{blogStats.totalViews.toLocaleString()}</div>
+    <div className="text-xs text-gray-400">Total Views</div>
+  </div>
+</div>
         {/* Charts Overview */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
@@ -400,7 +443,68 @@ const AdminDashboard = () => {
             </table>
           </div>
         </div>
-
+{/* Recent Blog Posts Section */}
+<div className="bg-gradient-to-r from-pink-900/20 to-rose-900/20 rounded-2xl p-6 border border-pink-500/30 mb-8">
+  <div className="flex justify-between items-center mb-4">
+    <h2 className="text-xl font-bold flex items-center gap-2">
+      <FileText className="w-5 h-5 text-pink-400" />
+      Recent Blog Posts
+    </h2>
+    <Link to="/admin/blogs" className="text-pink-400 text-sm hover:text-pink-300 flex items-center gap-1">
+      Manage Blogs <ArrowRight className="w-4 h-4" />
+    </Link>
+  </div>
+  
+  <div className="overflow-x-auto">
+    <table className="w-full">
+      <thead className="border-b border-pink-500/30">
+        <tr className="text-left text-gray-400 text-sm">
+          <th className="pb-3">Title</th>
+          <th className="pb-3">Author</th>
+          <th className="pb-3">Category</th>
+          <th className="pb-3">Views</th>
+          <th className="pb-3">Status</th>
+          <th className="pb-3">Date</th>
+         </tr>
+      </thead>
+      <tbody>
+        {/* You'll need to fetch recent blogs separately or use existing data */}
+        {recentBlogs.map((blog) => (
+          <tr key={blog._id} className="border-b border-pink-500/20 hover:bg-pink-500/5 transition">
+            <td className="py-3">
+              <div>
+                <p className="font-semibold text-sm line-clamp-1">{blog.title}</p>
+                <p className="text-xs text-gray-500 line-clamp-1">{blog.excerpt}</p>
+              </div>
+            </td>
+            <td className="py-3 text-sm">{blog.author.name}</td>
+            <td className="py-3 text-sm text-gray-400">{blog.category}</td>
+            <td className="py-3 text-sm">{blog.views || 0}</td>
+            <td className="py-3">
+              <span className={`text-xs px-2 py-1 rounded-full ${
+                blog.status === "published" 
+                  ? "bg-green-500/20 text-green-400" 
+                  : "bg-yellow-500/20 text-yellow-400"
+              }`}>
+                {blog.status}
+              </span>
+            </td>
+            <td className="py-3 text-sm text-gray-400">
+              {new Date(blog.publishedAt || blog.createdAt).toLocaleDateString()}
+            </td>
+           </tr>
+        ))}
+        {recentBlogs.length === 0 && (
+          <tr>
+            <td colSpan="6" className="py-8 text-center text-gray-500">
+              No blog posts yet. <Link to="/admin/blogs" className="text-pink-400">Create your first blog →</Link>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
         {/* Recent Messages & Applications */}
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
@@ -482,6 +586,7 @@ const AdminDashboard = () => {
             { title: "View Reservations", icon: Store, link: "/admin/reservations", color: "bg-green-600" },
             { title: "Manage Courses", icon: GraduationCap, link: "/admin/courses", color: "bg-blue-600" },
             { title: "Manage FYP", icon: FYPIcon, link: "/admin/fyp", color: "bg-emerald-600" },
+            { title: "Write Blog", icon: FileText, link: "/admin/blogs", color: "bg-pink-600" },
             { title: "Export Data", icon: Download, link: "/admin/export", color: "bg-orange-600" },
           ].map((action, idx) => (
             <Link key={idx} to={action.link}>

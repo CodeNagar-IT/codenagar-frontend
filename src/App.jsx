@@ -75,6 +75,7 @@ import AdminCareers from "./pages/admin/AdminCareers";
 import AdminEvents from "./pages/admin/AdminEvents";
 import AdminJobs from "./pages/admin/AdminJobs";
 import IOSDev from "./pages/services/iOSDev";
+import AdminBlogs from "./pages/admin/AdminBlogs";
 function App() {
   return (
     <AuthProvider>
@@ -155,6 +156,7 @@ function App() {
 <Route path="/admin/fyp" element={<AdminRoute><AdminFYP /></AdminRoute>} />
 <Route path="/admin/portfolio" element={<AdminRoute><AdminPortfolio /></AdminRoute>} />
 <Route path="/admin/service-inquiries" element={<AdminRoute><AdminServiceInquiries /></AdminRoute>} />
+<Route path="/admin/blogs" element={<AdminRoute><AdminBlogs /></AdminRoute>} />
             </Routes>
             <Footer />
           </div>
