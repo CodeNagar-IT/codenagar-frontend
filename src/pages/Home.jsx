@@ -29,25 +29,25 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Ahmed Raza",
-      role: "CTO, TechCorp",
+      name: "Basit Ali Jahan",
+      role: "CEO, JahanSaaS",
       content: "CodeNagar delivered an exceptional web application that exceeded our expectations. Their team is professional, skilled, and responsive.",
       rating: 5,
-      avatar: "https://i.ibb.co/SwM4S01J/Screenshot-2026-05-29-071038.jpg"
+      avatar: "https://i.ibb.co/wZMBRYJy/Screenshot-2026-05-31-051043.jpg"
     },
     {
-      name: "Sarah Khan",
-      role: "CEO, FashionHub",
-      content: "The e-commerce platform they built transformed our business. Sales increased by 300% within 6 months!",
+      name: "Syed Saqlain Sajjad",
+      role: "Jr. ERP Consultant, Dynamics 360",
+      content: "The ERP solution CodeNagar delivered has revolutionized our operations. Real-time inventory tracking, automated workflows, and powerful analytics have made our team more efficient than ever. Highly recommended!",
       rating: 5,
-      avatar: "https://ui-avatars.com/api/?background=0891b2&color=fff&name=Sarah"
+      avatar: "https://i.ibb.co/dsjhZVbB/1776872295633.jpg"
     },
     {
-      name: "Usman Chaudhry",
-      role: "Founder, PropertyFinder",
-      content: "Outstanding mobile app development. The AR feature has been a game-changer for our real estate platform.",
+      name: "Syed Muhammad",
+      role: "Lead App Developer, Firefly Tech Solutions",
+      content: "CodeNagar's mobile development expertise is outstanding. They delivered a complex cross-platform app that exceeded our expectations. The app has 50,000+ downloads with a 4.8-star rating. Their clean code and performance optimization set them apart from other vendors. We're now working on three more projects together!",
       rating: 5,
-      avatar: "https://ui-avatars.com/api/?background=7c3aed&color=fff&name=Usman"
+      avatar: "https://i.ibb.co/TX2MzQX/1769055379431.png" 
     },
   ];
 
@@ -65,7 +65,7 @@ const Home = () => {
       category: "IoT",
       price: "PKR 26,999",
       discount: "40% OFF",
-      image: "https://images.unsplash.com/photo-1592982537447-6f2a6a0b5e9b",
+      image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449",
       link: "/fyp"
     },
     {
@@ -117,7 +117,7 @@ const Home = () => {
     { name: "NexGen Solutions", logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop" },
     { name: "CloudScale", logo: "https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=100&h=100&fit=crop" },
     { name: "VentureSpark", logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop" },
-    { name: "EduFuture", logo: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=100&h=100&fit=crop" },
+    { name: "JahanSaaS", logo: "https://i.ibb.co/8D0xB45R/jahan-saas-logo.jpg" },
   ];
 
   return (
@@ -535,15 +535,15 @@ const Home = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-gray-300">
                   <MapPin className="w-5 h-5 text-blue-400" />
-                  <span>CodeNagar Store, Muzaffarabad City</span>
+                  <span>CodeNagar, Sajjad Complex, Upper Adda, Muzaffarabad</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
                   <Phone className="w-5 h-5 text-blue-400" />
-                  <span>+92 5822 123456</span>
+                  <span>+92 3075762192</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
                   <Mail className="w-5 h-5 text-blue-400" />
-                  <span>store@codenagar.com</span>
+                  <span>info@codenagar.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
                   <Clock className="w-5 h-5 text-blue-400" />
