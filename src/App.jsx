@@ -25,6 +25,10 @@ import Documentation from "./pages/Documentation";
 import Webinars from "./pages/Webinars";
 import Portfolio from "./pages/Portfolio";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import RefundPolicy from "./pages/RefundPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
 // Service Pages
 import Services from "./pages/services/Services";
 import WebDev from "./pages/services/WebDev";
@@ -101,7 +105,10 @@ function App() {
 <Route path="/docs" element={<Documentation />} />
 <Route path="/webinars" element={<Webinars />} />
 <Route path="/portfolio" element={<Portfolio />} />
-<Route path="/admin/portfolio" element={<AdminRoute><AdminPortfolio /></AdminRoute>} />
+<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+<Route path="/terms-of-service" element={<TermsOfService />} />
+<Route path="/refund-policy" element={<RefundPolicy />} />
+<Route path="/cookie-policy" element={<CookiePolicy />} />
               {/* Service Routes */}
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDev />} />
@@ -157,6 +164,7 @@ function App() {
 <Route path="/admin/portfolio" element={<AdminRoute><AdminPortfolio /></AdminRoute>} />
 <Route path="/admin/service-inquiries" element={<AdminRoute><AdminServiceInquiries /></AdminRoute>} />
 <Route path="/admin/blogs" element={<AdminRoute><AdminBlogs /></AdminRoute>} />
+
             </Routes>
             <Footer />
           </div>

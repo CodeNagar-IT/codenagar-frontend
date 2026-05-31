@@ -6,7 +6,7 @@ import {
   CheckCircle, AlertCircle, Sparkles, Headphones, Globe, Users,
   Clock as ClockIcon, Award, Shield, ThumbsUp
 } from "lucide-react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import axios from "axios";
 
 const Contact = () => {
@@ -55,11 +55,10 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: "Facebook", icon: FaFacebook, href: "https://facebook.com/codenagar", color: "hover:bg-blue-600" },
-    { name: "Twitter", icon: FaTwitter, href: "https://twitter.com/codenagar", color: "hover:bg-sky-500" },
+    { name: "Facebook", icon: FaFacebook, href: "https://facebook.com/share/1XkMtYKSPP/", color: "hover:bg-blue-600" },
     { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/company/codenagar", color: "hover:bg-blue-700" },
-    { name: "Instagram", icon: FaInstagram, href: "https://instagram.com/codenagar", color: "hover:bg-pink-600" },
-    { name: "Github", icon: FaGithub, href: "https://github.com/codenagar", color: "hover:bg-pink-600" },
+    { name: "Instagram", icon: FaInstagram, href: "https://instagram.com/code_nagar", color: "hover:bg-pink-600" },
+    { name: "Github", icon: FaGithub, href: "https://github.com/codenagar-tech", color: "hover:bg-pink-600" },
   ];
 
   const officeHours = [
