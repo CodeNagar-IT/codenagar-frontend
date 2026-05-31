@@ -319,7 +319,7 @@ const Home = () => {
             <p className="text-gray-400 max-w-2xl mx-auto">Trusted by businesses and students across Pakistan</p>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 text-center">
             {[
               { icon: Code, value: "50+", label: "Projects Delivered" },
               { icon: Users, value: "200+", label: "Students Trained" },
@@ -336,7 +336,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }} 
                 transition={{ delay: idx * 0.05 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-gray-800/30 rounded-2xl p-6 backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 transition-all"
+                className="bg-gray-800/30 rounded-xl md:rounded-2xl p-3 md:p-6 backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 transition-all"
               >
                 <stat.icon className="w-12 h-12 mx-auto mb-3 text-blue-400" />
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{stat.value}</div>
@@ -497,7 +497,7 @@ const Home = () => {
             <p className="text-gray-400 text-sm">We partner with the best in the business</p>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center items-center gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 partners-gap">
             {partners.map((partner, idx) => (
               <motion.div
                 key={idx}

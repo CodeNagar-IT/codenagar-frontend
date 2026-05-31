@@ -148,7 +148,7 @@ const Navbar = () => {
     
     if (activeDropdown === "services") {
       return (
-        <div className="w-[1000px] p-6">
+        <div className="w-screen max-w-[95vw] lg:w-[1000px] p-4 md:p-6">
           <div className="grid grid-cols-5 gap-6">
             {/* Web Development Column */}
             <div>
