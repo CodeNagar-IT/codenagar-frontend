@@ -89,7 +89,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/", icon: Home },
     { name: "Services", path: "/services", dropdown: "services", megaMenu: true, icon: Code },
-    { name: "Courses", path: "/courses", dropdown: "courses", icon: BookOpen },
+    { name: "Courses", path: "/courses/courses-coming-soon", icon: BookOpen },
     { name: "Store", path: "/store", icon: ShoppingBag },
     { name: "About", path: "/about", dropdown: "about", icon: Briefcase },
     { name: "Resources", path: "/resources", dropdown: "resources", icon: FileText },
@@ -634,19 +634,14 @@ const Navbar = () => {
                   {renderMobileDropdown("services", null, true)}
                 </div>
 
-                <div>
-                  <button
-                    onClick={() => toggleMobileDropdown("courses")}
-                    className="flex items-center justify-between w-full py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
-                  >
-                    <div className="flex items-center gap-2">
-                      <BookOpen className="w-5 h-5 text-cyan-400" />
-                      Courses
-                    </div>
-                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileOpenDropdown === "courses" ? "rotate-180" : ""}`} />
-                  </button>
-                  {renderMobileDropdown("courses", coursesDropdown)}
-                </div>
+                <Link
+                  to="/courses/courses-coming-soon"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
+                >
+                  <GraduationCap className="w-5 h-5 text-cyan-400" />
+                  Courses
+                </Link>
 
                 <Link
                   to="/store"

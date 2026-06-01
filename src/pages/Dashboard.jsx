@@ -53,13 +53,13 @@ const Dashboard = () => {
 
   const statCards = [
     { title: "Total Reservations", value: stats.reservations, icon: ShoppingBag, color: "from-blue-500 to-cyan-500", link: "/my-reservations", bgColor: "bg-blue-500/10" },
-    { title: "Course Applications", value: stats.applications, icon: BookOpen, color: "from-blue-500 to-indigo-500", link: "/courses", bgColor: "bg-blue-500/10" },
+    { title: "Course Applications", value: stats.applications, icon: BookOpen, color: "from-blue-500 to-indigo-500", link: "/courses/courses-coming-soon", bgColor: "bg-blue-500/10" },
     { title: "Support Tickets", value: stats.messages, icon: MessageSquare, color: "from-green-500 to-emerald-500", link: "/contact", bgColor: "bg-green-500/10" },
   ];
 
   const quickActions = [
     { title: "Browse Store", icon: ShoppingBag, link: "/store", color: "bg-blue-600" },
-    { title: "Explore Courses", icon: BookOpen, link: "/courses", color: "bg-blue-600" },
+    { title: "Explore Courses", icon: BookOpen, link: "/courses/courses-coming-soon", color: "bg-blue-600" },
     { title: "My Reservations", icon: Package, link: "/my-reservations", color: "bg-orange-600" },
     { title: "Contact Support", icon: MessageSquare, link: "/contact", color: "bg-green-600" },
   ];
@@ -225,7 +225,7 @@ const Dashboard = () => {
                 <BookOpen className="w-5 h-5 text-blue-400" /> 
                 Course Applications
               </h2>
-              <Link to="/courses" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1 transition-all hover:gap-2">
+              <Link to="/courses/courses-coming-soon" className="text-blue-400 text-sm hover:text-blue-300 flex items-center gap-1 transition-all hover:gap-2">
                 Browse <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
@@ -233,7 +233,7 @@ const Dashboard = () => {
               <div className="text-center py-8">
                 <BookOpen className="w-12 h-12 mx-auto text-gray-600 mb-3" />
                 <p className="text-gray-400">No applications yet</p>
-                <Link to="/courses" className="text-blue-400 text-sm mt-2 inline-block hover:underline">
+                <Link to="/courses/courses-coming-soon" className="text-blue-400 text-sm mt-2 inline-block hover:underline">
                   Explore Courses →
                 </Link>
               </div>

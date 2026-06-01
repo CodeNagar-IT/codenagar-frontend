@@ -57,7 +57,7 @@ import AdminFYP from "./pages/admin/AdminFYP";
 import Courses from "./pages/courses/Courses";
 import CourseDetails from "./pages/courses/CourseDetails";
 import CourseApply from "./pages/courses/CourseApply";
-
+import CoursesComingSoon from "./pages/courses/CoursesComingSoon";
 // Store Pages
 import Store from "./pages/store/Store";
 import ProductDetails from "./pages/store/ProductDetails";
@@ -138,7 +138,7 @@ function App() {
               <Route path="/courses" element={<Courses />} />
               <Route path="/courses/:slug" element={<CourseDetails />} />
               <Route path="/courses/:slug/apply" element={<CourseApply />} />
-              
+              <Route path="courses/courses-coming-soon" element={<CoursesComingSoon />} />
               {/* Store Routes */}
               <Route path="/store" element={<Store />} />
               <Route path="/store/product/:id" element={<ProductDetails />} />

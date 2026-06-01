@@ -17,7 +17,7 @@ const Footer = () => {
     { name: "Home", path: "/", icon: "🏠" },
     { name: "About Us", path: "/about", icon: "👥" },
     { name: "Services", path: "/services", icon: "⚙️" },
-    { name: "Courses", path: "/courses", icon: "📚" },
+    { name: "Courses", path: "/courses/courses-coming-soon", icon: "📚" },
     { name: "Hardware Store", path: "/store", icon: "🛒" },
     { name: "FYP Projects", path: "/fyp", icon: "🎓" },
     { name: "Portfolio", path: "/portfolio", icon: "💼" },
@@ -227,7 +227,7 @@ const Footer = () => {
               <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">For Students</h4>
               <ul className="space-y-1">
                 <li><Link to="/fyp" className="text-gray-400 hover:text-green-400 text-sm transition">FYP Projects (40% OFF)</Link></li>
-                <li><Link to="/courses" className="text-gray-400 hover:text-blue-400 text-sm transition">IT Courses</Link></li>
+                <li><Link to="/courses/courses-coming-soon" className="text-gray-400 hover:text-blue-400 text-sm transition">IT Courses</Link></li>
                 <li><Link to="/careers" className="text-gray-400 hover:text-blue-400 text-sm transition">Internships</Link></li>
               </ul>
             </div>
