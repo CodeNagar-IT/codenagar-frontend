@@ -325,7 +325,7 @@ const Whitepapers = () => {
       category: "Software Development",
       author: "Ahmed Butt",
       authorRole: "CEO & Founder",
-      authorAvatar: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png",
+      authorAvatar: "https://i.ibb.co/QFp1SHFH/Ahmed.jpg",
       date: "2024-07-10",
       pages: 38,
       downloads: 2100,

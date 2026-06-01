@@ -12,7 +12,7 @@ const Leadership = () => {
     {
       name: "Ahmed Butt",
       role: "CEO & Founder",
-      image: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png",
+      image: "https://i.ibb.co/QFp1SHFH/Ahmed.jpg",
       bio: "Visionary tech entrepreneur with 5+ years of full-stack experience across web, mobile, AI, and ML. Previously led engineering teams at top tech companies. Passionate about transforming ideas into scalable digital solutions.",
       education: "BS Computer Science, COMSATS University Islamabad",
       experience: "5+ years",

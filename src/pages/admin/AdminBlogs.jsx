@@ -47,7 +47,7 @@ const AdminBlogs = () => {
     {
       name: "Ahmed Butt",
       role: "CEO & Founder",
-      avatar: "https://i.ibb.co/5hdfMW9G/20260501-0530-image.png",
+      avatar: "https://i.ibb.co/QFp1SHFH/Ahmed.jpg",
       expertise: ["Web Development", "AI/ML", "Cloud Architecture", "Leadership"]
     },
     {
