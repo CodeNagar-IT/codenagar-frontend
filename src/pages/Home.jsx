@@ -54,7 +54,7 @@ const Home = () => {
     {
       title: "AI-Powered Resume Screening System",
       category: "AI/ML",
-      price: "PKR 35,999",
+      price: "PKR 100,000",
       discount: "40% OFF",
       image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4",
       link: "/fyp"
@@ -62,7 +62,7 @@ const Home = () => {
     {
       title: "Smart Agriculture IoT System",
       category: "IoT",
-      price: "PKR 26,999",
+      price: "PKR 75,000",
       discount: "40% OFF",
       image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449",
       link: "/fyp"
@@ -70,7 +70,7 @@ const Home = () => {
     {
       title: "Blockchain Voting System",
       category: "Blockchain",
-      price: "PKR 41,999",
+      price: "PKR 116,000",
       discount: "40% OFF",
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
       link: "/fyp"
@@ -78,7 +78,7 @@ const Home = () => {
     {
       title: "Mental Health Chatbot",
       category: "AI/ML",
-      price: "PKR 29,999",
+      price: "PKR 83,000",
       discount: "40% OFF",
       image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e",
       link: "/fyp"

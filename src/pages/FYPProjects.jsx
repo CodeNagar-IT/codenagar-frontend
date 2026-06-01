@@ -27,6 +27,12 @@ const FYPProjects = () => {
 
   const types = ["all", "Project", "Thesis", "Report"];
 
+  // Helper function to format price with commas
+  const formatPrice = (price) => {
+    if (!price && price !== 0) return "0";
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const fetchProjects = async () => {
     try {
       setLoading(true);
@@ -274,16 +280,16 @@ const FYPProjects = () => {
                   </h3>
                   <p className="text-gray-400 text-sm line-clamp-2 mb-3">{project.description}</p>
                   
-                  {/* Pricing with discount */}
+                  {/* Pricing with discount - Added comma formatting */}
                   <div className="mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-green-400">${project.studentPrice}</span>
-                      <span className="text-sm text-gray-500 line-through">${project.originalPrice}</span>
+                      <span className="text-2xl font-bold text-green-400">PKR {formatPrice(project.studentPrice)}</span>
+                      <span className="text-sm text-gray-500 line-through">PKR {formatPrice(project.originalPrice)}</span>
                       <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">
                         {project.discountPercentage}% OFF
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500">Regular: ${project.price} | Student: ${project.studentPrice}</p>
+                    <p className="text-xs text-gray-500">Regular: PKR {formatPrice(project.price)} | Student: PKR {formatPrice(project.studentPrice)}</p>
                   </div>
                   
                   <div className="flex flex-wrap gap-1 mb-3">

@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Search, Filter, Sparkles, Star, X, MapPin, Clock, Phone } from "lucide-react";
+import { Search, Filter, Sparkles, Star, X, MapPin, Clock, Phone, Calendar, Bell, Gift } from "lucide-react";
 import axios from "axios";
 import { useCart } from "../../context/CartContext";
 
@@ -16,19 +16,63 @@ const Store = () => {
   const [sortBy, setSortBy] = useState("default");
   const { addToCart } = useCart();
 
+  // Coming Soon Counter State
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const targetDate = new Date("2026-07-01T00:00:00");
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
-        setProducts(response.data);
-        const uniqueCategories = [...new Set(response.data.map(p => p.category))];
-        setCategories(uniqueCategories);
-      } catch (err) {
-        console.error("Failed to fetch products", err);
-      } finally {
-        setLoading(false);
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
       }
     };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+      setTimeout(() => setSubscribed(false), 3000);
+      setEmail("");
+    }
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
+      setProducts(response.data);
+      const uniqueCategories = [...new Set(response.data.map(p => p.category))];
+      setCategories(uniqueCategories);
+    } catch (err) {
+      console.error("Failed to fetch products", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProducts();
   }, []);
 
@@ -83,11 +127,86 @@ const Store = () => {
           </p>
         </motion.div>
 
+        {/* COMING SOON COUNTDOWN TIMER */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-purple-600/20 rounded-2xl p-6 mb-8 border border-blue-500/30"
+        >
+          <div className="text-center mb-4">
+            <h2 className="text-xl font-bold mb-1">🎉 Grand Opening Coming Soon! 🎉</h2>
+            <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
+              <Calendar className="w-4 h-4" />
+              <span>Opening July 1st, 2026</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
+            <div className="text-center">
+              <div className="bg-dark-400 rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400">{timeLeft.days}</div>
+                <div className="text-[10px] text-gray-400">Days</div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="bg-dark-400 rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400">{timeLeft.hours}</div>
+                <div className="text-[10px] text-gray-400">Hours</div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="bg-dark-400 rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400">{timeLeft.minutes}</div>
+                <div className="text-[10px] text-gray-400">Mins</div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="bg-dark-400 rounded-xl p-3">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400">{timeLeft.seconds}</div>
+                <div className="text-[10px] text-gray-400">Secs</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Newsletter Signup for Opening Alerts */}
+          <div className="mt-4 text-center">
+            <form onSubmit={handleSubscribe} className="flex max-w-sm mx-auto gap-2">
+              <input
+                type="email"
+                placeholder="Get opening day alerts"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-3 py-2 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-white/10 text-sm"
+              />
+              <button type="submit" className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all whitespace-nowrap flex items-center gap-1">
+                <Bell className="w-4 h-4" /> Notify
+              </button>
+            </form>
+            {subscribed && (
+              <p className="text-green-400 text-xs mt-2">Thanks! We'll notify you about the opening.</p>
+            )}
+          </div>
+        </motion.div>
+
+        {/* Grand Opening Offer Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-2xl p-3 mb-8 border border-green-500/30"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-3 text-center">
+            <Gift className="w-5 h-5 text-green-400" />
+            <span className="text-green-400 font-semibold text-sm">Grand Opening Special!</span>
+            <span className="text-gray-300 text-sm">20% off on first purchase + free gift</span>
+          </div>
+        </motion.div>
+
         {/* Store Info Banner */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2 }}
           className="mb-8 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl p-4 border border-blue-500/30"
         >
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -320,9 +439,9 @@ const Store = () => {
             ></iframe>
           </div>
           <div className="mt-4 text-center text-gray-400 text-sm">
-            <p>📍 CodeNagar Store, Muzaffarabad City</p>
+            <p>📍 CodeNagar, Sajjad Complex, Upper Adda, Muzaffarabad </p>
             <p>🕐 Monday - Saturday: 10:00 AM - 8:00 PM | Sunday: Closed</p>
-            <p>📞 +92 5822 123456 | ✉️ store@codenagar.com</p>
+            <p>📞 +92 3075762192 | ✉️ info@codenagar.com</p>
           </div>
         </motion.div>
       </div>

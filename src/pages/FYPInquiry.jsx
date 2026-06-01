@@ -39,6 +39,12 @@ const FYPInquiry = () => {
     customTechnologies: "",
   });
 
+  // Helper function to format price with commas
+  const formatPrice = (price) => {
+    if (!price && price !== 0) return "0";
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   useEffect(() => {
     // Check if it's a custom project inquiry FIRST
     if (slug === "custom") {
@@ -128,9 +134,9 @@ const FYPInquiry = () => {
     }
 
     try {
-     await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry`, formDataToSend, {
-  headers: { "Content-Type": "multipart/form-data" },
-});
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/fyp/inquiry`, formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       
       setStatus({ type: "success", message: "Inquiry submitted successfully! We'll contact you within 24 hours." });
       setTimeout(() => {
@@ -205,8 +211,8 @@ const FYPInquiry = () => {
                 <p className="text-gray-400 text-sm">Duration: {project.duration}</p>
               </div>
               <div className="text-right">
-                <div className="text-2xl font-bold text-green-400">${project.studentPrice}</div>
-                <p className="text-xs text-gray-500 line-through">${project.originalPrice}</p>
+                <div className="text-2xl font-bold text-green-400">PKR {formatPrice(project.studentPrice)}</div>
+                <p className="text-xs text-gray-500 line-through">PKR {formatPrice(project.originalPrice)}</p>
                 <p className="text-xs text-green-400">{project.discountPercentage}% Student Discount</p>
               </div>
             </div>
@@ -469,11 +475,11 @@ const FYPInquiry = () => {
                 className="w-full pl-10 pr-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 border border-white/10"
               >
                 <option value="">Select Budget Range</option>
-                <option>$50 - $100</option>
-                <option>$100 - $200</option>
-                <option>$200 - $300</option>
-                <option>$300 - $500</option>
-                <option>$500+</option>
+                <option>PKR 50,000 - 80,000</option>
+                <option>PKR 80,000 - 100,000</option>
+                <option>PKR 100,000 - 150,000</option>
+                <option>PKR 150,000 - 200,000</option>
+                <option>PKR 200,000 +</option>
               </select>
             </div>
           </div>
