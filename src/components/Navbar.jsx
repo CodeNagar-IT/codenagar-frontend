@@ -120,7 +120,6 @@ const Navbar = () => {
     { name: "Events", path: "/events", icon: Calendar },
   ];
 
-  // User menu items
   const userMenuItems = [
     { name: "Dashboard", path: "/dashboard", icon: Layout },
     { name: "My Reservations", path: "/my-reservations", icon: ShoppingBag },
@@ -148,12 +147,12 @@ const Navbar = () => {
     
     if (activeDropdown === "services") {
       return (
-        <div className="w-screen max-w-[95vw] lg:w-[1000px] p-4 md:p-6">
-          <div className="grid grid-cols-5 gap-6">
+        <div className="w-[90vw] max-w-[90vw] lg:w-[1000px] p-4 md:p-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
             {/* Web Development Column */}
             <div>
-              <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
-                <Code className="w-4 h-4" /> Web Development
+              <h4 className="text-cyan-400 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+                <Code className="w-3 h-3 md:w-4 md:h-4" /> Web Development
               </h4>
               <ul className="space-y-2">
                 {services.web.map((item) => (
@@ -163,11 +162,11 @@ const Navbar = () => {
                       className="block group"
                       onClick={() => setActiveDropdown(null)}
                     >
-                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                        <item.icon className="w-3.5 h-3.5" />
-                        {item.name}
+                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
+                        <item.icon className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="truncate">{item.name}</span>
                       </div>
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500">{item.description}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 group-hover:text-gray-500 hidden md:block">{item.description}</p>
                     </Link>
                   </li>
                 ))}
@@ -176,8 +175,8 @@ const Navbar = () => {
             
             {/* Mobile Development Column */}
             <div>
-              <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
-                <Smartphone className="w-4 h-4" /> Mobile Development
+              <h4 className="text-cyan-400 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+                <Smartphone className="w-3 h-3 md:w-4 md:h-4" /> Mobile
               </h4>
               <ul className="space-y-2">
                 {services.mobile.map((item) => (
@@ -187,11 +186,11 @@ const Navbar = () => {
                       className="block group"
                       onClick={() => setActiveDropdown(null)}
                     >
-                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                        <item.icon className="w-3.5 h-3.5" />
-                        {item.name}
+                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
+                        <item.icon className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="truncate">{item.name}</span>
                       </div>
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500">{item.description}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 group-hover:text-gray-500 hidden md:block">{item.description}</p>
                     </Link>
                   </li>
                 ))}
@@ -200,8 +199,8 @@ const Navbar = () => {
             
             {/* AI & ML Column */}
             <div>
-              <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
-                <Brain className="w-4 h-4" /> AI & ML
+              <h4 className="text-cyan-400 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+                <Brain className="w-3 h-3 md:w-4 md:h-4" /> AI & ML
               </h4>
               <ul className="space-y-2">
                 {services.ai.map((item) => (
@@ -211,11 +210,11 @@ const Navbar = () => {
                       className="block group"
                       onClick={() => setActiveDropdown(null)}
                     >
-                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                        <item.icon className="w-3.5 h-3.5" />
-                        {item.name}
+                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
+                        <item.icon className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="truncate">{item.name}</span>
                       </div>
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500">{item.description}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 group-hover:text-gray-500 hidden md:block">{item.description}</p>
                     </Link>
                   </li>
                 ))}
@@ -224,8 +223,8 @@ const Navbar = () => {
             
             {/* Cloud & DevOps Column */}
             <div>
-              <h4 className="text-cyan-400 text-sm font-semibold mb-3 flex items-center gap-2">
-                <Cloud className="w-4 h-4" /> Cloud & DevOps
+              <h4 className="text-cyan-400 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+                <Cloud className="w-3 h-3 md:w-4 md:h-4" /> Cloud
               </h4>
               <ul className="space-y-2">
                 {services.cloud.map((item) => (
@@ -235,11 +234,11 @@ const Navbar = () => {
                       className="block group"
                       onClick={() => setActiveDropdown(null)}
                     >
-                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors">
-                        <item.icon className="w-3.5 h-3.5" />
-                        {item.name}
+                      <div className="flex items-center gap-2 text-gray-400 hover:text-white text-xs md:text-sm transition-colors">
+                        <item.icon className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="truncate">{item.name}</span>
                       </div>
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500">{item.description}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 group-hover:text-gray-500 hidden md:block">{item.description}</p>
                     </Link>
                   </li>
                 ))}
@@ -247,14 +246,14 @@ const Navbar = () => {
             </div>
 
             {/* FYP for Students Column */}
-            <div className="relative">
-              <div className="absolute -top-2 -right-2">
-                <span className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs px-2 py-0.5 rounded-full animate-pulse">
+            <div className="col-span-2 md:col-span-1 relative">
+              <div className="absolute -top-2 -right-2 md:static">
+                <span className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[10px] md:text-xs px-1.5 py-0.5 rounded-full animate-pulse">
                   Popular
                 </span>
               </div>
-              <h4 className="text-green-400 text-sm font-semibold mb-3 flex items-center gap-2">
-                <GraduationCap className="w-4 h-4" /> For Students
+              <h4 className="text-green-400 text-xs md:text-sm font-semibold mb-3 flex items-center gap-2">
+                <GraduationCap className="w-3 h-3 md:w-4 md:h-4" /> Students
               </h4>
               <ul className="space-y-2">
                 {services.fyp.map((item) => (
@@ -265,40 +264,40 @@ const Navbar = () => {
                       onClick={() => setActiveDropdown(null)}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-2 text-gray-400 group-hover:text-white text-sm transition-colors">
-                          <item.icon className="w-3.5 h-3.5 text-green-400" />
-                          {item.name}
+                        <span className="flex items-center gap-2 text-gray-400 group-hover:text-white text-xs md:text-sm transition-colors">
+                          <item.icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-green-400" />
+                          <span className="truncate">{item.name}</span>
                         </span>
                         {item.badge && (
-                          <span className="text-xs bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full">
+                          <span className="text-[10px] md:text-xs bg-green-500/20 text-green-400 px-1 py-0.5 rounded-full whitespace-nowrap">
                             {item.badge}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500 mt-1">{item.description}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 group-hover:text-gray-500 mt-0.5 hidden md:block">{item.description}</p>
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 pt-3 border-t border-green-500/20">
+              <div className="mt-2 pt-2 border-t border-green-500/20">
                 <Link
                   to="/fyp"
-                  className="flex items-center gap-2 text-xs text-green-400 hover:text-green-300 transition-colors"
+                  className="flex items-center gap-1 text-[10px] md:text-xs text-green-400 hover:text-green-300 transition-colors"
                   onClick={() => setActiveDropdown(null)}
                 >
-                  <GraduationCap className="w-3 h-3" />
-                  Exclusive for University Students →
+                  <GraduationCap className="w-2.5 h-2.5 md:w-3 md:h-3" />
+                  Exclusive for Students →
                 </Link>
               </div>
             </div>
           </div>
-          <div className="mt-6 pt-4 border-t border-white/10">
+          <div className="mt-4 pt-3 border-t border-white/10">
             <Link
               to="/services"
-              className="text-cyan-400 hover:text-cyan-300 text-sm font-medium flex items-center gap-1"
+              className="text-cyan-400 hover:text-cyan-300 text-xs md:text-sm font-medium flex items-center gap-1"
               onClick={() => setActiveDropdown(null)}
             >
-              View All Services <ChevronRight className="w-4 h-4" />
+              View All Services <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
             </Link>
           </div>
         </div>
@@ -307,7 +306,7 @@ const Navbar = () => {
     
     if (activeDropdown === "courses") {
       return (
-        <div className="w-64">
+        <div className="w-56">
           {coursesDropdown.map((item) => (
             <Link
               key={item.path}
@@ -344,7 +343,6 @@ const Navbar = () => {
     return null;
   };
 
-  // Mobile render function for dropdowns
   const renderMobileDropdown = (dropdownName, items, isServices = false) => {
     if (mobileOpenDropdown !== dropdownName) return null;
     
@@ -353,7 +351,7 @@ const Navbar = () => {
         <div className="pl-4 mt-2 space-y-3">
           {Object.keys(services).map((category) => (
             <div key={category} className="space-y-2">
-              <h4 className="text-cyan-400 text-sm font-semibold">
+              <h4 className="text-cyan-400 text-xs font-semibold">
                 {category === "web" && "Web Development"}
                 {category === "mobile" && "Mobile Development"}
                 {category === "ai" && "AI & ML"}
@@ -413,16 +411,16 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 group">
+            <Link to="/" className="flex items-center space-x-2 group flex-shrink-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full blur-2xl opacity-50 animate-pulse"></div>
                 <img 
                   src={Logo} 
                   alt="CodeNagar Logo" 
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
+                  className="w-10 h-10 md:w-16 md:h-16 rounded-full object-cover relative z-10 border-2 border-blue-500/30 shadow-2xl"
                 />
               </div>
-              <span className="text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-lg md:text-xl font-display font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 CodeNagar
               </span>
             </Link>
@@ -440,7 +438,7 @@ const Navbar = () => {
                     {link.dropdown ? (
                       <>
                         <button
-                          className={`px-4 py-2 rounded-lg flex items-center gap-1 transition-all duration-200 ${
+                          className={`px-3 py-2 rounded-lg flex items-center gap-1 transition-all duration-200 text-sm ${
                             activeDropdown === link.dropdown
                               ? "text-cyan-400 bg-white/5"
                               : "text-gray-300 hover:text-white hover:bg-white/5"
@@ -448,14 +446,14 @@ const Navbar = () => {
                         >
                           {link.name}
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform duration-200 ${
+                            className={`w-3 h-4 transition-transform duration-200 ${
                               activeDropdown === link.dropdown ? "rotate-180" : ""
                             }`}
                           />
                         </button>
                         
                         {activeDropdown === link.dropdown && (
-                          <div className="absolute top-full left-0 mt-2 animate-slide-down">
+                          <div className="absolute top-full left-0 mt-2 animate-slide-down z-50">
                             <div className="glass-card shadow-2xl border-white/10 overflow-hidden">
                               {renderDropdownContent()}
                             </div>
@@ -465,7 +463,7 @@ const Navbar = () => {
                     ) : (
                       <Link
                         to={link.path}
-                        className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                        className={`px-3 py-2 rounded-lg transition-all duration-200 text-sm ${
                           location.pathname === link.path
                             ? "text-cyan-400 bg-white/5"
                             : "text-gray-300 hover:text-white hover:bg-white/5"
@@ -480,20 +478,20 @@ const Navbar = () => {
             </div>
 
             {/* Right Section - Desktop */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-3">
               {user ? (
                 <div className="relative group">
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">
+                  <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition text-sm">
                     <User className="w-4 h-4" />
                     {user.name?.split(' ')[0] || 'User'}
                     <ChevronDown className="w-4 h-4" />
                   </button>
-                  <div className="absolute top-full right-0 mt-2 w-56 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="absolute top-full right-0 mt-2 w-56 glass-card opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     {userMenuItems.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 transition-colors text-sm"
                       >
                         <item.icon className="w-4 h-4 text-cyan-400" />
                         {item.name}
@@ -502,7 +500,7 @@ const Navbar = () => {
                     <div className="border-t border-white/10 my-1"></div>
                     <button
                       onClick={logout}
-                      className="flex items-center gap-2 w-full text-left px-4 py-2 text-red-400 hover:bg-white/5 transition-colors"
+                      className="flex items-center gap-2 w-full text-left px-4 py-2 text-red-400 hover:bg-white/5 transition-colors text-sm"
                     >
                       <LogOut className="w-4 h-4" />
                       Logout
@@ -511,15 +509,15 @@ const Navbar = () => {
                 </div>
               ) : (
                 <>
-                  <Link to="/login" className="text-gray-300 hover:text-white transition">
+                  <Link to="/login" className="text-gray-300 hover:text-white transition text-sm">
                     Log in
                   </Link>
-                  <Link to="/signup" className="btn-primary">
+                  <Link to="/signup" className="btn-primary text-sm">
                     Sign up
                   </Link>
                 </>
               )}
-              <Link to="/contact" className="btn-outline">
+              <Link to="/contact" className="btn-outline text-sm">
                 Contact Us
               </Link>
             </div>
@@ -536,13 +534,12 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Drawer - Enhanced */}
+      {/* Mobile Menu Drawer */}
       <div
         className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
           isOpen ? "visible" : "invisible"
         }`}
       >
-        {/* Backdrop */}
         <div
           className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ${
             isOpen ? "opacity-100" : "opacity-0"
@@ -550,33 +547,32 @@ const Navbar = () => {
           onClick={() => setIsOpen(false)}
         />
         
-        {/* Drawer */}
         <div
           className={`absolute right-0 top-0 h-full w-full max-w-sm bg-dark-300 shadow-2xl transition-transform duration-300 transform ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex flex-col h-full overflow-y-auto scrollbar-thin">
-            <div className="p-6 pt-20">
+          <div className="flex flex-col h-full overflow-y-auto">
+            <div className="p-5 pt-20">
               {/* User Profile Section - Mobile */}
               {user ? (
-                <div className="mb-6 p-4 bg-gradient-to-r from-cyan-600/20 to-indigo-600/20 rounded-xl border border-cyan-500/30">
+                <div className="mb-5 p-3 bg-gradient-to-r from-cyan-600/20 to-indigo-600/20 rounded-xl border border-cyan-500/30">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-full flex items-center justify-center text-xl font-bold">
+                    <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-full flex items-center justify-center text-lg font-bold">
                       {user.name?.charAt(0) || "U"}
                     </div>
                     <div>
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-xs text-gray-400">{user.email}</p>
+                      <p className="font-semibold text-sm">{user.name}</p>
+                      <p className="text-xs text-gray-400 truncate max-w-[200px]">{user.email}</p>
                     </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     {userMenuItems.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-2 py-2 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                        className="flex items-center gap-2 py-2 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                       >
                         <item.icon className="w-4 h-4 text-cyan-400" />
                         {item.name}
@@ -587,7 +583,7 @@ const Navbar = () => {
                         logout();
                         setIsOpen(false);
                       }}
-                      className="flex items-center gap-2 w-full py-2 px-3 text-red-400 hover:bg-white/5 rounded-lg transition"
+                      className="flex items-center gap-2 w-full py-2 px-2 text-red-400 hover:bg-white/5 rounded-lg transition text-sm"
                     >
                       <LogOut className="w-4 h-4" />
                       Logout
@@ -595,41 +591,39 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                <div className="mb-6 flex gap-3">
+                <div className="mb-5 flex gap-2">
                   <Link
                     to="/login"
                     onClick={() => setIsOpen(false)}
-                    className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition"
+                    className="flex-1 text-center py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700 transition text-sm"
                   >
                     Log in
                   </Link>
                   <Link
                     to="/signup"
                     onClick={() => setIsOpen(false)}
-                    className="flex-1 text-center py-2 border border-white/20 rounded-lg hover:bg-white/5 transition"
+                    className="flex-1 text-center py-2 border border-white/20 rounded-lg hover:bg-white/5 transition text-sm"
                   >
                     Sign up
                   </Link>
                 </div>
               )}
 
-              {/* Navigation Links with Nested Dropdowns */}
+              {/* Navigation Links */}
               <div className="space-y-1">
-                {/* Home Link */}
                 <Link
                   to="/"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                  className="flex items-center gap-2 py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                 >
                   <Home className="w-5 h-5 text-cyan-400" />
                   Home
                 </Link>
 
-                {/* Services Dropdown */}
                 <div>
                   <button
                     onClick={() => toggleMobileDropdown("services")}
-                    className="flex items-center justify-between w-full py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                    className="flex items-center justify-between w-full py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                   >
                     <div className="flex items-center gap-2">
                       <Code className="w-5 h-5 text-cyan-400" />
@@ -640,11 +634,10 @@ const Navbar = () => {
                   {renderMobileDropdown("services", null, true)}
                 </div>
 
-                {/* Courses Dropdown */}
                 <div>
                   <button
                     onClick={() => toggleMobileDropdown("courses")}
-                    className="flex items-center justify-between w-full py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                    className="flex items-center justify-between w-full py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                   >
                     <div className="flex items-center gap-2">
                       <BookOpen className="w-5 h-5 text-cyan-400" />
@@ -655,21 +648,19 @@ const Navbar = () => {
                   {renderMobileDropdown("courses", coursesDropdown)}
                 </div>
 
-                {/* Store Link */}
                 <Link
                   to="/store"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                  className="flex items-center gap-2 py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                 >
                   <ShoppingBag className="w-5 h-5 text-cyan-400" />
                   Store
                 </Link>
 
-                {/* About Dropdown */}
                 <div>
                   <button
                     onClick={() => toggleMobileDropdown("about")}
-                    className="flex items-center justify-between w-full py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                    className="flex items-center justify-between w-full py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                   >
                     <div className="flex items-center gap-2">
                       <Briefcase className="w-5 h-5 text-cyan-400" />
@@ -680,11 +671,10 @@ const Navbar = () => {
                   {renderMobileDropdown("about", aboutDropdown)}
                 </div>
 
-                {/* Resources Dropdown */}
                 <div>
                   <button
                     onClick={() => toggleMobileDropdown("resources")}
-                    className="flex items-center justify-between w-full py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                    className="flex items-center justify-between w-full py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                   >
                     <div className="flex items-center gap-2">
                       <FileText className="w-5 h-5 text-cyan-400" />
@@ -695,40 +685,37 @@ const Navbar = () => {
                   {renderMobileDropdown("resources", resourcesDropdown)}
                 </div>
 
-                {/* Portfolio Link */}
                 <Link
                   to="/portfolio"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                  className="flex items-center gap-2 py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                 >
                   <Briefcase className="w-5 h-5 text-cyan-400" />
                   Portfolio
                 </Link>
 
-                {/* Contact Link */}
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-3 px-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition"
+                  className="flex items-center gap-2 py-2.5 px-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition text-sm"
                 >
                   <MessageSquare className="w-5 h-5 text-cyan-400" />
                   Contact
                 </Link>
               </div>
 
-              {/* Footer Links */}
-              <div className="mt-6 pt-6 border-t border-white/10">
+              <div className="mt-5 pt-4 border-t border-white/10">
                 <Link
                   to="/careers"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-2 px-3 text-gray-400 hover:text-white transition"
+                  className="flex items-center gap-2 py-2 px-2 text-gray-400 hover:text-white transition text-sm"
                 >
                   Careers
                 </Link>
                 <Link
                   to="/partners"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 py-2 px-3 text-gray-400 hover:text-white transition"
+                  className="flex items-center gap-2 py-2 px-2 text-gray-400 hover:text-white transition text-sm"
                 >
                   Become a Partner
                 </Link>
@@ -740,6 +727,5 @@ const Navbar = () => {
     </>
   );
 };
-
 
 export default Navbar;

@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import { 
   ArrowRight, Code, ShoppingBag, Briefcase, Users, Server, 
   Globe, Sparkles, Rocket, Zap, Smartphone, Brain, GraduationCap,
-  BookOpen,  Star, Clock, Shield, Heart, TrendingUp,
-   MapPin, Phone, Mail, ChevronRight, 
-   Database, 
+  BookOpen, Star, Clock, Shield, Heart, TrendingUp,
+  MapPin, Phone, Mail, ChevronRight, Database
 } from "lucide-react";
 import Logo from "../assets/logo.png";
 
@@ -127,10 +126,10 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-indigo-600/10 to-blue-600/20" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-5" />
         
-        {/* Animated particles */}
+        {/* Animated particles - mobile responsive sizes */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute top-20 left-10 w-36 h-36 md:w-72 md:h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -162,32 +161,32 @@ const Home = () => {
               <span className="text-blue-300 text-sm">Pakistan's Leading Tech Hub</span>
             </motion.div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 bg-clip-text text-transparent">
                 CodeNagar
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-4 flex items-center justify-center gap-2 flex-wrap">
-              <Sparkles className="w-6 h-6 text-yellow-400" />
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-4 flex items-center justify-center gap-2 flex-wrap">
+              <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
               Where Code Meets Vision
-              <Rocket className="w-6 h-6 text-blue-400" />
+              <Rocket className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
             </p>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto px-4 text-sm sm:text-base">
               Software Development | IT Training | Hardware Store | FYP Projects — Your Complete Technology Partner
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link to="/services" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group">
-                Explore Services <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center px-4">
+              <Link to="/services" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group text-sm sm:text-base">
+                Explore Services <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/courses" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group">
+              <Link to="/courses" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group text-sm sm:text-base">
                 Browse Courses
               </Link>
-              <Link to="/store" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group">
+              <Link to="/store" className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group text-sm sm:text-base">
                 Shop Now
               </Link>
-              <Link to="/fyp" className="px-8 py-3 border-2 border-green-500 rounded-lg font-semibold hover:bg-green-500/10 transition-all flex items-center gap-2 group">
-                <GraduationCap className="w-5 h-5" />
-                FYP Projects <span className="text-green-400 text-sm">40% OFF</span>
+              <Link to="/fyp" className="px-4 sm:px-8 py-2 sm:py-3 border-2 border-green-500 rounded-lg font-semibold hover:bg-green-500/10 transition-all flex items-center gap-2 group text-sm sm:text-base">
+                <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
+                FYP Projects <span className="text-green-400 text-xs">40% OFF</span>
               </Link>
             </div>
           </motion.div>
@@ -195,25 +194,25 @@ const Home = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-1 mb-4">
               <Zap className="w-4 h-4 text-blue-400" />
               <span className="text-blue-300 text-sm">What We Offer</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Our <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Services</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Comprehensive software solutions for modern businesses</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Comprehensive software solutions for modern businesses</p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, idx) => (
               <motion.div 
                 key={idx} 
@@ -243,29 +242,29 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FYP Projects Section - NEW */}
-      <section className="py-20 px-4 bg-gradient-to-b from-gray-900/50 to-gray-800/30">
+      {/* FYP Projects Section */}
+      <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-gray-900/50 to-gray-800/30">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-green-500/10 rounded-full px-4 py-1 mb-4">
               <GraduationCap className="w-4 h-4 text-green-400" />
               <span className="text-green-300 text-sm">For University Students</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Final Year <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">Projects</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Ready-made FYP projects, theses, and reports with exclusive student discount</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Ready-made FYP projects, theses, and reports with exclusive student discount</p>
             <div className="inline-flex items-center gap-2 mt-4 bg-green-500/20 rounded-full px-4 py-2">
-              <span className="text-green-400 font-bold">40% Student Discount</span>
-              <span className="text-gray-300 text-sm">| Limited Time Offer</span>
+              <span className="text-green-400 font-bold text-sm">40% Student Discount</span>
+              <span className="text-gray-300 text-xs">| Limited Time Offer</span>
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {fypProjects.map((project, idx) => (
               <motion.div
                 key={idx}
@@ -287,7 +286,7 @@ const Home = () => {
                 <div className="p-4">
                   <h3 className="text-lg font-bold mb-2 group-hover:text-green-400 transition-colors line-clamp-1">{project.title}</h3>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-2xl font-bold text-green-400">{project.price}</span>
+                    <span className="text-xl sm:text-2xl font-bold text-green-400">{project.price}</span>
                   </div>
                   <Link to={project.link} className="block text-center py-2 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all text-sm">
                     Get Student Quote
@@ -305,21 +304,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gray-900/50">
+      {/* Stats Section - Responsive */}
+      <section className="py-16 sm:py-20 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Our <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Impact</span> in Numbers
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Trusted by businesses and students across Pakistan</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Trusted by businesses and students across Pakistan</p>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-8 text-center">
             {[
               { icon: Code, value: "50+", label: "Projects Delivered" },
               { icon: Users, value: "200+", label: "Students Trained" },
@@ -334,13 +333,13 @@ const Home = () => {
                 key={idx} 
                 initial={{ opacity: 0, scale: 0.5 }} 
                 whileInView={{ opacity: 1, scale: 1 }} 
-                transition={{ delay: idx * 0.05 }}
+                transition={{ delay: idx * 0.03 }}
                 whileHover={{ scale: 1.05 }}
                 className="bg-gray-800/30 rounded-xl md:rounded-2xl p-3 md:p-6 backdrop-blur-sm border border-gray-700 hover:border-blue-500/50 transition-all"
               >
-                <stat.icon className="w-12 h-12 mx-auto mb-3 text-blue-400" />
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{stat.value}</div>
-                <div className="text-gray-400 text-sm mt-1">{stat.label}</div>
+                <stat.icon className="w-6 h-6 md:w-10 md:h-10 mx-auto mb-1 md:mb-3 text-blue-400" />
+                <div className="text-sm md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{stat.value}</div>
+                <div className="text-xs md:text-sm text-gray-400 mt-0.5 md:mt-1">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -348,20 +347,20 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Why Choose <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">CodeNagar</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">We deliver excellence through innovation and dedication</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">We deliver excellence through innovation and dedication</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
@@ -382,21 +381,21 @@ const Home = () => {
       </section>
 
       {/* Recent Blog Posts Section */}
-      <section className="py-20 px-4 bg-gray-900/50">
+      <section className="py-16 sm:py-20 px-4 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 rounded-full px-4 py-1 mb-4">
               <BookOpen className="w-4 h-4 text-cyan-400" />
               <span className="text-cyan-300 text-sm">Latest Insights</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               From Our <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Blog</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Stay updated with the latest trends and insights</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Stay updated with the latest trends and insights</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -437,21 +436,21 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-yellow-500/10 rounded-full px-4 py-1 mb-4">
               <Star className="w-4 h-4 text-yellow-400" />
               <span className="text-yellow-300 text-sm">Testimonials</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               What Our <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">Clients Say</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Don't just take our word for it</p>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">Don't just take our word for it</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -465,10 +464,10 @@ const Home = () => {
                 className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-yellow-500/50 transition-all"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <img src={testimonial.avatar} alt={testimonial.name} className="w-14 h-14 rounded-full object-cover" />
+                  <img src={testimonial.avatar} alt={testimonial.name} className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover" />
                   <div>
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    <h3 className="font-semibold text-sm md:text-base">{testimonial.name}</h3>
+                    <p className="text-xs md:text-sm text-gray-400">{testimonial.role}</p>
                     <div className="flex items-center gap-1 mt-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
@@ -476,7 +475,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-300 text-sm italic">"{testimonial.content}"</p>
+                <p className="text-gray-300 text-xs md:text-sm italic">"{testimonial.content}"</p>
               </motion.div>
             ))}
           </div>
@@ -489,15 +488,15 @@ const Home = () => {
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
-            className="text-center mb-10"
+            className="text-center mb-8 sm:mb-10"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">
               Trusted by <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Industry Leaders</span>
             </h2>
-            <p className="text-gray-400 text-sm">We partner with the best in the business</p>
+            <p className="text-gray-400 text-xs sm:text-sm">We partner with the best in the business</p>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 partners-gap">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
             {partners.map((partner, idx) => (
               <motion.div
                 key={idx}
@@ -505,7 +504,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="w-24 h-24 bg-gray-800/50 rounded-xl flex items-center justify-center p-4 border border-gray-700 hover:border-blue-500/50 transition-all"
+                className="w-16 h-16 sm:w-24 sm:h-24 bg-gray-800/50 rounded-xl flex items-center justify-center p-2 sm:p-4 border border-gray-700 hover:border-blue-500/50 transition-all"
               >
                 <img src={partner.logo} alt={partner.name} className="w-full h-full object-contain rounded-lg" />
               </motion.div>
@@ -515,9 +514,9 @@ const Home = () => {
       </section>
 
       {/* Location Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -526,27 +525,27 @@ const Home = () => {
                 <MapPin className="w-4 h-4 text-blue-400" />
                 <span className="text-blue-300 text-sm">Visit Us</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
                 Our <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Location</span>
               </h2>
-              <p className="text-gray-400 mb-6">
+              <p className="text-gray-400 mb-6 text-sm sm:text-base">
                 Visit our state-of-the-art facility in Muzaffarabad for in-person consultations, hardware purchases, and support.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-gray-300">
-                  <MapPin className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-gray-300 text-sm sm:text-base">
+                  <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <span>CodeNagar, Sajjad Complex, Upper Adda, Muzaffarabad</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <Phone className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-gray-300 text-sm sm:text-base">
+                  <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <span>+92 3075762192</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <Mail className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-gray-300 text-sm sm:text-base">
+                  <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <span>info@codenagar.com</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <Clock className="w-5 h-5 text-blue-400" />
+                <div className="flex items-center gap-3 text-gray-300 text-sm sm:text-base">
+                  <Clock className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <span>Monday - Saturday: 10AM - 8PM | Sunday: Closed</span>
                 </div>
               </div>
@@ -565,7 +564,7 @@ const Home = () => {
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d411.6420718474806!2d73.47095634089504!3d34.372446473469225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e09f76421c02e9%3A0xaeb385ad86c56a8c!2sCodeNagar!5e0!3m2!1sen!2s!4v1779136409725!5m2!1sen!2s"
                 width="100%"
-                height="350"
+                height="300"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -578,21 +577,21 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-blue-600/10 to-indigo-600/10">
+      <section className="py-12 sm:py-16 px-4 bg-gradient-to-r from-blue-600/10 to-indigo-600/10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Subscribe to Our Newsletter</h2>
-            <p className="text-gray-400 mb-6">Get the latest tech insights and updates delivered to your inbox</p>
-            <div className="flex max-w-md mx-auto gap-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Subscribe to Our Newsletter</h2>
+            <p className="text-gray-400 mb-6 text-sm sm:text-base">Get the latest tech insights and updates delivered to your inbox</p>
+            <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-2">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-1 px-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-white/10"
+                className="flex-1 px-4 py-3 bg-dark-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-white/10 text-sm"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all">
+              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all text-sm">
                 Subscribe
               </button>
             </div>
@@ -602,29 +601,29 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-center bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-blue-600/20 rounded-3xl p-12 border border-blue-500/20 backdrop-blur-sm"
+            className="text-center bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-blue-600/20 rounded-2xl sm:rounded-3xl p-8 sm:p-12 border border-blue-500/20 backdrop-blur-sm"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Ready to Start Your Project?</h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">Ready to Start Your Project?</h2>
+            <p className="text-gray-300 text-sm sm:text-lg mb-8 max-w-2xl mx-auto">
               Let's discuss how CodeNagar can help you achieve your business goals with cutting-edge technology solutions.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
                 to="/contact" 
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center gap-2 group text-sm sm:text-base"
               >
-                Get Free Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Get Free Consultation <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 to="/fyp" 
-                className="px-8 py-3 border-2 border-green-500 rounded-lg font-semibold hover:bg-green-500/10 transition-all flex items-center gap-2 group"
+                className="px-6 sm:px-8 py-2 sm:py-3 border-2 border-green-500 rounded-lg font-semibold hover:bg-green-500/10 transition-all flex items-center gap-2 group text-sm sm:text-base"
               >
-                <GraduationCap className="w-5 h-5" />
+                <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
                 Explore FYP Projects
               </Link>
             </div>

@@ -1,4 +1,3 @@
-/* frontend/src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +9,7 @@
   }
   
   body {
-    @apply bg-dark-300 text-white overflow-x-hidden;
+    @apply bg-dark-300 text-white;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, monospace, sans-serif;
   }
   
@@ -662,55 +661,47 @@ input[type=number]::-webkit-outer-spin-button {
   transition: opacity 200ms, transform 200ms;
 }
 
-/* ========== MOBILE SCROLL FIX ========== */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-}
-
-#root {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-* {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-img, iframe, video {
-  max-width: 100%;
-  height: auto;
-}
-
-section, .container, .max-w-7xl, .max-w-5xl, .max-w-4xl {
-  overflow-x: hidden;
-}
-
-/* Fix for stats section on mobile */
+/* ========== FIX FOR MOBILE HORIZONTAL SCROLL - ONLY ON MOBILE ========== */
 @media (max-width: 768px) {
-  .grid.md\:grid-cols-4.gap-8 {
-    gap: 0.75rem !important;
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
   }
   
-  .stats-icon {
-    width: 2rem !important;
-    height: 2rem !important;
+  #root {
+    overflow-x: hidden;
+    width: 100%;
   }
   
-  .stat-value {
-    font-size: 1rem !important;
-  }
-  
-  .stat-label {
-    font-size: 0.7rem !important;
+  section {
+    overflow-x: hidden;
   }
 }
 
-/* Fix for testimonial avatars */
+/* ========== FIX FOR STATS GRID ON MOBILE ========== */
 @media (max-width: 640px) {
-  .w-14.h-14 {
+  .stats-grid-mobile .stat-card {
+    padding: 0.75rem !important;
+  }
+  
+  .stats-grid-mobile .stat-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .stats-grid-mobile .stat-value {
+    font-size: 0.9rem !important;
+  }
+  
+  .stats-grid-mobile .stat-label {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ========== FIX FOR TESTIMONIALS ON MOBILE ========== */
+@media (max-width: 640px) {
+  .testimonial-avatar {
     width: 2.5rem !important;
     height: 2.5rem !important;
   }
@@ -720,89 +711,32 @@ section, .container, .max-w-7xl, .max-w-5xl, .max-w-4xl {
   }
 }
 
-/* Fix for partner logos */
+/* ========== FIX FOR PARTNER LOGOS ON MOBILE ========== */
 @media (max-width: 640px) {
-  .w-24.h-24 {
+  .partner-logo {
     width: 4rem !important;
     height: 4rem !important;
   }
-  
-  .partners-gap {
-    gap: 1rem !important;
-  }
 }
 
-/* Fix for any overflowing elements */
-.overflow-hidden {
-  overflow: hidden !important;
-}
-
-/* Ensure glass-card doesn't overflow */
-.glass-card {
-  overflow-x: hidden;
-}
-
-/* Fix for navbar on mobile */
-@media (max-width: 1024px) {
-  .fixed.inset-0.z-40 {
-    overflow-x: hidden;
-  }
-}
-
-/* Fix for the 8 stats items on mobile */
+/* ========== FIX FOR HERO SECTION ON MOBILE ========== */
 @media (max-width: 640px) {
-  .grid.grid-cols-2 {
-    gap: 0.5rem !important;
-  }
-  
-  .grid.grid-cols-2 > div {
-    padding: 0.75rem !important;
-  }
-  
-  .grid.grid-cols-2 svg {
-    width: 1.5rem !important;
-    height: 1.5rem !important;
-    margin-bottom: 0.25rem !important;
-  }
-  
-  .grid.grid-cols-2 .text-3xl {
-    font-size: 1rem !important;
-  }
-  
-  .grid.grid-cols-2 .text-sm {
-    font-size: 0.6rem !important;
-  }
-}
-
-/* Fix for the hero section particles on mobile */
-@media (max-width: 640px) {
-  .absolute.top-20.left-10.w-72.h-72 {
-    width: 10rem !important;
-    height: 10rem !important;
-  }
-  
-  .absolute.bottom-20.right-10.w-96.h-96 {
-    width: 12rem !important;
-    height: 12rem !important;
-  }
-}
-
-/* Ensure all buttons are properly sized on mobile */
-@media (max-width: 640px) {
-  .px-8.py-3 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    font-size: 0.875rem !important;
-  }
-  
-  .text-5xl {
+  .hero-title {
     font-size: 2rem !important;
   }
   
-  .w-24.h-24 {
-    width: 4rem !important;
-    height: 4rem !important;
+  .hero-buttons .btn {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .hero-particle {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  .hero-particle-lg {
+    width: 10rem !important;
+    height: 10rem !important;
   }
 }
